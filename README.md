@@ -1,58 +1,99 @@
-# Turborepo Tailwind CSS starter
+# Portfolio Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern, high-performance portfolio monorepo built with a focus on scalability, maintainability, and automated delivery. This project leverages a Turborepo-managed monorepo architecture, deploying static web applications to Azure using Infrastructure as Code (IaC).
 
-## Using this example
+## 🚀 Tech Stack
 
-Run the following command:
+- **Framework:** [Next.js (React)](https://nextjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Monorepo Management:** [Turborepo](https://turbo.build/)
+- **Package Manager:** [pnpm](https://pnpm.io/)
+- **Infrastructure as Code (IaC):** [Azure Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)
+- **CI/CD:** [GitHub Actions](https://github.com/features/actions)
+- **Hosting:** [Azure Static Web Apps (SWA)](https://azure.microsoft.com/en-us/products/app-service/static/)
 
-```sh
-npx create-turbo@latest -e with-tailwind
+---
+
+## 📂 Project Structure
+
+This monorepo uses a modular architecture to share configurations and UI components across multiple applications.
+
+### Apps
+- `apps/web`: The main portfolio website (Next.js with Static Export).
+- `apps/docs`: Documentation site for the project.
+
+### Shared Packages
+- `packages/ui`: A shared React component library powered by Tailwind CSS.
+- `packages/tailwind-config`: Shared Tailwind and PostCSS configurations.
+- `packages/typescript-config`: Centralized `tsconfig.json` definitions.
+- `packages/eslint-config`: Shared linting rules (Next.js, React, Base).
+
+### Infrastructure
+- `infra/`: Contains Azure Bicep templates for automated resource provisioning.
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v20 or higher)
+- [pnpm](https://pnpm.io/installation) (v10 or higher)
+
+### Installation
+```bash
+pnpm install
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Building packages/ui
-
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.ts`. This was chosen for several reasons:
-
-- Make sharing one `tailwind.config.ts` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
-
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.ts` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
-
-For example, in [tailwind.config.ts](packages/tailwind-config/tailwind.config.ts):
-
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
+### Development
+Run all applications in development mode:
+```bash
+pnpm dev
 ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+### Build
+Build all applications and packages:
+```bash
+pnpm build
+```
 
-### Utilities
+---
 
-This Turborepo has some additional tools already setup for you:
+## 🏗️ Infrastructure as Code (IaC)
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+The infrastructure is defined using **Azure Bicep** in the `infra/` directory.
+
+### Resource: Azure Static Web App
+The `infra/main.bicep` file provisions an **Azure Static Web App (SWA)** resource. It is configured with:
+- **Location:** Defaulted to `eastasia` (configurable via parameters).
+- **SKU:** Uses the `Free` tier by default.
+- **Provider:** Integrated with `GitHub` for automated deployment tokens.
+
+To deploy the infrastructure manually using the Azure CLI:
+```bash
+az deployment group create --resource-group <your-resource-group> --template-file infra/main.bicep
+```
+
+---
+
+## 🔄 CI/CD Pipeline
+
+The project implements a robust CI/CD workflow via **GitHub Actions** (`.github/workflows/ci.yml`).
+
+### Workflow Steps
+1. **Trigger:** Runs on every `push` or `pull_request` to the `main` branch.
+2. **Environment Setup:** Configures Node.js (v20) and pnpm with dependency caching.
+3. **Build:** Executes `pnpm build`, which triggers `turbo run build`. The `apps/web` application is configured for **Static Export (`output: 'export'`)**, generating a production-ready `out/` directory.
+4. **Deploy:** Uses the `Azure/static-web-apps-deploy` action to upload the static assets to Azure.
+   - **App Location:** `apps/web/out`
+   - **Skip Build:** The action is configured to skip its internal build process (`skip_app_build: true`) and use the pre-built assets from the previous step for maximum consistency.
+
+### Required Secrets
+To enable the deployment, the following secret must be configured in the GitHub repository:
+- `AZURE_STATIC_WEB_APPS_API_TOKEN`: The deployment token retrieved from the Azure Portal after provisioning the Static Web App.
+
+---
+
+## 🧩 Utilities & Tooling
+- **Prettier:** Code formatting with `prettier-plugin-tailwindcss` for class sorting.
+- **ESLint:** Strict linting rules shared across the monorepo.
+- **TypeScript:** End-to-end type safety.
