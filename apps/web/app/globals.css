@@ -2,25 +2,59 @@
 @import "@repo/tailwind-config";
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+  /* Stitch Infrastructure Editorial Design System */
+  --background: #0b1326;
+  --foreground: #dae2fd;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --primary: #cfbdff;
+  --primary-container: #6200ee;
+  --primary-fixed: #e8ddff;
+  --primary-fixed-dim: #cfbdff;
+  --on-primary: #3a0093;
+  --on-primary-container: #d0beff;
+
+  --secondary: #b9c7df;
+  --secondary-container: #3c4a5e;
+  --secondary-fixed: #d5e3fc;
+  --secondary-fixed-dim: #b9c7df;
+  --on-secondary: #233144;
+  --on-secondary-container: #abb9d1;
+
+  --tertiary: #6bd8cb;
+  --tertiary-container: #005e56;
+  --tertiary-fixed: #89f5e7;
+  --tertiary-fixed-dim: #6bd8cb;
+  --on-tertiary: #003732;
+  --on-tertiary-container: #6cd9cb;
+
+  --surface: #0b1326;
+  --surface-dim: #0b1326;
+  --surface-bright: #31394d;
+  --surface-container-lowest: #060e20;
+  --surface-container-low: #131b2e;
+  --surface-container: #171f33;
+  --surface-container-high: #222a3d;
+  --surface-container-highest: #2d3449;
+  --surface-variant: #2d3449;
+  --surface-tint: #cfbdff;
+  --on-surface: #dae2fd;
+  --on-surface-variant: #cbc3d9;
+
+  --error: #ffb4ab;
+  --error-container: #93000a;
+  --on-error: #690005;
+  --on-error-container: #ffdad6;
+
+  --outline: #948da2;
+  --outline-variant: #494456;
+
+  --inverse-surface: #dae2fd;
+  --inverse-on-surface: #283044;
+  --inverse-primary: #6d23f9;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
