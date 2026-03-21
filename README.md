@@ -6,6 +6,7 @@ A modern, high-performance portfolio monorepo built with a focus on scalability,
 
 - **Framework:** [Next.js (React)](https://nextjs.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animation:** [Framer Motion](https://www.framer.com/motion/)
 - **Monorepo Management:** [Turborepo](https://turbo.build/)
 - **Package Manager:** [pnpm](https://pnpm.io/)
 - **Infrastructure as Code (IaC):** [Azure Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)
