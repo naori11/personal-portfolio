@@ -21,7 +21,7 @@ const projects = [
   },
   {
     title: "AI Code Reviewer",
-    description: "Automated assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
+    description: "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
     tech: ["FASTAPI", "GEMINI API", "DOCKER"],
     github: "https://github.com/naori11/code-reviewer",
     demo: null,
@@ -46,7 +46,7 @@ const projects = [
   },
   {
     title: "Coffeetory POS",
-    description: "An inventory management system built with PHP and MariaDB. Streamlines product tracking and sales operations for small-scale retail.",
+    description: "An inventory management system built with PHP and MySQL. Streamlines product tracking and sales operations for small-scale retail.",
     tech: ["PHP", "MYSQL", "JAVASCRIPT"],
     github: "https://github.com/naori11/Coffeetory",
     demo: null,
@@ -112,7 +112,7 @@ export default function ProjectsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
         >
-          Engineered <span className="text-[#cfbdff] italic">Systems.</span>
+          Things I've <span className="text-[#cfbdff] italic">Built.</span>
         </motion.h1>
         <motion.p
           className="text-base sm:text-lg text-[#b9c7df] leading-relaxed max-w-2xl"
@@ -120,7 +120,7 @@ export default function ProjectsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
         >
-          A showcase of architecting resilient cloud infrastructure, automated CI/CD pipelines, and high-performance backend systems. Focus on scalability, security, and observability.
+          From hardware-integrated IoT systems to automated deployment pipelines. Real projects solving real problems.
         </motion.p>
       </motion.header>
 
@@ -214,8 +214,8 @@ export default function ProjectsPage() {
           <span className="material-symbols-outlined text-[300px]" style={{ fontVariationSettings: "'FILL' 1" }}>terminal</span>
         </div>
         <div className="relative z-10 max-w-xl">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-bold text-[#dae2fd] mb-4 tracking-tight">System Inquiry?</h2>
-          <p className="text-[#b9c7df] mb-8">Looking for an engineer to architect your next deployment framework or backend system? Let's connect and build something robust.</p>
+          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-bold text-[#dae2fd] mb-4 tracking-tight">Want to work together?</h2>
+          <p className="text-[#b9c7df] mb-8">I'm always interested in projects involving cloud infrastructure, backend development, or IoT systems. Let's talk.</p>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", ...springs.snappy }}>
             <Link href="/contact" className="inline-block bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] px-6 sm:px-8 py-2.5 sm:py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-xs sm:text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_rgba(207,189,255,0.3)] transition-all">
               ESTABLISH CONTACT

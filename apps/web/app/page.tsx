@@ -46,14 +46,14 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: easings.easeOutExpo }}
             >
-              Engineering <motion.span
+              Building <motion.span
                 className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 1.1 }}
               >
-                Cloud-Native
-              </motion.span> <br/>Solutions
+                Cloud Infrastructure
+              </motion.span> <br/>& Backend Systems
             </motion.h1>
 
             <motion.p
@@ -62,7 +62,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
             >
-              4th Year BSIT Student at NU-Fairview. I architect resilient cloud infrastructure and automate high-availability systems with a focus on DevOps, Backend Engineering, and CI/CD integration.
+              I build backend systems and cloud infrastructure. Currently doing backend development at GenWATT Energy Solutions, working with payment APIs, Firebase, and real-time telemetry systems.
             </motion.p>
 
             <motion.div
@@ -361,16 +361,16 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: easings.easeOutExpo }}
           >
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl font-black mb-6 tracking-tighter">Ready to scale?</h2>
-            <p className="text-lg sm:text-xl text-[#b9c7df] mb-8">Available for freelance consulting and high-impact full-time roles.</p>
+            <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl font-black mb-6 tracking-tighter">Let's build something.</h2>
+            <p className="text-lg sm:text-xl text-[#b9c7df] mb-8">Open to internships, freelance projects, and full-time opportunities.</p>
             <div className="space-y-4">
               <div className="flex items-center gap-4 text-[#b9c7df]">
                 <span className="material-symbols-outlined text-[#cfbdff]">mail</span>
-                <span className="font-[family-name:var(--font-jetbrains-mono)]">jp.paulo@example.com</span>
+                <span className="font-[family-name:var(--font-jetbrains-mono)]">juvanpaulo1.com</span>
               </div>
               <div className="flex items-center gap-4 text-[#b9c7df]">
                 <span className="material-symbols-outlined text-[#cfbdff]">location_on</span>
-                <span className="font-[family-name:var(--font-jetbrains-mono)]">Quezon City, PH // Remote</span>
+                <span className="font-[family-name:var(--font-jetbrains-mono)]">Caloocan City, PH // Remote</span>
               </div>
             </div>
           </motion.div>

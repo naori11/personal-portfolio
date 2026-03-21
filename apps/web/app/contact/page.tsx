@@ -46,7 +46,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
         >
-          Establish <span className="text-[#cfbdff]">Connectivity</span>
+          Get in <span className="text-[#cfbdff]">Touch</span>
         </motion.h1>
         <motion.p
           className="text-[#b9c7df] max-w-2xl text-base sm:text-lg"
@@ -54,7 +54,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
         >
-          Whether it's discussing cloud architecture, automation pipelines, or just a technical deep-dive, my terminal is always open.
+          Want to discuss a project, ask about my work, or just talk tech? Send me a message.
         </motion.p>
       </motion.header>
 

@@ -29,8 +29,8 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
           >
-            ARCHITECTING THE <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]">CLOUD-NATIVE FUTURE.</span>
+            BUILDING INFRASTRUCTURE <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]">THAT WORKS.</span>
           </motion.h1>
           <motion.div
             className="space-y-6 text-[#b9c7df] text-base sm:text-lg leading-relaxed max-w-2xl"
@@ -39,10 +39,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
           >
             <p>
-              I am an aspiring DevOps and Cloud Engineer currently completing my BSIT at National University - Fairview. My work sits at the intersection of robust backend logic and automated infrastructure, ensuring that applications are not just built, but deployed with precision and scale.
+              I build backend systems and cloud infrastructure. My work ranges from payment gateway integrations to AI-powered code review tools, with a focus on making deployments reliable and repeatable.
             </p>
             <p>
-              From integrating payment gateways for energy solutions to building AI-powered code reviewers, I focus on the "Invisible Engine"—the infrastructure and pipelines that allow software to thrive. I am a consistent Dean's Lister dedicated to mastering the radical transparency of observability and GitOps.
+              Currently doing backend development at GenWATT Energy Solutions, building payment gateway integrations, Firebase-driven telemetry systems, and real-time APIs for EV charger management. I also build side projects that combine hardware (ESP32, IoT) with cloud backends.
             </p>
           </motion.div>
         </motion.div>
@@ -90,8 +90,7 @@ export default function AboutPage() {
           transition={{ duration: 0.6, ease: easings.easeOutExpo }}
         >
           <div className="flex justify-between items-end mb-12">
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight">EXPERIENCE_LOG</h2>
-            <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#494456]">RUNNING_THREADS: 04</span>
+            <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight">WORK & PROJECTS</h2>
           </div>
 
           <div className="space-y-12 relative">
