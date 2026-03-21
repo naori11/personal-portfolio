@@ -39,10 +39,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
           >
             <p>
-              I build backend systems and cloud infrastructure. My work ranges from payment gateway integrations to AI-powered code review tools, with a focus on making deployments reliable and repeatable.
+              I build cloud infrastructure and automate deployments. My work ranges from CI/CD pipelines and infrastructure as code to backend systems and API development, with a focus on making deployments reliable and repeatable.
             </p>
             <p>
-              Currently doing backend development at GenWATT Energy Solutions, building payment gateway integrations, Firebase-driven telemetry systems, and real-time APIs for EV charger management. I also build side projects that combine hardware (ESP32, IoT) with cloud backends.
+              Currently doing backend development at GenWATT Energy Solutions while building DevOps expertise through automation projects. I work with payment APIs, Firebase telemetry, and real-time systems, and build side projects involving Docker, GitHub Actions, and IoT hardware integration.
             </p>
           </motion.div>
         </motion.div>
@@ -214,35 +214,50 @@ export default function AboutPage() {
           <div className="bg-[#222a3d] p-6 rounded-lg border border-[#494456]/10">
             <h4 className="font-[family-name:var(--font-space-grotesk)] text-sm font-bold mb-6">CERTIFICATIONS_AUTH</h4>
             <div className="space-y-4">
-              <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
+              <a
+                href="https://learn.microsoft.com/en-us/users/juvanpaulo-8654/credentials/a501b56f522784f7?ref=https%3A%2F%2Fwww.linkedin.com%2F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 group cursor-pointer"
+              >
+                <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Microsoft Certified: Azure Fundamentals</div>
-                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">AZ-900</div>
+                  <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Microsoft Certified: Azure Fundamentals (AZ-900)</div>
+                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Microsoft Azure</div>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
+              <a
+                href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=4EC61C0CD479544341A52D2EAFEA145AB0BC97260EBF72AA88AFA338B9B6A049"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 group cursor-pointer"
+              >
+                <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Oracle Data Platform 2025 Certified Foundations Associate</div>
+                  <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associatee</div>
                   <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Oracle</div>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
+              <a
+                href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=5CF17CD1239DE27ED3CBAB5F9ADF69EAFB4E9882570647A746A9CBFECA5A05AC"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-4 group cursor-pointer"
+              >
+                <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">Oracle Cloud Infrastructure 2025 Certified Foundations Associate</div>
+                  <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Oracle Cloud Infrastructure 2025 Certified Foundations Associate</div>
                   <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Oracle</div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </motion.section>

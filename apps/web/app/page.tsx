@@ -62,7 +62,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
             >
-              I build backend systems and cloud infrastructure. Currently doing backend development at GenWATT Energy Solutions, working with payment APIs, Firebase, and real-time telemetry systems.
+              I build cloud infrastructure, automate deployments, and develop backend systems. Currently doing backend development at GenWATT Energy Solutions while building DevOps skills through CI/CD pipelines and infrastructure automation.
             </motion.p>
 
             <motion.div
