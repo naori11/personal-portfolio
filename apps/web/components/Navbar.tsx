@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { navContainer, navItem, springs } from "../lib/motion";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -10,47 +12,101 @@ export function Navbar() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-[#0b1326]/60 backdrop-blur-xl shadow-2xl shadow-purple-900/20">
+    <motion.nav
+      className="fixed top-0 w-full z-50 bg-[#0b1326]/60 backdrop-blur-xl shadow-2xl shadow-purple-900/20"
+      initial="hidden"
+      animate="visible"
+      variants={navContainer}
+    >
       <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
         {/* Branding - Left */}
-        <Link href="/" className="text-xl font-black tracking-tighter text-[#cfbdff] uppercase font-[family-name:var(--font-space-grotesk)]">
-          INFRA_DEV
-        </Link>
+        <motion.div variants={navItem}>
+          <Link href="/" className="text-xl font-black tracking-tighter text-[#cfbdff] uppercase font-[family-name:var(--font-space-grotesk)]">
+            INFRA_DEV
+          </Link>
+        </motion.div>
 
         {/* Navigation Links - Center */}
         <div className="hidden md:flex items-center gap-8 font-[family-name:var(--font-space-grotesk)] font-bold tracking-tight">
-          <Link
-            href="/"
-            className={isActive("/") ? "text-[#cfbdff] border-b-2 border-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors"}
-          >
-            Home
-          </Link>
-          <Link
-            href="/projects"
-            className={isActive("/projects") ? "text-[#cfbdff] border-b-2 border-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors"}
-          >
-            Projects
-          </Link>
-          <Link
-            href="/about"
-            className={isActive("/about") ? "text-[#cfbdff] border-b-2 border-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors"}
-          >
-            About
-          </Link>
-          <Link
-            href="/contact"
-            className={isActive("/contact") ? "text-[#cfbdff] border-b-2 border-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors"}
-          >
-            Contact
-          </Link>
+          <motion.div variants={navItem} className="relative">
+            <Link
+              href="/"
+              className={isActive("/") ? "text-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors pb-1"}
+            >
+              Home
+            </Link>
+            {isActive("/") && (
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#cfbdff]"
+                layoutId="navbar-indicator"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+          </motion.div>
+          <motion.div variants={navItem} className="relative">
+            <Link
+              href="/projects"
+              className={isActive("/projects") ? "text-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors pb-1"}
+            >
+              Projects
+            </Link>
+            {isActive("/projects") && (
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#cfbdff]"
+                layoutId="navbar-indicator"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+          </motion.div>
+          <motion.div variants={navItem} className="relative">
+            <Link
+              href="/about"
+              className={isActive("/about") ? "text-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors pb-1"}
+            >
+              About
+            </Link>
+            {isActive("/about") && (
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#cfbdff]"
+                layoutId="navbar-indicator"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+          </motion.div>
+          <motion.div variants={navItem} className="relative">
+            <Link
+              href="/contact"
+              className={isActive("/contact") ? "text-[#cfbdff] pb-1" : "text-[#b9c7df] hover:text-[#cfbdff] transition-colors pb-1"}
+            >
+              Contact
+            </Link>
+            {isActive("/contact") && (
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#cfbdff]"
+                layoutId="navbar-indicator"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+          </motion.div>
         </div>
 
         {/* Terminal Icon + Profile - Right */}
         <div className="flex items-center gap-4">
-          <button className="p-2 hover:bg-[#2d3449]/50 transition-all duration-300 active:scale-95 text-[#cfbdff]">
+          <motion.button
+            variants={navItem}
+            className="p-2 hover:bg-[#2d3449]/50 transition-all duration-300 text-[#cfbdff]"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", ...springs.snappy }}
+          >
             <span className="material-symbols-outlined">terminal</span>
-          </button>
-          <div className="w-10 h-10 rounded-lg overflow-hidden border-2 border-[#cfbdff]/20">
+          </motion.button>
+          <motion.div
+            variants={navItem}
+            className="w-10 h-10 rounded-lg overflow-hidden border-2 border-[#cfbdff]/20"
+            whileHover={{ scale: 1.05, borderColor: "rgba(207, 189, 255, 0.4)" }}
+            transition={{ type: "spring", ...springs.snappy }}
+          >
             <Image
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWK9jfv0932B0x_fXiIw4S-GQKFGRv1I4fINGZUnzpCptsrsKvR6lPKdap3CsrFqUohWMdjP_T_nbMyL1h1S_pP-S38TfpLNKQqQ3Ds9IQa_FVedUFTFuRi6P-j_74Nd8mav3LIdGOXP1oqtXV80Y393jd2DZZJ_9-1itmpkpbaDcCrPDJl6tsF9mxKERsqZWDEBqB77kvWcVwInOAvottqjM33k0mHE5CqqoIRPwj93P6KLnv07d3opO89PLm1rAjkFZ_9r0_1qc"
               alt="Professional portrait of DevOps Engineer"
@@ -58,9 +114,9 @@ export function Navbar() {
               height={40}
               className="w-full h-full object-cover"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

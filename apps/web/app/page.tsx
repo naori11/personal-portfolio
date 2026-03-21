@@ -1,13 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "INFRA_DEV | Home - Portfolio",
-  description: "Engineering Reliable Infrastructure - DevOps Portfolio",
-};
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, springs, easings } from "../lib/motion";
 
 export default function HomePage() {
+  const [terminalStep, setTerminalStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTerminalStep((prev) => (prev < 4 ? prev + 1 : 0));
+    }, terminalStep === 0 ? 1500 : terminalStep === 1 ? 1200 : terminalStep === 2 ? 800 : terminalStep === 3 ? 1000 : 8000);
+
+    return () => clearTimeout(timer);
+  }, [terminalStep]);
+
   return (
     <main className="pt-24">
       {/* Hero Section */}
@@ -17,30 +26,73 @@ export default function HomePage() {
 
         <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-8 space-y-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#2d3449] border border-[#494456]/20 rounded-lg">
-              <span className="w-2 h-2 rounded-full bg-[#6bd8cb]"></span>
+            <motion.div
+              className="inline-flex items-center gap-2 px-3 py-1 bg-[#2d3449] border border-[#494456]/20 rounded-lg"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: easings.easeOutExpo }}
+            >
+              <motion.span
+                className="w-2 h-2 rounded-full bg-[#6bd8cb]"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
               <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#6bd8cb]">System Status: Operational</span>
-            </div>
+            </motion.div>
 
-            <h1 className="font-[family-name:var(--font-space-grotesk)] text-5xl md:text-7xl font-black leading-[1.1] tracking-tight text-[#dae2fd]">
-              Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]">Reliable</span> <br/>Infrastructure
-            </h1>
+            <motion.h1
+              className="font-[family-name:var(--font-space-grotesk)] text-5xl md:text-7xl font-black leading-[1.1] tracking-tight text-[#dae2fd]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: easings.easeOutExpo }}
+            >
+              Engineering <motion.span
+                className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 1.1 }}
+              >
+                Reliable
+              </motion.span> <br/>Infrastructure
+            </motion.h1>
 
-            <p className="max-w-xl text-lg text-[#b9c7df] leading-relaxed">
+            <motion.p
+              className="max-w-xl text-lg text-[#b9c7df] leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
+            >
               I architect and automate high-availability cloud systems. Specializing in DevOps, Backend Engineering, and the pursuit of zero-downtime deployments.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Link href="/projects" className="px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
-                See My Work
-              </Link>
-              <button className="px-8 py-4 bg-[#2d3449] text-[#cfbdff] font-bold rounded-lg border border-[#494456]/10 hover:bg-[#2d3449] transition-all active:scale-95">
+            <motion.div
+              className="flex flex-wrap gap-4 pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7, ease: easings.easeOutExpo }}
+            >
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", ...springs.snappy }}>
+                <Link href="/projects" className="block px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-bold rounded-lg hover:brightness-110 transition-all shadow-lg shadow-primary/20">
+                  See My Work
+                </Link>
+              </motion.div>
+              <motion.button
+                className="px-8 py-4 bg-[#2d3449] text-[#cfbdff] font-bold rounded-lg border border-[#494456]/10 hover:bg-[#3a4259] transition-all"
+                whileHover={{ scale: 1.02, backgroundColor: "#3a4259" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", ...springs.snappy }}
+              >
                 Read Manifesto
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
           </div>
 
-          <div className="md:col-span-4 hidden md:block">
+          <motion.div
+            className="md:col-span-4 hidden md:block"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: easings.easeOutExpo }}
+          >
             <div className="bg-[#131b2e] rounded-xl border border-[#494456]/15 p-1">
               <div className="bg-[#222a3d] rounded-lg p-4 font-[family-name:var(--font-jetbrains-mono)] text-sm text-[#b9c7df] space-y-2">
                 <div className="flex gap-2 mb-4">
@@ -49,73 +101,159 @@ export default function HomePage() {
                   <span className="w-3 h-3 rounded-full bg-[#494456]/30"></span>
                 </div>
                 <div className="text-[#6bd8cb]">λ main: ~/projects/infra</div>
-                <div className="text-[#dae2fd]">$ terraform plan</div>
-                <div className="opacity-50"># Refreshing state...</div>
-                <div className="text-[#d0beff]">Plan: 12 to add, 0 to change, 0 to destroy.</div>
-                <div className="pt-4 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[#6bd8cb] text-lg">check_circle</span>
-                  <span className="text-xs">Infrastructure synced successfully.</span>
+                <div className="text-[#dae2fd]">
+                  $ terraform plan
+                  {terminalStep === 0 && (
+                    <motion.span
+                      className="inline-block w-2 h-4 bg-[#6bd8cb] ml-1"
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    />
+                  )}
                 </div>
+                {terminalStep >= 2 && (
+                  <motion.div
+                    className="opacity-50"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 0.5, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    # Refreshing state...
+                  </motion.div>
+                )}
+                {terminalStep >= 3 && (
+                  <motion.div
+                    className="text-[#d0beff]"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Plan: 12 to add, 0 to change, 0 to destroy.
+                  </motion.div>
+                )}
+                {terminalStep >= 4 && (
+                  <motion.div
+                    className="pt-4 flex items-center gap-2"
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <span className="material-symbols-outlined text-[#6bd8cb] text-lg">check_circle</span>
+                    <span className="text-xs">Infrastructure synced successfully.</span>
+                  </motion.div>
+                )}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Core Focus / Skills */}
       <section className="py-24 px-8 bg-[#131b2e]">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5 }}
+          >
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold mb-4">Core Competencies</h2>
-            <div className="w-24 h-1 bg-[#cfbdff]"></div>
-          </div>
+            <motion.div
+              className="w-24 h-1 bg-[#cfbdff]"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              style={{ transformOrigin: "left" }}
+            />
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {/* Skill 1 */}
-            <div className="p-8 bg-[#171f33] rounded-lg border-b-2 border-transparent hover:border-[#6bd8cb] transition-all group">
-              <div className="mb-6 inline-flex items-center justify-center w-12 h-12 bg-[#6bd8cb]/10 text-[#6bd8cb] rounded-lg">
+            <motion.div
+              className="p-8 bg-[#171f33] rounded-lg border-b-2 border-transparent group"
+              variants={fadeInUp}
+              whileHover={{ y: -4, borderBottomColor: "#6bd8cb", boxShadow: "0 8px 24px rgba(107, 216, 203, 0.15)" }}
+              transition={{ duration: 0.3, ease: easings.easeOutExpo }}
+            >
+              <motion.div
+                className="mb-6 inline-flex items-center justify-center w-12 h-12 bg-[#6bd8cb]/10 text-[#6bd8cb] rounded-lg"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.4 }}
+              >
                 <span className="material-symbols-outlined">settings_input_component</span>
-              </div>
+              </motion.div>
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold mb-4 text-[#dae2fd]">Kubernetes & Docker</h3>
               <p className="text-[#b9c7df] leading-relaxed mb-6">Orchestrating containerized environments at scale, ensuring seamless scalability and resource efficiency.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#2d3449] rounded text-[#6bd8cb] uppercase">Helm</span>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#2d3449] rounded text-[#6bd8cb] uppercase">Istio</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Skill 2 */}
-            <div className="p-8 bg-[#171f33] rounded-lg border-b-2 border-transparent hover:border-[#cfbdff] transition-all group">
-              <div className="mb-6 inline-flex items-center justify-center w-12 h-12 bg-[#cfbdff]/10 text-[#cfbdff] rounded-lg">
+            <motion.div
+              className="p-8 bg-[#171f33] rounded-lg border-b-2 border-transparent group"
+              variants={fadeInUp}
+              whileHover={{ y: -4, borderBottomColor: "#cfbdff", boxShadow: "0 8px 24px rgba(207, 189, 255, 0.15)" }}
+              transition={{ duration: 0.3, ease: easings.easeOutExpo }}
+            >
+              <motion.div
+                className="mb-6 inline-flex items-center justify-center w-12 h-12 bg-[#cfbdff]/10 text-[#cfbdff] rounded-lg"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.4 }}
+              >
                 <span className="material-symbols-outlined">account_tree</span>
-              </div>
+              </motion.div>
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold mb-4 text-[#dae2fd]">CI/CD Pipelines</h3>
               <p className="text-[#b9c7df] leading-relaxed mb-6">Automating the lifecycle of code from commit to production with robust, repeatable delivery pipelines.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#2d3449] rounded text-[#cfbdff] uppercase">GitHub Actions</span>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#2d3449] rounded text-[#cfbdff] uppercase">ArgoCD</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Skill 3 */}
-            <div className="p-8 bg-[#171f33] rounded-lg border-b-2 border-transparent hover:border-[#b9c7df] transition-all group">
-              <div className="mb-6 inline-flex items-center justify-center w-12 h-12 bg-[#b9c7df]/10 text-[#b9c7df] rounded-lg">
+            <motion.div
+              className="p-8 bg-[#171f33] rounded-lg border-b-2 border-transparent group"
+              variants={fadeInUp}
+              whileHover={{ y: -4, borderBottomColor: "#b9c7df", boxShadow: "0 8px 24px rgba(185, 199, 223, 0.15)" }}
+              transition={{ duration: 0.3, ease: easings.easeOutExpo }}
+            >
+              <motion.div
+                className="mb-6 inline-flex items-center justify-center w-12 h-12 bg-[#b9c7df]/10 text-[#b9c7df] rounded-lg"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ duration: 0.4 }}
+              >
                 <span className="material-symbols-outlined">api</span>
-              </div>
+              </motion.div>
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold mb-4 text-[#dae2fd]">Scalable APIs</h3>
               <p className="text-[#b9c7df] leading-relaxed mb-6">Building high-performance backend systems designed for massive concurrency and low-latency response.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#2d3449] rounded text-[#b9c7df] uppercase">Go</span>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#2d3449] rounded text-[#b9c7df] uppercase">gRPC</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Featured Projects (Asymmetric Layout) */}
       <section className="py-24 px-8 max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-16">
+        <motion.div
+          className="flex justify-between items-end mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+        >
           <div>
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-4xl font-black mb-2 tracking-tight">Featured Operations</h2>
             <p className="text-[#b9c7df] font-[family-name:var(--font-jetbrains-mono)] text-sm uppercase tracking-widest">Selected Works & Case Studies</p>
@@ -123,11 +261,18 @@ export default function HomePage() {
           <Link href="/projects" className="hidden md:block font-[family-name:var(--font-jetbrains-mono)] text-sm text-[#6bd8cb] hover:underline">
             View All Projects -&gt;
           </Link>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Project 1 (Large) */}
-          <div className="md:col-span-7 group">
+          <motion.div
+            className="md:col-span-7 group"
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
             <div className="relative aspect-video bg-[#171f33] overflow-hidden rounded-xl border border-[#494456]/10">
               <Image
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dGKOCGWzRuX1zPu6q5yu7meOhNnh-hh8aQXoF3YMdTsjywSZ9EKGqu8b3XWefVEJkdXvj0XSiUi09vb_AkJyKeXymrwgSBeTyrUc3U9iWd9NzQbGa-cqbAL9lAZZMcE0_yMpzk29D55DG5YLJ_NwqYGBlBEJefXs_4-Whwi_JoPut1icG_g1rWnKzMYduaqw-GSkNsoIvZ6RzxDGUZjGNkmxTfC0L1vAAB3CXqVk3z_Mpz3C5JPF01S_kwX-kLAHHQtdyk8qpN8"
@@ -142,10 +287,17 @@ export default function HomePage() {
                 <span className="px-4 py-1.5 bg-[#cfbdff]/20 text-[#cfbdff] rounded-full text-xs font-[family-name:var(--font-jetbrains-mono)] uppercase">AWS • Terraform • Grafana</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Project 2 (Narrow) */}
-          <div className="md:col-span-5 flex flex-col justify-center gap-10">
+          <motion.div
+            className="md:col-span-5 flex flex-col justify-center gap-10"
+            variants={fadeInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
             <div className="group">
               <div className="relative aspect-square bg-[#222a3d] rounded-xl border border-[#494456]/10 overflow-hidden mb-6">
                 <Image
@@ -158,23 +310,44 @@ export default function HomePage() {
               <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold mb-2">Nexus Engine</h3>
               <p className="text-[#b9c7df] text-sm">Automated microservices provisioning system.</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Testimonial/Callout */}
       <section className="py-24 px-8 relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <span className="material-symbols-outlined text-6xl text-[#cfbdff]/30 mb-8" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-4xl italic font-light leading-relaxed text-[#dae2fd] mb-12">
+          <motion.span
+            className="material-symbols-outlined text-6xl text-[#cfbdff]/30 mb-8"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 0.3, scale: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+          >
+            format_quote
+          </motion.span>
+          <motion.h2
+            className="font-[family-name:var(--font-space-grotesk)] text-2xl md:text-4xl italic font-light leading-relaxed text-[#dae2fd] mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             "His architectural decisions during our migration saved us nearly 40% in monthly compute costs while simultaneously increasing our uptime to four nines."
-          </h2>
-          <div className="flex items-center justify-center gap-4">
+          </motion.h2>
+          <motion.div
+            className="flex items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <div className="text-left">
               <div className="font-bold text-[#dae2fd]">Alex Rivera</div>
               <div className="text-sm font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] uppercase tracking-widest">CTO @ TechFlow Systems</div>
             </div>
-          </div>
+          </motion.div>
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#cfbdff]/5 blur-[120px] rounded-full"></div>
       </section>
@@ -182,7 +355,12 @@ export default function HomePage() {
       {/* Contact/Final CTA */}
       <section className="py-32 px-8 bg-[#131b2e]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: easings.easeOutExpo }}
+          >
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-5xl font-black mb-6 tracking-tighter">Ready to scale?</h2>
             <p className="text-xl text-[#b9c7df] mb-8">Available for freelance consulting and high-impact full-time roles.</p>
             <div className="space-y-4">
@@ -195,9 +373,15 @@ export default function HomePage() {
                 <span className="font-[family-name:var(--font-jetbrains-mono)]">Berlin / Remote</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="bg-[#171f33] p-8 rounded-xl border border-[#494456]/15">
+          <motion.div
+            className="bg-[#171f33] p-8 rounded-xl border border-[#494456]/15"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: easings.easeOutExpo }}
+          >
             <form className="space-y-6">
               <div>
                 <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#b9c7df] mb-2">Identification</label>
@@ -211,11 +395,17 @@ export default function HomePage() {
                 <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#b9c7df] mb-2">Request Payload</label>
                 <textarea className="w-full bg-transparent border-0 border-b border-[#494456] focus:border-[#cfbdff] focus:ring-0 text-[#dae2fd] placeholder:text-[#948da2] py-3 transition-all resize-none" placeholder="Tell me about your infrastructure goals..." rows={4}></textarea>
               </div>
-              <button className="w-full py-4 bg-[#cfbdff] text-[#3a0093] font-bold rounded-lg hover:brightness-110 transition-all" type="submit">
+              <motion.button
+                className="w-full py-4 bg-[#cfbdff] text-[#3a0093] font-bold rounded-lg hover:brightness-110 transition-all"
+                type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", ...springs.snappy }}
+              >
                 Dispatch Message
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>

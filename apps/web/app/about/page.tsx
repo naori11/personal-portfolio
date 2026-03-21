@@ -1,35 +1,58 @@
-import Image from "next/image";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "INFRA_DEV | About & Experience",
-  description: "System Architect Biography - Infrastructure Editorial",
-};
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, springs, easings } from "../../lib/motion";
 
 export default function AboutPage() {
   return (
     <main className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
       {/* Hero / Narrative Bio Section */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-end">
-        <div className="lg:col-span-8">
-          <div className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm tracking-widest mb-4 uppercase">
+        <motion.div
+          className="lg:col-span-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: easings.easeOutExpo }}
+        >
+          <motion.div
+            className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm tracking-widest mb-4 uppercase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             System.Architect // Biography
-          </div>
-          <h1 className="font-[family-name:var(--font-space-grotesk)] text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8">
+          </motion.div>
+          <motion.h1
+            className="font-[family-name:var(--font-space-grotesk)] text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
+          >
             CRAFTING THE <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]">INVISIBLE ENGINE.</span>
-          </h1>
-          <div className="space-y-6 text-[#b9c7df] text-lg leading-relaxed max-w-2xl">
+          </motion.h1>
+          <motion.div
+            className="space-y-6 text-[#b9c7df] text-lg leading-relaxed max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
+          >
             <p>
               I am a Senior Infrastructure Engineer specializing in the intersection of high-availability systems and developer experience. My philosophy is simple: <span className="text-[#dae2fd] font-semibold">infrastructure should be as expressive as code.</span>
             </p>
             <p>
               With a decade spent navigating the complexities of distributed systems, I focus on building resilient, self-healing platforms that allow teams to move fast without breaking things. I believe in declarative configurations, immutable deployments, and the radical transparency of observability.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="lg:col-span-4 hidden lg:block">
+        <motion.div
+          className="lg:col-span-4 hidden lg:block"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: easings.easeOutExpo }}
+        >
           <div className="bg-[#131b2e] p-1 rounded-lg">
             <div className="aspect-square bg-[#171f33] rounded-sm relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#cfbdff]/10 to-transparent"></div>
@@ -53,13 +76,19 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Bento Grid Section: Skills & Experience */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Experience Timeline (Large Bento) */}
-        <section className="md:col-span-8 bg-[#131b2e] rounded-lg p-8 relative overflow-hidden">
+        <motion.section
+          className="md:col-span-8 bg-[#131b2e] rounded-lg p-8 relative overflow-hidden"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: easings.easeOutExpo }}
+        >
           <div className="flex justify-between items-end mb-12">
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight">EXPERIENCE_LOG</h2>
             <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#494456]">RUNNING_THREADS: 04</span>
@@ -70,8 +99,20 @@ export default function AboutPage() {
             <div className="absolute left-[7px] top-2 bottom-2 w-px bg-[#494456]/20"></div>
 
             {/* Entry 1 */}
-            <div className="relative pl-10">
-              <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#cfbdff] border-4 border-[#0b1326]"></div>
+            <motion.div
+              className="relative pl-10"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <motion.div
+                className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#cfbdff] border-4 border-[#0b1326]"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
                 <h3 className="text-xl font-bold text-[#dae2fd]">Lead DevOps Architect</h3>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2021 — PRESENT</span>
@@ -80,11 +121,23 @@ export default function AboutPage() {
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
                 Architecting a multi-cloud Kubernetes environment serving 5M+ active users. Implementing GitOps workflows with ArgoCD and reducing deployment lead time by 65%.
               </p>
-            </div>
+            </motion.div>
 
             {/* Entry 2 */}
-            <div className="relative pl-10">
-              <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#2d3449] border-4 border-[#0b1326]"></div>
+            <motion.div
+              className="relative pl-10"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <motion.div
+                className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#2d3449] border-4 border-[#0b1326]"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.3 }}
+              />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
                 <h3 className="text-xl font-bold text-[#dae2fd]">Cloud Infrastructure Engineer</h3>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2018 — 2021</span>
@@ -93,11 +146,23 @@ export default function AboutPage() {
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
                 Led the migration from monolithic on-prem servers to AWS. Established Infrastructure as Code (Terraform) as the standard for all core services.
               </p>
-            </div>
+            </motion.div>
 
             {/* Entry 3 */}
-            <div className="relative pl-10">
-              <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#2d3449] border-4 border-[#0b1326]"></div>
+            <motion.div
+              className="relative pl-10"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <motion.div
+                className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#2d3449] border-4 border-[#0b1326]"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.4 }}
+              />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
                 <h3 className="text-xl font-bold text-[#dae2fd]">Junior Site Reliability Intern</h3>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2017 — 2018</span>
@@ -106,12 +171,18 @@ export default function AboutPage() {
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
                 Supported monitoring stack (Prometheus/Grafana) and automated routine maintenance tasks using Python and Bash scripts.
               </p>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Technical Skills Cloud */}
-        <section className="md:col-span-4 space-y-6">
+        <motion.section
+          className="md:col-span-4 space-y-6"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: easings.easeOutExpo }}
+        >
           <div className="bg-[#171f33] p-6 rounded-lg">
             <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#948da2] mb-6 flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-[#6bd8cb] rounded-full"></span>
@@ -185,11 +256,17 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
       </div>
 
       {/* Education & Extras */}
-      <section className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <motion.section
+        className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: easings.easeOutExpo }}
+      >
         <div className="bg-[#060e20] p-8 rounded-lg flex flex-col md:flex-row gap-8 items-start">
           <div className="text-[#d0beff]">
             <span className="material-symbols-outlined text-4xl">school</span>
@@ -211,7 +288,7 @@ export default function AboutPage() {
             "The most reliable system is the one that has the fewest moving parts, yet is expressive enough to describe any complexity. Elegance in infrastructure is found in the subtraction of noise."
           </p>
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }

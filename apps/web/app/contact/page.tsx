@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
-import type { Metadata } from "next";
+import { motion } from "framer-motion";
+import { springs, easings } from "../../lib/motion";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
@@ -25,21 +26,46 @@ export default function ContactPage() {
   return (
     <main className="pt-32 pb-24 px-8 max-w-7xl mx-auto">
       {/* Header Section */}
-      <header className="mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2d3449] text-[#6bd8cb] mb-6">
+      <motion.header
+        className="mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: easings.easeOutExpo }}
+      >
+        <motion.div
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2d3449] text-[#6bd8cb] mb-6"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <span className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] uppercase tracking-widest">System::Status: Ready</span>
-        </div>
-        <h1 className="text-5xl md:text-7xl font-[family-name:var(--font-space-grotesk)] font-bold tracking-tighter text-[#dae2fd] mb-4">
+        </motion.div>
+        <motion.h1
+          className="text-5xl md:text-7xl font-[family-name:var(--font-space-grotesk)] font-bold tracking-tighter text-[#dae2fd] mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
+        >
           Establish <span className="text-[#cfbdff]">Connectivity</span>
-        </h1>
-        <p className="text-[#b9c7df] max-w-2xl text-lg">
+        </motion.h1>
+        <motion.p
+          className="text-[#b9c7df] max-w-2xl text-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
+        >
           Whether it's discussing cloud architecture, automation pipelines, or just a technical deep-dive, my terminal is always open.
-        </p>
-      </header>
+        </motion.p>
+      </motion.header>
 
       <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-12">
         {/* Contact Form Section */}
-        <section className="bg-[#131b2e] rounded-lg p-8 md:p-12 relative overflow-hidden">
+        <motion.section
+          className="bg-[#131b2e] rounded-lg p-8 md:p-12 relative overflow-hidden"
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: easings.easeOutExpo }}
+        >
           {/* Decorative background elements */}
           <div className="absolute top-0 right-0 p-4 opacity-10">
             <span className="material-symbols-outlined text-9xl">leak_add</span>
@@ -100,10 +126,13 @@ export default function ContactPage() {
               ></textarea>
             </div>
 
-            <button
+            <motion.button
               type="submit"
               disabled={formState === "submitting" || formState === "success"}
-              className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-[family-name:var(--font-space-grotesk)] font-bold rounded-lg hover:opacity-90 transition-all active:scale-95 group disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-[family-name:var(--font-space-grotesk)] font-bold rounded-lg hover:opacity-90 transition-all group disabled:opacity-50 disabled:cursor-not-allowed"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", ...springs.snappy }}
             >
               {formState === "submitting" && "TRANSMITTING..."}
               {formState === "success" && "TRANSMISSION COMPLETE"}
@@ -113,18 +142,28 @@ export default function ContactPage() {
                   <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
                 </>
               )}
-            </button>
+            </motion.button>
 
             {formState === "success" && (
-              <p className="text-sm text-[#6bd8cb] font-[family-name:var(--font-jetbrains-mono)] text-center">
+              <motion.p
+                className="text-sm text-[#6bd8cb] font-[family-name:var(--font-jetbrains-mono)] text-center"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
                 ✓ Message received. Response incoming.
-              </p>
+              </motion.p>
             )}
           </form>
-        </section>
+        </motion.section>
 
         {/* Contact Details & Visuals */}
-        <div className="space-y-8">
+        <motion.div
+          className="space-y-8"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: easings.easeOutExpo }}
+        >
           {/* Communication Graphic (Glass Panel) */}
           <div
             className="rounded-lg p-8 border border-[#494456]/15 flex flex-col items-center justify-center text-center space-y-6 aspect-square md:aspect-auto md:h-64"
@@ -176,7 +215,7 @@ export default function ContactPage() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </main>
   );
