@@ -1,69 +1,91 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { fadeInUp, staggerContainer, springs, easings } from "../../lib/motion";
 
 const projects = [
   {
-    title: "Auto-scaling K8s Cluster",
-    description: "A highly available EKS infrastructure with Karpenter for intelligent node auto-scaling based on real-time resource demands. Optimized for cost and performance.",
-    tech: ["TERRAFORM", "AWS", "DOCKER"],
-    links: [
-      { label: "GITHUB", icon: "code", href: "#", type: "tertiary" },
-      { label: "LIVE DEMO", icon: "launch", href: "#", type: "primary" },
+    title: "KidSync: Smart RFID Security",
+    description: "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
+    tech: ["FLUTTER", "SUPABASE", "ESP32"],
+    github: "https://github.com/naori11/KidSync",
+    demo: null,
+    screenshots: [
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=KidSync+Screenshot+1",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=KidSync+Screenshot+2",
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=KidSync+Screenshot+3",
     ],
   },
   {
-    title: "ELK Observability Stack",
-    description: "Custom Go-based log scrapers feeding into an ELK cluster. Features advanced alerting thresholds and curated Kibana dashboards for microservices.",
-    tech: ["ELASTIC", "GO", "GCP"],
-    links: [
-      { label: "CASE STUDY", icon: "menu_book", href: "#", type: "tertiary" },
-      { label: "GITHUB", icon: "code", href: "#", type: "tertiary" },
+    title: "AI Code Reviewer",
+    description: "Automated assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
+    tech: ["FASTAPI", "GEMINI API", "DOCKER"],
+    github: "https://github.com/naori11/code-reviewer",
+    demo: null,
+    screenshots: [
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=AI+Reviewer+Screenshot+1",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=AI+Reviewer+Screenshot+2",
     ],
     offset: "lg:mt-12",
   },
   {
-    title: "GitOps Pipeline Engine",
-    description: "Automated deployment workflow using Argo CD for GitOps. Includes blue/green deployment strategies and automated rollback on health check failures.",
-    tech: ["ARGO CD", "HELM", "K8S"],
-    links: [
-      { label: "GITHUB", icon: "code", href: "#", type: "tertiary" },
-      { label: "LIVE DEMO", icon: "launch", href: "#", type: "primary" },
+    title: "Cloud Portfolio IaC",
+    description: "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
+    tech: ["AZURE BICEP", "NEXT.JS", "TURBOREPO"],
+    github: "https://github.com/naori11/personal-portfolio",
+    demo: "https://example.com",
+    screenshots: [
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+1",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+2",
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+3",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+4",
     ],
   },
   {
-    title: "Serverless Auth Backend",
-    description: "Event-driven authentication architecture using AWS Lambda and Cognito. Designed to handle 10k+ concurrent requests with zero provisioned capacity.",
-    tech: ["LAMBDA", "NODE.JS", "DYNAMODB"],
-    links: [
-      { label: "GITHUB", icon: "code", href: "#", type: "tertiary" },
-    ],
-  },
-  {
-    title: "Multi-Cloud IaC Modules",
-    description: "Standardized Infrastructure-as-Code modules for internal teams. Enables rapid spinning up of secure, compliant dev/staging environments.",
-    tech: ["PULUMI", "PYTHON", "AZURE"],
-    links: [
-      { label: "CASE STUDY", icon: "menu_book", href: "#", type: "tertiary" },
-    ],
-    offset: "lg:-mt-12",
-  },
-  {
-    title: "Prometheus Exporter",
-    description: "High-performance custom exporter written in Rust for monitoring specialized Redis workloads. Focuses on low overhead and high precision.",
-    tech: ["PROMETHEUS", "RUST", "REDIS"],
-    links: [
-      { label: "GITHUB", icon: "code", href: "#", type: "tertiary" },
-      { label: "LIVE DEMO", icon: "launch", href: "#", type: "primary" },
+    title: "Coffeetory POS",
+    description: "An inventory management system built with PHP and MariaDB. Streamlines product tracking and sales operations for small-scale retail.",
+    tech: ["PHP", "MYSQL", "JAVASCRIPT"],
+    github: "https://github.com/naori11/Coffeetory",
+    demo: null,
+    screenshots: [
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Coffeetory+Screenshot+1",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Coffeetory+Screenshot+2",
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Coffeetory+Screenshot+3",
     ],
   },
 ];
 
 export default function ProjectsPage() {
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [selectedImage, setSelectedImage] = useState<number>(0);
+
+  const openGallery = (projectIndex: number) => {
+    setSelectedProject(projectIndex);
+    setSelectedImage(0);
+  };
+
+  const closeGallery = () => {
+    setSelectedProject(null);
+    setSelectedImage(0);
+  };
+
+  const nextImage = () => {
+    if (selectedProject !== null && projects[selectedProject].screenshots) {
+      setSelectedImage((prev) => (prev + 1) % projects[selectedProject].screenshots.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject !== null && projects[selectedProject].screenshots) {
+      setSelectedImage((prev) => (prev - 1 + projects[selectedProject].screenshots.length) % projects[selectedProject].screenshots.length);
+    }
+  };
+
   return (
-    <main className="pt-32 pb-24 px-8 max-w-7xl mx-auto">
+    <main className="pt-24 sm:pt-32 pb-12 sm:pb-24 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Hero Section */}
       <motion.header
         className="mb-20 max-w-3xl"
@@ -85,7 +107,7 @@ export default function ProjectsPage() {
           <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-xs uppercase tracking-[0.2em]">Deployment Archive</span>
         </motion.div>
         <motion.h1
-          className="font-[family-name:var(--font-space-grotesk)] text-5xl md:text-7xl font-bold text-[#dae2fd] tracking-tighter mb-6"
+          className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-7xl font-bold text-[#dae2fd] tracking-tighter mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
@@ -93,7 +115,7 @@ export default function ProjectsPage() {
           Engineered <span className="text-[#cfbdff] italic">Systems.</span>
         </motion.h1>
         <motion.p
-          className="text-lg text-[#b9c7df] leading-relaxed max-w-2xl"
+          className="text-base sm:text-lg text-[#b9c7df] leading-relaxed max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
@@ -147,18 +169,33 @@ export default function ProjectsPage() {
                 </p>
               </div>
 
-              <div className="mt-auto p-6 bg-[#222a3d]/30 border-t border-[#494456]/10 flex flex-wrap gap-4 items-center">
-                {project.links.map((link, linkIndex) => (
+              <div className="mt-auto p-6 bg-[#222a3d]/30 border-t border-[#494456]/10 flex flex-wrap gap-3 items-center">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[#6bd8cb] hover:underline flex items-center gap-1"
+                >
+                  <span className="material-symbols-outlined text-sm">code</span> GITHUB
+                </a>
+                {project.demo && (
                   <a
-                    key={linkIndex}
-                    className={`font-[family-name:var(--font-jetbrains-mono)] text-[11px] ${
-                      link.type === "primary" ? "text-[#cfbdff]" : "text-[#6bd8cb]"
-                    } hover:underline flex items-center gap-1`}
-                    href={link.href}
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[#cfbdff] hover:underline flex items-center gap-1"
                   >
-                    <span className="material-symbols-outlined text-sm">{link.icon}</span> {link.label}
+                    <span className="material-symbols-outlined text-sm">open_in_new</span> LIVE DEMO
                   </a>
-                ))}
+                )}
+                {project.screenshots && project.screenshots.length > 0 && (
+                  <button
+                    onClick={() => openGallery(index)}
+                    className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[#b9c7df] hover:text-[#cfbdff] hover:underline flex items-center gap-1 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-sm">photo_library</span> SCREENSHOTS
+                  </button>
+                )}
               </div>
             </div>
           </motion.div>
@@ -167,7 +204,7 @@ export default function ProjectsPage() {
 
       {/* CTA Section */}
       <motion.section
-        className="mt-32 p-12 bg-[#131b2e] border border-[#494456]/15 rounded-sm relative overflow-hidden"
+        className="mt-16 sm:mt-32 p-6 sm:p-12 bg-[#131b2e] border border-[#494456]/15 rounded-sm relative overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -177,15 +214,183 @@ export default function ProjectsPage() {
           <span className="material-symbols-outlined text-[300px]" style={{ fontVariationSettings: "'FILL' 1" }}>terminal</span>
         </div>
         <div className="relative z-10 max-w-xl">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-4xl font-bold text-[#dae2fd] mb-4 tracking-tight">System Inquiry?</h2>
+          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-bold text-[#dae2fd] mb-4 tracking-tight">System Inquiry?</h2>
           <p className="text-[#b9c7df] mb-8">Looking for an engineer to architect your next deployment framework or backend system? Let's connect and build something robust.</p>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", ...springs.snappy }}>
-            <Link href="/contact" className="inline-block bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] px-8 py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_rgba(207,189,255,0.3)] transition-all">
+            <Link href="/contact" className="inline-block bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] px-6 sm:px-8 py-2.5 sm:py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-xs sm:text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_rgba(207,189,255,0.3)] transition-all">
               ESTABLISH CONTACT
             </Link>
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Screenshot Gallery Modal */}
+      <AnimatePresence>
+        {selectedProject !== null && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 bg-[#0b1326]/95 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={closeGallery}
+          >
+            <motion.div
+              className="relative w-full max-w-5xl"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, ease: easings.easeOutExpo }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header Bar */}
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <div className="flex items-center gap-3">
+                  {/* Terminal Dots */}
+                  <div className="hidden sm:flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
+                  </div>
+                  <div>
+                    <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg sm:text-xl md:text-2xl font-bold text-[#dae2fd]">
+                      {projects[selectedProject].title}
+                    </h3>
+                    <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#6bd8cb] uppercase tracking-wider">
+                      SCREENSHOT_VIEWER
+                    </p>
+                  </div>
+                </div>
+
+                {/* Close Button */}
+                <motion.button
+                  onClick={closeGallery}
+                  className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#2d3449] hover:bg-[#3a4259] border border-[#494456]/20 rounded-lg text-[#b9c7df] hover:text-[#cfbdff] transition-all group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="hidden sm:inline font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider">ESC</span>
+                  <span className="material-symbols-outlined text-xl">close</span>
+                </motion.button>
+              </div>
+
+              {/* Main Image Container */}
+              <div className="relative bg-[#131b2e] rounded-lg border border-[#494456]/20 overflow-hidden mb-4 sm:mb-6">
+                <div className="relative aspect-video bg-[#171f33]">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={selectedImage}
+                      className="relative w-full h-full"
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -100 }}
+                      transition={{ duration: 0.3, ease: easings.easeOutExpo }}
+                    >
+                      <Image
+                        src={projects[selectedProject].screenshots[selectedImage]}
+                        alt={`${projects[selectedProject].title} screenshot ${selectedImage + 1}`}
+                        fill
+                        className="object-contain p-4 sm:p-6 md:p-8"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Navigation Arrows */}
+                  {projects[selectedProject].screenshots.length > 1 && (
+                    <>
+                      <motion.button
+                        onClick={prevImage}
+                        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-[#2d3449]/90 hover:bg-[#cfbdff] border border-[#494456]/30 hover:border-[#cfbdff] text-[#cfbdff] hover:text-[#3a0093] p-2 sm:p-3 rounded-lg transition-all backdrop-blur-sm"
+                        whileHover={{ scale: 1.1, x: -4 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="material-symbols-outlined text-xl sm:text-2xl">chevron_left</span>
+                      </motion.button>
+                      <motion.button
+                        onClick={nextImage}
+                        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-[#2d3449]/90 hover:bg-[#cfbdff] border border-[#494456]/30 hover:border-[#cfbdff] text-[#cfbdff] hover:text-[#3a0093] p-2 sm:p-3 rounded-lg transition-all backdrop-blur-sm"
+                        whileHover={{ scale: 1.1, x: 4 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="material-symbols-outlined text-xl sm:text-2xl">chevron_right</span>
+                      </motion.button>
+                    </>
+                  )}
+
+                  {/* Image Counter Badge */}
+                  <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 bg-[#131b2e]/90 backdrop-blur-sm border border-[#494456]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                    <div className="flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[#6bd8cb] text-sm sm:text-base">image</span>
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#cfbdff] font-bold">
+                        {selectedImage + 1}
+                      </span>
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#494456]">/</span>
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#b9c7df]">
+                        {projects[selectedProject].screenshots.length}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Keyboard Hints */}
+                  <div className="hidden md:flex absolute top-4 left-4 gap-2">
+                    <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb] uppercase">← →</span>
+                    </div>
+                    <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df]">Navigate</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Thumbnail Strip */}
+              <div className="relative bg-[#131b2e] rounded-lg border border-[#494456]/20 p-3 sm:p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="material-symbols-outlined text-[#6bd8cb] text-sm">photo_library</span>
+                  <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#b9c7df] uppercase tracking-wider">
+                    All Screenshots
+                  </span>
+                </div>
+                <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#494456] scrollbar-track-[#171f33] scroll-smooth">
+                  {projects[selectedProject].screenshots.map((screenshot, idx) => (
+                    <motion.button
+                      key={idx}
+                      onClick={() => setSelectedImage(idx)}
+                      className={`relative flex-shrink-0 w-24 h-16 sm:w-32 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                        idx === selectedImage
+                          ? "border-[#cfbdff] shadow-[0_0_20px_rgba(207,189,255,0.3)]"
+                          : "border-[#494456]/30 hover:border-[#6bd8cb]/50"
+                      }`}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Image
+                        src={screenshot}
+                        alt={`Thumbnail ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                      {idx === selectedImage && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-t from-[#cfbdff]/20 to-transparent"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                      )}
+                      <div className="absolute bottom-1 right-1 bg-[#131b2e]/80 backdrop-blur-sm px-1.5 py-0.5 rounded">
+                        <span className="font-[family-name:var(--font-jetbrains-mono)] text-[8px] sm:text-[10px] text-[#6bd8cb]">
+                          {idx + 1}
+                        </span>
+                      </div>
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

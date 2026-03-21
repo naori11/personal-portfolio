@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { navContainer, navItem, springs } from "../lib/motion";
+import { useState } from "react";
 
 export function Navbar() {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => pathname === path;
 
@@ -18,15 +20,15 @@ export function Navbar() {
       animate="visible"
       variants={navContainer}
     >
-      <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+      <div className="flex justify-between items-center px-4 sm:px-8 py-4 max-w-7xl mx-auto">
         {/* Branding - Left */}
         <motion.div variants={navItem}>
-          <Link href="/" className="text-xl font-black tracking-tighter text-[#cfbdff] uppercase font-[family-name:var(--font-space-grotesk)]">
+          <Link href="/" className="text-lg sm:text-xl font-black tracking-tighter text-[#cfbdff] uppercase font-[family-name:var(--font-space-grotesk)]">
             INFRA_DEV
           </Link>
         </motion.div>
 
-        {/* Navigation Links - Center */}
+        {/* Navigation Links - Desktop */}
         <div className="hidden md:flex items-center gap-8 font-[family-name:var(--font-space-grotesk)] font-bold tracking-tight">
           <motion.div variants={navItem} className="relative">
             <Link
@@ -90,11 +92,11 @@ export function Navbar() {
           </motion.div>
         </div>
 
-        {/* Terminal Icon + Profile - Right */}
-        <div className="flex items-center gap-4">
+        {/* Right Side - Terminal, Profile, Mobile Menu */}
+        <div className="flex items-center gap-2 sm:gap-4">
           <motion.button
             variants={navItem}
-            className="p-2 hover:bg-[#2d3449]/50 transition-all duration-300 text-[#cfbdff]"
+            className="p-2 hover:bg-[#2d3449]/50 transition-all duration-300 text-[#cfbdff] hidden sm:block"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", ...springs.snappy }}
@@ -103,7 +105,7 @@ export function Navbar() {
           </motion.button>
           <motion.div
             variants={navItem}
-            className="w-10 h-10 rounded-lg overflow-hidden border-2 border-[#cfbdff]/20"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg overflow-hidden border-2 border-[#cfbdff]/20"
             whileHover={{ scale: 1.05, borderColor: "rgba(207, 189, 255, 0.4)" }}
             transition={{ type: "spring", ...springs.snappy }}
           >
@@ -115,8 +117,63 @@ export function Navbar() {
               className="w-full h-full object-cover"
             />
           </motion.div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            variants={navItem}
+            className="md:hidden p-2 hover:bg-[#2d3449]/50 transition-all duration-300 text-[#cfbdff]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="material-symbols-outlined">
+              {mobileMenuOpen ? "close" : "menu"}
+            </span>
+          </motion.button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-[#0b1326]/95 backdrop-blur-xl border-t border-[#494456]/15"
+          >
+            <div className="flex flex-col px-4 py-4 gap-4 font-[family-name:var(--font-space-grotesk)] font-bold">
+              <Link
+                href="/"
+                className={`py-2 px-4 rounded transition-colors ${isActive("/") ? "text-[#cfbdff] bg-[#2d3449]/50" : "text-[#b9c7df] hover:text-[#cfbdff] hover:bg-[#2d3449]/30"}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/projects"
+                className={`py-2 px-4 rounded transition-colors ${isActive("/projects") ? "text-[#cfbdff] bg-[#2d3449]/50" : "text-[#b9c7df] hover:text-[#cfbdff] hover:bg-[#2d3449]/30"}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Projects
+              </Link>
+              <Link
+                href="/about"
+                className={`py-2 px-4 rounded transition-colors ${isActive("/about") ? "text-[#cfbdff] bg-[#2d3449]/50" : "text-[#b9c7df] hover:text-[#cfbdff] hover:bg-[#2d3449]/30"}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className={`py-2 px-4 rounded transition-colors ${isActive("/contact") ? "text-[#cfbdff] bg-[#2d3449]/50" : "text-[#b9c7df] hover:text-[#cfbdff] hover:bg-[#2d3449]/30"}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

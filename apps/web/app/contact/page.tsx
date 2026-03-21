@@ -24,7 +24,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="pt-32 pb-24 px-8 max-w-7xl mx-auto">
+    <main className="pt-24 sm:pt-32 pb-12 sm:pb-24 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Header Section */}
       <motion.header
         className="mb-16"
@@ -41,7 +41,7 @@ export default function ContactPage() {
           <span className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] uppercase tracking-widest">System::Status: Ready</span>
         </motion.div>
         <motion.h1
-          className="text-5xl md:text-7xl font-[family-name:var(--font-space-grotesk)] font-bold tracking-tighter text-[#dae2fd] mb-4"
+          className="text-3xl sm:text-5xl md:text-7xl font-[family-name:var(--font-space-grotesk)] font-bold tracking-tighter text-[#dae2fd] mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
@@ -49,7 +49,7 @@ export default function ContactPage() {
           Establish <span className="text-[#cfbdff]">Connectivity</span>
         </motion.h1>
         <motion.p
-          className="text-[#b9c7df] max-w-2xl text-lg"
+          className="text-[#b9c7df] max-w-2xl text-base sm:text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
@@ -61,7 +61,7 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-12">
         {/* Contact Form Section */}
         <motion.section
-          className="bg-[#131b2e] rounded-lg p-8 md:p-12 relative overflow-hidden"
+          className="bg-[#131b2e] rounded-lg p-4 sm:p-8 md:p-12 relative overflow-hidden"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: easings.easeOutExpo }}
@@ -189,7 +189,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df] uppercase mb-1">E-mail</p>
-                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[#dae2fd]">ops@infra-editorial.dev</p>
+                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[#dae2fd]">juvanpaulo1@gmail.com</p>
                 </div>
               </div>
 
@@ -199,17 +199,17 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df] uppercase mb-1">Location</p>
-                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[#dae2fd]">Berlin, DE // Remote</p>
+                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[#dae2fd]">Caloocan City, PH // Remote</p>
                 </div>
               </div>
             </div>
 
             <div className="pt-8 border-t border-[#494456]/15 flex flex-col gap-4">
-              <a className="flex items-center justify-between group" href="https://github.com">
+              <a className="flex items-center justify-between group" href="https://github.com/naori11">
                 <span className="font-[family-name:var(--font-space-grotesk)] text-[#b9c7df] group-hover:text-[#cfbdff] transition-colors">GitHub</span>
                 <span className="material-symbols-outlined text-[#494456] group-hover:text-[#cfbdff] transition-colors">open_in_new</span>
               </a>
-              <a className="flex items-center justify-between group" href="https://linkedin.com">
+              <a className="flex items-center justify-between group" href="https://www.linkedin.com/in/juvan-emanuel-paulo/">
                 <span className="font-[family-name:var(--font-space-grotesk)] text-[#b9c7df] group-hover:text-[#cfbdff] transition-colors">LinkedIn</span>
                 <span className="material-symbols-outlined text-[#494456] group-hover:text-[#cfbdff] transition-colors">open_in_new</span>
               </a>

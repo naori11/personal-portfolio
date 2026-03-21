@@ -6,7 +6,7 @@ import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, springs, easings }
 
 export default function AboutPage() {
   return (
-    <main className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+    <main className="pt-24 sm:pt-32 pb-12 sm:pb-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
       {/* Hero / Narrative Bio Section */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-end">
         <motion.div
@@ -24,25 +24,25 @@ export default function AboutPage() {
             System.Architect // Biography
           </motion.div>
           <motion.h1
-            className="font-[family-name:var(--font-space-grotesk)] text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8"
+            className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
           >
-            CRAFTING THE <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]">INVISIBLE ENGINE.</span>
+            ARCHITECTING THE <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cfbdff] to-[#6200ee]">CLOUD-NATIVE FUTURE.</span>
           </motion.h1>
           <motion.div
-            className="space-y-6 text-[#b9c7df] text-lg leading-relaxed max-w-2xl"
+            className="space-y-6 text-[#b9c7df] text-base sm:text-lg leading-relaxed max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
           >
             <p>
-              I am a Senior Infrastructure Engineer specializing in the intersection of high-availability systems and developer experience. My philosophy is simple: <span className="text-[#dae2fd] font-semibold">infrastructure should be as expressive as code.</span>
+              I am an aspiring DevOps and Cloud Engineer currently completing my BSIT at National University - Fairview. My work sits at the intersection of robust backend logic and automated infrastructure, ensuring that applications are not just built, but deployed with precision and scale.
             </p>
             <p>
-              With a decade spent navigating the complexities of distributed systems, I focus on building resilient, self-healing platforms that allow teams to move fast without breaking things. I believe in declarative configurations, immutable deployments, and the radical transparency of observability.
+              From integrating payment gateways for energy solutions to building AI-powered code reviewers, I focus on the "Invisible Engine"—the infrastructure and pipelines that allow software to thrive. I am a consistent Dean's Lister dedicated to mastering the radical transparency of observability and GitOps.
             </p>
           </motion.div>
         </motion.div>
@@ -114,12 +114,12 @@ export default function AboutPage() {
                 transition={{ duration: 0.3, delay: 0.2 }}
               />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                <h3 className="text-xl font-bold text-[#dae2fd]">Lead DevOps Architect</h3>
-                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2021 — PRESENT</span>
+                <h3 className="text-xl font-bold text-[#dae2fd]">Backend & DevOps Intern</h3>
+                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">JAN 2026 — PRESENT</span>
               </div>
-              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">STRATOS SYSTEMS INC.</div>
+              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">GENWATT ENERGY SOLUTIONS</div>
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
-                Architecting a multi-cloud Kubernetes environment serving 5M+ active users. Implementing GitOps workflows with ArgoCD and reducing deployment lead time by 65%.
+                Implementing PayMongo payment gateways and Firebase-driven telemetry. Spearheading SteVe OCPP server integration for EV charger booking systems and real-time backend logic.
               </p>
             </motion.div>
 
@@ -139,12 +139,12 @@ export default function AboutPage() {
                 transition={{ duration: 0.3, delay: 0.3 }}
               />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                <h3 className="text-xl font-bold text-[#dae2fd]">Cloud Infrastructure Engineer</h3>
-                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2018 — 2021</span>
+                <h3 className="text-xl font-bold text-[#dae2fd]">Lead Developer (Thesis)</h3>
+                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2024 — 2025</span>
               </div>
-              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">NEXUS DATA LABS</div>
+              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">KIDSYNC / NU-FAIRVIEW</div>
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
-                Led the migration from monolithic on-prem servers to AWS. Established Infrastructure as Code (Terraform) as the standard for all core services.
+                Engineered an RFID-based verification system using ESP32 and Flutter. Designed the database schema in Supabase and implemented real-time SMS notifications via REST APIs.
               </p>
             </motion.div>
 
@@ -164,12 +164,12 @@ export default function AboutPage() {
                 transition={{ duration: 0.3, delay: 0.4 }}
               />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                <h3 className="text-xl font-bold text-[#dae2fd]">Junior Site Reliability Intern</h3>
-                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2017 — 2018</span>
+                <h3 className="text-xl font-bold text-[#dae2fd]">Web Developer (Academic)</h3>
+                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2023 — 2024</span>
               </div>
-              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">KERNEL CORE TECHNOLOGIES</div>
+              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">COFFEETORY PROJECT</div>
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
-                Supported monitoring stack (Prometheus/Grafana) and automated routine maintenance tasks using Python and Bash scripts.
+                Developed a full-stack inventory and POS system using PHP/MariaDB. Focused on optimizing product tracking and sales reporting logic for local server environments.
               </p>
             </motion.div>
           </div>
@@ -193,29 +193,19 @@ export default function AboutPage() {
                 <div className="text-xs font-bold uppercase tracking-widest text-[#b9c7df]/50 mb-4">Languages</div>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Python</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Go</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Rust</span>
                   <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Bash</span>
+                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">PHP</span>
+                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">JavaScript</span>
                 </div>
               </div>
 
               <div>
                 <div className="text-xs font-bold uppercase tracking-widest text-[#b9c7df]/50 mb-4">Infrastructure</div>
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Kubernetes</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Terraform</span>
                   <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Docker</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Ansible</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">AWS</span>
-                </div>
-              </div>
-
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#b9c7df]/50 mb-4">Observability</div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cbc3d9] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Prometheus</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cbc3d9] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Grafana</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cbc3d9] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">ELK Stack</span>
+                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Linux</span>
+                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Github Actions</span>
+                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Microsoft Azure</span>
                 </div>
               </div>
             </div>
@@ -230,8 +220,8 @@ export default function AboutPage() {
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">AWS Certified Solutions Architect</div>
-                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">PRO_LEVEL</div>
+                  <div className="text-sm font-semibold">Microsoft Certified: Azure Fundamentals</div>
+                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">AZ-900</div>
                 </div>
               </div>
 
@@ -240,8 +230,8 @@ export default function AboutPage() {
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">CKA: Certified Kubernetes Administrator</div>
-                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">LINUX_FOUNDATION</div>
+                  <div className="text-sm font-semibold">Oracle Data Platform 2025 Certified Foundations Associate</div>
+                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Oracle</div>
                 </div>
               </div>
 
@@ -250,8 +240,8 @@ export default function AboutPage() {
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold">HashiCorp Certified: Terraform Associate</div>
-                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">IAC_SPECIALIST</div>
+                  <div className="text-sm font-semibold">Oracle Cloud Infrastructure 2025 Certified Foundations Associate</div>
+                  <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Oracle</div>
                 </div>
               </div>
             </div>
@@ -267,25 +257,25 @@ export default function AboutPage() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: easings.easeOutExpo }}
       >
-        <div className="bg-[#060e20] p-8 rounded-lg flex flex-col md:flex-row gap-8 items-start">
+        <div className="bg-[#060e20] p-4 sm:p-8 rounded-lg flex flex-col md:flex-row gap-4 sm:gap-8 items-start">
           <div className="text-[#d0beff]">
             <span className="material-symbols-outlined text-4xl">school</span>
           </div>
           <div>
             <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#494456] mb-2">ACADEMIC_HISTORY</div>
-            <h3 className="text-xl font-bold mb-1">B.S. in Computer Science</h3>
-            <p className="text-[#b9c7df] text-sm mb-4">University of Technology, Distributed Systems Focus</p>
+            <h3 className="text-xl font-bold mb-1">B.S. in Information Technology - Mobile and Internet Technologies</h3>
+            <p className="text-[#b9c7df] text-sm mb-4">National University - Fairview</p>
             <div className="flex gap-4">
-              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">GPA: 3.9/4.0</div>
+              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">GPA: 3.5/4.0</div>
               <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">DEAN_LIST</div>
             </div>
           </div>
         </div>
 
-        <div className="bg-[#060e20] p-8 rounded-lg border-l-4 border-[#6bd8cb]">
+        <div className="bg-[#060e20] p-4 sm:p-8 rounded-lg border-l-4 border-[#6bd8cb]">
           <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#6bd8cb] mb-2">SYSTEM_PHILOSOPHY</div>
           <p className="italic text-[#b9c7df] text-sm leading-relaxed">
-            "The most reliable system is the one that has the fewest moving parts, yet is expressive enough to describe any complexity. Elegance in infrastructure is found in the subtraction of noise."
+            "Anything worth doing is worth doing poorly at first."
           </p>
         </div>
       </motion.section>
