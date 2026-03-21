@@ -25,8 +25,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "INFRA_DEV | Infrastructure Editorial",
-  description: "Infrastructure Editorial Design System - DevOps Portfolio",
+  title: "JUVAN.TECH | DevOps & Cloud Engineer",
+  description: "DevOps and Cloud Engineer specializing in infrastructure automation, CI/CD pipelines, and backend systems.",
 };
 
 export default function RootLayout({

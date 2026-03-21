@@ -6,7 +6,7 @@ export function Footer() {
       <div className="flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 max-w-7xl mx-auto gap-6">
         {/* Left: Branding */}
         <div className="text-xs sm:text-sm font-bold text-[#cfbdff] font-[family-name:var(--font-space-grotesk)] text-center md:text-left">
-          INFRA_DEV <span className="text-[#6bd8cb] font-normal">//</span> INFRASTRUCTURE_EDITORIAL
+          JUVAN.TECH <span className="text-[#6bd8cb] font-normal">//</span> DevOps & Cloud Engineer
         </div>
 
         {/* Center-Right: Social Links */}
@@ -27,7 +27,7 @@ export function Footer() {
 
         {/* Right: Copyright */}
         <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#6bd8cb] text-center md:text-right">
-          © 2024 Infrastructure Editorial. Built for the Machine.
+          © 2026 Juvan Paulo
         </div>
       </div>
     </footer>

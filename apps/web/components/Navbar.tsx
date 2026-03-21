@@ -24,7 +24,7 @@ export function Navbar() {
         {/* Branding - Left */}
         <motion.div variants={navItem}>
           <Link href="/" className="text-lg sm:text-xl font-black tracking-tighter text-[#cfbdff] uppercase font-[family-name:var(--font-space-grotesk)]">
-            INFRA_DEV
+            JUVAN.TECH
           </Link>
         </motion.div>
 
