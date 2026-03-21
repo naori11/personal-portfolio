@@ -14,8 +14,10 @@
     "@repo/ui": "workspace:*",
     "framer-motion": "^12.38.0",
     "next": "16.2.0",
+    "pdfjs-dist": "^5.5.207",
     "react": "^19.2.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-pdf": "^10.4.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^16.2.0",
