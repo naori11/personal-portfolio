@@ -45,7 +45,8 @@ export default function ContactPage() {
     };
 
     try {
-      const response = await fetch("/api/contact", {
+      const apiUrl = process.env.NEXT_PUBLIC_RENDER_API_URL || "http://localhost:3000/api/contact";
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
