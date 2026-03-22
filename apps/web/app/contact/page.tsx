@@ -187,7 +187,7 @@ export default function ContactPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                ✓ Message received. Response incoming.
+                ✓ Message transmitted successfully.
               </motion.p>
             )}
 
