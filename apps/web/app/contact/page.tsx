@@ -1,26 +1,56 @@
 "use client";
 
+import { useFormStatus } from "react-dom";
 import { useState } from "react";
-import type { FormEvent } from "react";
 import { motion } from "framer-motion";
 import { springs, easings } from "../../lib/motion";
+import { sendEmail } from "./actions";
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <motion.button
+      type="submit"
+      disabled={pending}
+      className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-[family-name:var(--font-space-grotesk)] font-bold rounded-lg hover:opacity-90 transition-all group disabled:opacity-50 disabled:cursor-not-allowed"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", ...springs.snappy }}
+    >
+      {pending && "TRANSMITTING..."}
+      {!pending && (
+        <>
+          INITIALIZE TRANSMISSION
+          <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+        </>
+      )}
+    </motion.button>
+  );
+}
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
+  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormState("submitting");
+  const handleSubmit = async (formData: FormData) => {
+    setSubmitState("idle");
+    setErrorMessage("");
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setFormState("success");
+    const result = await sendEmail(formData);
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormState("idle");
-      (e.target as HTMLFormElement).reset();
-    }, 3000);
+    if (result.error) {
+      setSubmitState("error");
+      setErrorMessage(result.error);
+    } else if (result.success) {
+      setSubmitState("success");
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setSubmitState("idle");
+        const form = document.querySelector("form") as HTMLFormElement;
+        form?.reset();
+      }, 3000);
+    }
   };
 
   return (
@@ -71,18 +101,19 @@ export default function ContactPage() {
             <span className="material-symbols-outlined text-9xl">leak_add</span>
           </div>
 
-          <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
+          <form action={handleSubmit} className="relative z-10 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
                 <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df] uppercase tracking-widest">
                   _identity.name
                 </label>
                 <input
+                  name="name"
                   className="w-full bg-transparent border-b border-[#494456]/30 focus:border-[#cfbdff] focus:ring-0 transition-all py-3 px-0 text-[#dae2fd] placeholder:text-[#494456]/50"
                   placeholder="John Doe"
                   type="text"
                   required
-                  disabled={formState === "submitting"}
+                  disabled={submitState !== "idle"}
                 />
               </div>
 
@@ -91,11 +122,12 @@ export default function ContactPage() {
                   _contact.email
                 </label>
                 <input
+                  name="email"
                   className="w-full bg-transparent border-b border-[#494456]/30 focus:border-[#cfbdff] focus:ring-0 transition-all py-3 px-0 text-[#dae2fd] placeholder:text-[#494456]/50"
                   placeholder="john@domain.com"
                   type="email"
                   required
-                  disabled={formState === "submitting"}
+                  disabled={submitState !== "idle"}
                 />
               </div>
             </div>
@@ -105,11 +137,12 @@ export default function ContactPage() {
                 _subject.header
               </label>
               <input
+                name="subject"
                 className="w-full bg-transparent border-b border-[#494456]/30 focus:border-[#cfbdff] focus:ring-0 transition-all py-3 px-0 text-[#dae2fd] placeholder:text-[#494456]/50"
                 placeholder="Infrastructure Inquiry"
                 type="text"
                 required
-                disabled={formState === "submitting"}
+                disabled={submitState !== "idle"}
               />
             </div>
 
@@ -118,33 +151,18 @@ export default function ContactPage() {
                 _message.payload
               </label>
               <textarea
+                name="message"
                 className="w-full bg-transparent border-b border-[#494456]/30 focus:border-[#cfbdff] focus:ring-0 transition-all py-3 px-0 text-[#dae2fd] placeholder:text-[#494456]/50 resize-none"
                 placeholder="Briefly describe the objective..."
                 rows={4}
                 required
-                disabled={formState === "submitting"}
+                disabled={submitState !== "idle"}
               ></textarea>
             </div>
 
-            <motion.button
-              type="submit"
-              disabled={formState === "submitting" || formState === "success"}
-              className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-[family-name:var(--font-space-grotesk)] font-bold rounded-lg hover:opacity-90 transition-all group disabled:opacity-50 disabled:cursor-not-allowed"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", ...springs.snappy }}
-            >
-              {formState === "submitting" && "TRANSMITTING..."}
-              {formState === "success" && "TRANSMISSION COMPLETE"}
-              {formState === "idle" && (
-                <>
-                  INITIALIZE TRANSMISSION
-                  <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
-                </>
-              )}
-            </motion.button>
+            <SubmitButton />
 
-            {formState === "success" && (
+            {submitState === "success" && (
               <motion.p
                 className="text-sm text-[#6bd8cb] font-[family-name:var(--font-jetbrains-mono)] text-center"
                 initial={{ opacity: 0, y: -10 }}
@@ -152,6 +170,17 @@ export default function ContactPage() {
                 transition={{ duration: 0.3 }}
               >
                 ✓ Message received. Response incoming.
+              </motion.p>
+            )}
+
+            {submitState === "error" && (
+              <motion.p
+                className="text-sm text-[#ff6b6b] font-[family-name:var(--font-jetbrains-mono)] text-center"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                ✗ {errorMessage}
               </motion.p>
             )}
           </form>
