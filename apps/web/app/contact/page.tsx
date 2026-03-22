@@ -1,14 +1,10 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { springs, easings } from "../../lib/motion";
-import { sendEmail } from "./actions";
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
+function SubmitButton({ pending }: { pending: boolean }) {
   return (
     <motion.button
       type="submit"
@@ -32,24 +28,46 @@ function SubmitButton() {
 export default function ContactPage() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [pending, setPending] = useState(false);
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setPending(true);
     setSubmitState("idle");
     setErrorMessage("");
 
-    const result = await sendEmail(formData);
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
+    };
 
-    if (result.error) {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || result.error) {
+        setSubmitState("error");
+        setErrorMessage(result.error || "Failed to send message");
+      } else {
+        setSubmitState("success");
+        setTimeout(() => {
+          setSubmitState("idle");
+          e.currentTarget.reset();
+        }, 3000);
+      }
+    } catch (error) {
       setSubmitState("error");
-      setErrorMessage(result.error);
-    } else if (result.success) {
-      setSubmitState("success");
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setSubmitState("idle");
-        const form = document.querySelector("form") as HTMLFormElement;
-        form?.reset();
-      }, 3000);
+      setErrorMessage("Network error. Please try again.");
+    } finally {
+      setPending(false);
     }
   };
 
@@ -101,7 +119,7 @@ export default function ContactPage() {
             <span className="material-symbols-outlined text-9xl">leak_add</span>
           </div>
 
-          <form action={handleSubmit} className="relative z-10 space-y-8">
+          <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
                 <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df] uppercase tracking-widest">
@@ -160,7 +178,7 @@ export default function ContactPage() {
               ></textarea>
             </div>
 
-            <SubmitButton />
+            <SubmitButton pending={pending} />
 
             {submitState === "success" && (
               <motion.p
