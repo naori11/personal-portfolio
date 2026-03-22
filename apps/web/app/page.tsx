@@ -2,12 +2,16 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, springs, easings } from "../lib/motion";
+
+const PDFViewer = dynamic(() => import("./components/PDFViewer"), { ssr: false });
 
 export default function HomePage() {
   const [terminalStep, setTerminalStep] = useState(0);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -407,6 +411,88 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Resume PDF Modal */}
+      <AnimatePresence>
+        {isResumeModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 bg-[#0b1326]/95 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setIsResumeModalOpen(false)}
+          >
+            <motion.div
+              className="relative w-full max-w-5xl h-[90vh] flex flex-col"
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, ease: easings.easeOutExpo }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header Bar */}
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <div className="flex items-center gap-3">
+                  {/* Terminal Dots */}
+                  <div className="hidden sm:flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
+                  </div>
+                  <div>
+                    <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg sm:text-xl md:text-2xl font-bold text-[#dae2fd]">
+                      System Manifesto
+                    </h3>
+                    <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#6bd8cb] uppercase tracking-wider">
+                      RESUME_VIEWER
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 sm:gap-3">
+                  {/* Download Button */}
+                  <motion.a
+                    href="/assets/resume.pdf"
+                    download="Juvan_Paulo_Resume.pdf"
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#cfbdff] hover:bg-[#d0beff] text-[#3a0093] rounded-lg font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider font-bold transition-all group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="material-symbols-outlined text-lg">download</span>
+                    <span className="hidden sm:inline">Download</span>
+                  </motion.a>
+
+                  {/* Close Button */}
+                  <motion.button
+                    onClick={() => setIsResumeModalOpen(false)}
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#2d3449] hover:bg-[#3a4259] border border-[#494456]/20 rounded-lg text-[#b9c7df] hover:text-[#cfbdff] transition-all group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="hidden sm:inline font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider">ESC</span>
+                    <span className="material-symbols-outlined text-xl">close</span>
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* PDF Viewer Container */}
+              <div className="relative flex-1 bg-[#131b2e] rounded-lg border border-[#494456]/20 overflow-y-auto overflow-x-hidden">
+                <PDFViewer fileUrl="/assets/resume.pdf" />
+              </div>
+
+              {/* Keyboard Hint */}
+              <div className="hidden md:flex absolute bottom-4 left-4 gap-2">
+                <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
+                  <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb] uppercase">ESC</span>
+                </div>
+                <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
+                  <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df]">Close</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
