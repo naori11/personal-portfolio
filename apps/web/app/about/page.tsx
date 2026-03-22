@@ -6,7 +6,7 @@ import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, springs, easings }
 
 export default function AboutPage() {
   return (
-    <main className="pt-24 sm:pt-32 pb-12 sm:pb-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+    <main className="pt-24 sm:pt-32 pb-12 sm:pb-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
       {/* Hero / Narrative Bio Section */}
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-end">
         <motion.div

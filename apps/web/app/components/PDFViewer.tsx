@@ -14,13 +14,21 @@ interface PDFViewerProps {
 
 export default function PDFViewer({ fileUrl }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number | null>(null);
+  const [containerWidth, setContainerWidth] = useState<number>(0);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
   };
 
   return (
-    <div className="flex flex-col items-center py-4 gap-4">
+    <div
+      className="flex flex-col items-center py-4 gap-4 w-full"
+      ref={(el) => {
+        if (el) {
+          setContainerWidth(el.offsetWidth);
+        }
+      }}
+    >
       <Document
         file={fileUrl}
         onLoadSuccess={onDocumentLoadSuccess}
@@ -50,7 +58,7 @@ export default function PDFViewer({ fileUrl }: PDFViewerProps) {
         {numPages && Array.from(new Array(numPages), (_, index) => (
           <motion.div
             key={`page_${index + 1}`}
-            className="shadow-lg"
+            className="shadow-lg w-full max-w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -60,7 +68,7 @@ export default function PDFViewer({ fileUrl }: PDFViewerProps) {
               renderTextLayer={false}
               renderAnnotationLayer={false}
               className="max-w-full"
-              width={Math.min(typeof window !== 'undefined' ? window.innerWidth * 0.8 : 800, 800)}
+              width={containerWidth > 0 ? Math.min(containerWidth - 32, 800) : undefined}
             />
           </motion.div>
         ))}
