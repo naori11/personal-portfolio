@@ -2,27 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, springs, easings } from "../lib/motion";
-
-// Dynamically import PDF viewer to avoid SSR issues
-const PDFViewer = dynamic(() => import("./components/PDFViewer"), {
-  ssr: false,
-  loading: () => (
-    <div className="flex items-center justify-center py-12">
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-[#cfbdff] border-t-transparent rounded-full animate-spin" />
-        <p className="font-[family-name:var(--font-jetbrains-mono)] text-sm text-[#b9c7df]">Loading PDF viewer...</p>
-      </div>
-    </div>
-  ),
-});
 
 export default function HomePage() {
   const [terminalStep, setTerminalStep] = useState(0);
-  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -31,30 +16,6 @@ export default function HomePage() {
 
     return () => clearTimeout(timer);
   }, [terminalStep]);
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isResumeModalOpen) {
-        setIsResumeModalOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, [isResumeModalOpen]);
-
-  // Body scroll lock
-  useEffect(() => {
-    if (isResumeModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isResumeModalOpen]);
 
   return (
     <main className="pt-24 overflow-x-hidden">
@@ -403,134 +364,49 @@ export default function HomePage() {
           >
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl font-black mb-6 tracking-tighter">Let's build something.</h2>
             <p className="text-lg sm:text-xl text-[#b9c7df] mb-8">Open to internships, freelance projects, and full-time opportunities.</p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 text-[#b9c7df]">
-                <span className="material-symbols-outlined text-[#cfbdff]">mail</span>
-                <span className="font-[family-name:var(--font-jetbrains-mono)]">juvanpaulo1.com</span>
-              </div>
-              <div className="flex items-center gap-4 text-[#b9c7df]">
-                <span className="material-symbols-outlined text-[#cfbdff]">location_on</span>
-                <span className="font-[family-name:var(--font-jetbrains-mono)]">Caloocan City, PH // Remote</span>
-              </div>
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", ...springs.snappy }}
+            >
+              <Link href="/contact" className="inline-block px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-bold rounded-lg hover:brightness-110 transition-all shadow-lg shadow-primary/20">
+                Initialize Contact Operations
+              </Link>
+            </motion.div>
           </motion.div>
 
           <motion.div
-            className="bg-[#171f33] p-4 sm:p-8 rounded-xl border border-[#494456]/15"
+            className="bg-[#171f33] p-4 sm:p-8 rounded-xl border border-[#494456]/15 space-y-8"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.2, ease: easings.easeOutExpo }}
           >
-            <form className="space-y-6">
-              <div>
-                <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#b9c7df] mb-2">Identification</label>
-                <input className="w-full bg-transparent border-0 border-b border-[#494456] focus:border-[#cfbdff] focus:ring-0 text-[#dae2fd] placeholder:text-[#948da2] py-3 transition-all" placeholder="Your Name" type="text"/>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="p-2 rounded bg-[#222a3d] text-[#cfbdff]">
+                  <span className="material-symbols-outlined">mail</span>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df] uppercase mb-1">E-mail</p>
+                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[#dae2fd]">juvanpaulo1@gmail.com</p>
+                </div>
               </div>
-              <div>
-                <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#b9c7df] mb-2">Source Address</label>
-                <input className="w-full bg-transparent border-0 border-b border-[#494456] focus:border-[#cfbdff] focus:ring-0 text-[#dae2fd] placeholder:text-[#948da2] py-3 transition-all" placeholder="Email Address" type="email"/>
+
+              <div className="flex items-start gap-4">
+                <div className="p-2 rounded bg-[#222a3d] text-[#cfbdff]">
+                  <span className="material-symbols-outlined">location_on</span>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df] uppercase mb-1">Location</p>
+                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[#dae2fd]">Caloocan City, PH // Remote</p>
+                </div>
               </div>
-              <div>
-                <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#b9c7df] mb-2">Request Payload</label>
-                <textarea className="w-full bg-transparent border-0 border-b border-[#494456] focus:border-[#cfbdff] focus:ring-0 text-[#dae2fd] placeholder:text-[#948da2] py-3 transition-all resize-none" placeholder="Tell me about your infrastructure goals..." rows={4}></textarea>
-              </div>
-              <motion.button
-                className="w-full py-4 bg-[#cfbdff] text-[#3a0093] font-bold rounded-lg hover:brightness-110 transition-all"
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", ...springs.snappy }}
-              >
-                Dispatch Message
-              </motion.button>
-            </form>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Resume PDF Modal */}
-      <AnimatePresence>
-        {isResumeModalOpen && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 bg-[#0b1326]/95 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setIsResumeModalOpen(false)}
-          >
-            <motion.div
-              className="relative w-full max-w-5xl h-[90vh] flex flex-col"
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, ease: easings.easeOutExpo }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Header Bar */}
-              <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <div className="flex items-center gap-3">
-                  {/* Terminal Dots */}
-                  <div className="hidden sm:flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
-                  </div>
-                  <div>
-                    <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg sm:text-xl md:text-2xl font-bold text-[#dae2fd]">
-                      System Manifesto
-                    </h3>
-                    <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#6bd8cb] uppercase tracking-wider">
-                      RESUME_VIEWER
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 sm:gap-3">
-                  {/* Download Button */}
-                  <motion.a
-                    href="/assets/resume.pdf"
-                    download="Juvan_Paulo_Resume.pdf"
-                    className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#cfbdff] hover:bg-[#d0beff] text-[#3a0093] rounded-lg font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider font-bold transition-all group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="material-symbols-outlined text-lg">download</span>
-                    <span className="hidden sm:inline">Download</span>
-                  </motion.a>
-
-                  {/* Close Button */}
-                  <motion.button
-                    onClick={() => setIsResumeModalOpen(false)}
-                    className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#2d3449] hover:bg-[#3a4259] border border-[#494456]/20 rounded-lg text-[#b9c7df] hover:text-[#cfbdff] transition-all group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="hidden sm:inline font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider">ESC</span>
-                    <span className="material-symbols-outlined text-xl">close</span>
-                  </motion.button>
-                </div>
-              </div>
-
-              {/* PDF Viewer Container */}
-              <div className="relative flex-1 bg-[#131b2e] rounded-lg border border-[#494456]/20 overflow-y-auto overflow-x-hidden max-w-full">
-                <PDFViewer fileUrl="/assets/resume.pdf" />
-              </div>
-
-              {/* Keyboard Hint */}
-              <div className="hidden md:flex absolute bottom-4 left-4 gap-2">
-                <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
-                  <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb] uppercase">ESC</span>
-                </div>
-                <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
-                  <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df]">Close</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 }
