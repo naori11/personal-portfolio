@@ -43,8 +43,21 @@ export default function HomePage() {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isResumeModalOpen]);
 
+  // Body scroll lock
+  useEffect(() => {
+    if (isResumeModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isResumeModalOpen]);
+
   return (
-    <main className="pt-24">
+    <main className="pt-24 overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[600px] md:min-h-[870px] flex items-center px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #494456 1px, transparent 0)", backgroundSize: "40px 40px" }}></div>
@@ -501,7 +514,7 @@ export default function HomePage() {
               </div>
 
               {/* PDF Viewer Container */}
-              <div className="relative flex-1 bg-[#131b2e] rounded-lg border border-[#494456]/20 overflow-y-auto overflow-x-hidden">
+              <div className="relative flex-1 bg-[#131b2e] rounded-lg border border-[#494456]/20 overflow-y-auto overflow-x-hidden max-w-full">
                 <PDFViewer fileUrl="/assets/resume.pdf" />
               </div>
 
