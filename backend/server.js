@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { Resend } from 'resend';
@@ -8,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 // CORS configuration
 const allowedOrigins = [
   'http://localhost:3001',
-  'https://juvan.tech',
+  'https://www.juvan.tech',
   process.env.FRONTEND_URL
 ].filter(Boolean);
 
