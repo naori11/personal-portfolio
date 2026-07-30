@@ -3,7 +3,7 @@
 param location string = 'eastasia'
 
 @description('The name of your Static Web App.')
-param appName string = 'portfolio-monorepo-site'
+param appName string = 'portfolio-site'
 
 // 2. Define the cloud resource
 resource staticWebApp 'Microsoft.Web/staticSites@2022-09-01' = {
