@@ -21,7 +21,7 @@ export default function AboutPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            System.Architect // Biography
+            About Me // Biography
           </motion.div>
           <motion.h1
             className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8"
@@ -69,8 +69,8 @@ export default function AboutPage() {
                   <div className="w-2 h-2 rounded-full bg-[#494456]/30"></div>
                 </div>
                 <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]/80 leading-tight">
-                  STATUS: DEPLOYED<br/>
-                  REGION: GLOBAL_EDGE<br/>
+                  Status: Active<br/>
+                  Location: Remote<br/>
                   UPTIME: 99.999%
                 </div>
               </div>
@@ -185,7 +185,7 @@ export default function AboutPage() {
           <div className="bg-[#171f33] p-6 rounded-lg">
             <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#948da2] mb-6 flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-[#6bd8cb] rounded-full"></span>
-              CORE_COMPETENCIES
+              Technical Skills
             </div>
             <div className="space-y-8">
               <div>
@@ -212,7 +212,7 @@ export default function AboutPage() {
 
           {/* Certifications */}
           <div className="bg-[#222a3d] p-6 rounded-lg border border-[#494456]/10">
-            <h4 className="font-[family-name:var(--font-space-grotesk)] text-sm font-bold mb-6">CERTIFICATIONS_AUTH</h4>
+            <h4 className="font-[family-name:var(--font-space-grotesk)] text-sm font-bold mb-6">Certifications</h4>
             <div className="space-y-4">
               <a
                 href="https://learn.microsoft.com/en-us/users/juvanpaulo-8654/credentials/a501b56f522784f7?ref=https%3A%2F%2Fwww.linkedin.com%2F"
@@ -276,18 +276,18 @@ export default function AboutPage() {
             <span className="material-symbols-outlined text-4xl">school</span>
           </div>
           <div>
-            <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#494456] mb-2">ACADEMIC_HISTORY</div>
+            <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#494456] mb-2">Education</div>
             <h3 className="text-xl font-bold mb-1">B.S. in Information Technology - Mobile and Internet Technologies</h3>
             <p className="text-[#b9c7df] text-sm mb-4">National University - Fairview</p>
-            <div className="flex gap-4">
-              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">GPA: 3.5/4.0</div>
-              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">DEAN_LIST</div>
+            <div className="flex flex-wrap gap-4">
+              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">Magna Cum Laude</div>
+              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">Consistent Dean&apos;s Lister (2022 - 2026)</div>
             </div>
           </div>
         </div>
 
         <div className="bg-[#060e20] p-4 sm:p-8 rounded-lg border-l-4 border-[#6bd8cb]">
-          <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#6bd8cb] mb-2">SYSTEM_PHILOSOPHY</div>
+          <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#6bd8cb] mb-2">Philosophy</div>
           <p className="italic text-[#b9c7df] text-sm leading-relaxed">
             "Anything worth doing is worth doing poorly at first."
           </p>

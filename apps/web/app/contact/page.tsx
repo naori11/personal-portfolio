@@ -14,10 +14,10 @@ function SubmitButton({ pending }: { pending: boolean }) {
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", ...springs.snappy }}
     >
-      {pending && "TRANSMITTING..."}
+      {pending && "Sending..."}
       {!pending && (
         <>
-          INITIALIZE TRANSMISSION
+          Send Message
           <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
         </>
       )}
@@ -87,7 +87,7 @@ export default function ContactPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <span className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] uppercase tracking-widest">System::Status: Ready</span>
+          <span className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] uppercase tracking-widest">Status: Available</span>
         </motion.div>
         <motion.h1
           className="text-3xl sm:text-5xl md:text-7xl font-[family-name:var(--font-space-grotesk)] font-bold tracking-tighter text-[#dae2fd] mb-4"
@@ -124,7 +124,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
                 <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df] uppercase tracking-widest">
-                  _identity.name
+                  Name
                 </label>
                 <input
                   name="name"
@@ -138,7 +138,7 @@ export default function ContactPage() {
 
               <div className="space-y-2">
                 <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df] uppercase tracking-widest">
-                  _contact.email
+                  Email
                 </label>
                 <input
                   name="email"
@@ -153,7 +153,7 @@ export default function ContactPage() {
 
             <div className="space-y-2">
               <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df] uppercase tracking-widest">
-                _subject.header
+                Subject
               </label>
               <input
                 name="subject"
@@ -167,7 +167,7 @@ export default function ContactPage() {
 
             <div className="space-y-2">
               <label className="block font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df] uppercase tracking-widest">
-                _message.payload
+                Message
               </label>
               <textarea
                 name="message"
@@ -224,7 +224,7 @@ export default function ContactPage() {
               </span>
             </div>
             <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#6bd8cb] tracking-[0.2em] uppercase">
-              Global Networking Active
+              Let&apos;s Connect
             </p>
           </div>
 

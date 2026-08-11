@@ -104,7 +104,7 @@ export default function ProjectsPage() {
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
-          <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-xs uppercase tracking-[0.2em]">Deployment Archive</span>
+          <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-xs uppercase tracking-[0.2em]">Project Portfolio</span>
         </motion.div>
         <motion.h1
           className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-7xl font-bold text-[#dae2fd] tracking-tighter mb-6"
@@ -218,7 +218,7 @@ export default function ProjectsPage() {
           <p className="text-[#b9c7df] mb-8">I'm always interested in projects involving cloud infrastructure, backend development, or IoT systems. Let's talk.</p>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", ...springs.snappy }}>
             <Link href="/contact" className="inline-block bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] px-6 sm:px-8 py-2.5 sm:py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-xs sm:text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_rgba(207,189,255,0.3)] transition-all">
-              ESTABLISH CONTACT
+              Get in Touch
             </Link>
           </motion.div>
         </div>
@@ -257,7 +257,7 @@ export default function ProjectsPage() {
                       {projects[selectedProject].title}
                     </h3>
                     <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#6bd8cb] uppercase tracking-wider">
-                      SCREENSHOT_VIEWER
+                      Screenshots
                     </p>
                   </div>
                 </div>

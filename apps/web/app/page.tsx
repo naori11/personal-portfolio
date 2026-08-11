@@ -41,7 +41,7 @@ export default function HomePage() {
                 animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
-              <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#6bd8cb]">SYSTEM STATUS: OPERATIONAL</span>
+              <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-widest text-[#6bd8cb]">Available for Work</span>
             </motion.div>
 
             <motion.h1
@@ -77,7 +77,7 @@ export default function HomePage() {
             >
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", ...springs.snappy }}>
                 <Link href="/projects" className="block px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-bold rounded-lg hover:brightness-110 transition-all shadow-lg shadow-primary/20">
-                  Explore Operations
+                  View Projects
                 </Link>
               </motion.div>
               <motion.button
@@ -87,7 +87,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", ...springs.snappy }}
               >
-                System Manifesto
+                View Resume
               </motion.button>
             </motion.div>
           </div>
@@ -163,7 +163,7 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-bold mb-4">Core Competencies</h2>
+            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-bold mb-4">Technical Skills</h2>
             <motion.div
               className="w-24 h-1 bg-[#cfbdff]"
               initial={{ scaleX: 0 }}
@@ -239,7 +239,7 @@ export default function HomePage() {
               >
                 <span className="material-symbols-outlined">api</span>
               </motion.div>
-              <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold mb-4 text-[#dae2fd]">Cyber-Physical Systems</h3>
+              <h3 className="font-[family-name:var(--font-space-grotesk)] text-xl font-bold mb-4 text-[#dae2fd]">IoT & Hardware Integration</h3>
               <p className="text-[#b9c7df] leading-relaxed mb-6">Integrating hardware controllers like ESP32 with cloud backends for real-time monitoring and automation.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#2d3449] rounded text-[#b9c7df] uppercase">ESP32</span>
@@ -260,7 +260,7 @@ export default function HomePage() {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-black mb-2 tracking-tight">Featured Operations</h2>
+            <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-black mb-2 tracking-tight">Featured Projects</h2>
             <p className="text-[#b9c7df] font-[family-name:var(--font-jetbrains-mono)] text-sm uppercase tracking-widest">Selected Works & Case Studies</p>
           </div>
           <Link href="/projects" className="hidden md:block font-[family-name:var(--font-jetbrains-mono)] text-sm text-[#6bd8cb] hover:underline">
@@ -374,7 +374,7 @@ export default function HomePage() {
               transition={{ type: "spring", ...springs.snappy }}
             >
               <Link href="/contact" className="inline-block px-8 py-4 bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] font-bold rounded-lg hover:brightness-110 transition-all shadow-lg shadow-primary/20">
-                Initialize Contact Operations
+                Contact Me
               </Link>
             </motion.div>
           </motion.div>
@@ -441,10 +441,10 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg sm:text-xl md:text-2xl font-bold text-[#dae2fd]">
-                      System Manifesto
+                      View Resume
                     </h3>
                     <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#6bd8cb] uppercase tracking-wider">
-                      RESUME_VIEWER
+                      Resume
                     </p>
                   </div>
                 </div>
