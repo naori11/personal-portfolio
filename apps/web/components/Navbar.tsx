@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { navContainer, navItem, springs } from "../lib/motion";
+import { navContainer, navItem } from "../lib/motion";
 import { useState } from "react";
 
 export function Navbar() {
@@ -94,29 +93,12 @@ export function Navbar() {
 
         {/* Right Side - Terminal, Profile, Mobile Menu */}
         <div className="flex items-center gap-2 sm:gap-4">
-          <motion.button
-            variants={navItem}
-            className="p-2 hover:bg-[#2d3449]/50 transition-all duration-300 text-[#cfbdff] hidden sm:block"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", ...springs.snappy }}
-          >
-            <span className="material-symbols-outlined">terminal</span>
-          </motion.button>
-          <motion.div
-            variants={navItem}
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg overflow-hidden border-2 border-[#cfbdff]/20"
-            whileHover={{ scale: 1.05, borderColor: "rgba(207, 189, 255, 0.4)" }}
-            transition={{ type: "spring", ...springs.snappy }}
-          >
-            <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWK9jfv0932B0x_fXiIw4S-GQKFGRv1I4fINGZUnzpCptsrsKvR6lPKdap3CsrFqUohWMdjP_T_nbMyL1h1S_pP-S38TfpLNKQqQ3Ds9IQa_FVedUFTFuRi6P-j_74Nd8mav3LIdGOXP1oqtXV80Y393jd2DZZJ_9-1itmpkpbaDcCrPDJl6tsF9mxKERsqZWDEBqB77kvWcVwInOAvottqjM33k0mHE5CqqoIRPwj93P6KLnv07d3opO89PLm1rAjkFZ_9r0_1qc"
-              alt="Professional portrait of DevOps Engineer"
-              width={40}
-              height={40}
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+          <a href="https://github.com/naori11" target="_blank" rel="noopener noreferrer" className="p-2 text-[#cfbdff] hover:bg-[#2d3449]/50 transition-all rounded">
+            <span className="material-symbols-outlined">code</span>
+          </a>
+          <a href="https://www.linkedin.com/in/juvan-emanuel-paulo/" target="_blank" rel="noopener noreferrer" className="p-2 text-[#cfbdff] hover:bg-[#2d3449]/50 transition-all rounded">
+            <span className="material-symbols-outlined">open_in_new</span>
+          </a>
 
           {/* Mobile Menu Button */}
           <motion.button
