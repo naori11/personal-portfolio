@@ -57,18 +57,19 @@ export default function AboutPage() {
             <div className="aspect-square bg-[#171f33] rounded-sm relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#cfbdff]/10 to-transparent"></div>
               <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR2ml7SZJD_n_CfJn6JraLfsjA6t_cKaJhFZCOXaVBA7572waHekX7XCP48xyw29fgUu8I7MotPAIXgjbPSlKieS2JN_4ghD3PKsmy4Ns3OThx2esS-1g0xwQH8svtpfht4Mc1uj-lOiFsHAYXxsUY6bmOHxmr_oNYSkDqq5Do10b4iAftGPioev0E9j3xmiIuzxNAViLicc8SOlFFKBJWHZJWo7EOKOHmFu1GgnUSZg4p26nf8IPLmCwNHajzGPTcISt0TvhB0SU"
-                alt="Technical schematic overlay on abstract server hardware"
+                src="/assets/image.jpg"
+                alt="Portrait of Juvan Emanuel Paulo"
                 fill
-                className="object-cover mix-blend-overlay opacity-50"
+                className="object-cover object-top"
               />
-              <div className="absolute bottom-6 left-6 right-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1326]/90 via-[#0b1326]/20 to-transparent z-10"></div>
+              <div className="absolute bottom-6 left-6 right-6 z-20">
                 <div className="flex gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-[#494456]/30"></div>
-                  <div className="w-2 h-2 rounded-full bg-[#494456]/30"></div>
-                  <div className="w-2 h-2 rounded-full bg-[#494456]/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#6bd8cb]/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#6bd8cb]/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#6bd8cb]/30"></div>
                 </div>
-                <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]/80 leading-tight">
+                <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb] leading-tight font-bold">
                   Status: Active<br/>
                   Location: Remote<br/>
                   UPTIME: 99.999%
