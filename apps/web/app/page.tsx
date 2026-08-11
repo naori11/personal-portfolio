@@ -319,43 +319,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonial/Callout */}
-      <section className="py-12 sm:py-24 px-4 sm:px-8 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.span
-            className="material-symbols-outlined text-6xl text-[#cfbdff]/30 mb-8"
-            style={{ fontVariationSettings: "'FILL' 1" }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 0.3, scale: 1 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-          >
-            format_quote
-          </motion.span>
-          <motion.h2
-            className="font-[family-name:var(--font-space-grotesk)] text-xl sm:text-2xl md:text-4xl italic font-light leading-relaxed text-[#dae2fd] mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            "His architectural decisions during our migration saved us nearly 40% in monthly compute costs while simultaneously increasing our uptime to four nines."
-          </motion.h2>
-          <motion.div
-            className="flex items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="text-left">
-              <div className="font-bold text-[#dae2fd]">Alex Rivera</div>
-              <div className="text-sm font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] uppercase tracking-widest">CTO @ TechFlow Systems</div>
-            </div>
-          </motion.div>
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#cfbdff]/5 blur-[120px] rounded-full"></div>
-      </section>
 
       {/* Contact/Final CTA */}
       <section className="py-16 sm:py-32 px-4 sm:px-8 bg-[#131b2e]">
@@ -367,7 +330,7 @@ export default function HomePage() {
             transition={{ duration: 0.6, ease: easings.easeOutExpo }}
           >
             <h2 className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl font-black mb-6 tracking-tighter">Let's build something.</h2>
-            <p className="text-lg sm:text-xl text-[#b9c7df] mb-8">Open to internships, freelance projects, and full-time opportunities.</p>
+            <p className="text-lg sm:text-xl text-[#b9c7df] mb-8">Open to full-time opportunities, freelance projects, and full-time opportunities.</p>
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
