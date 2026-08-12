@@ -39,11 +39,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
           >
             <p>
-              I build cloud infrastructure and automate deployments. My work ranges from CI/CD pipelines and infrastructure as code to backend systems and API development, with a focus on making deployments reliable and repeatable.
+              I recently graduated Magna Cum Laude from National University – Fairview with a degree in BSIT-MI, based in Caloocan City, Philippines. As a kid, I had a habit of taking apart some of our household electronics to see how they work, though I didn't exactly repaired any of it. Luckily, taking apart software and cloud infrastructure is way easier to repair, which led me to pursue backend development and DevOps.
             </p>
             <p>
-              Currently doing backend development at GenWATT Energy Solutions while building DevOps expertise through automation projects. I work with payment APIs, Firebase telemetry, and real-time systems, and build side projects involving Docker, GitHub Actions, and IoT hardware integration.
-            </p>
+              My main focus is building systems that are fast, reliable, and secure. Right now, I’m looking for entry-level opportunities in DevOps, Cloud Engineering, or Backend Development. If your team is building scalable infrastructure, or just needs someone who loves figuring out how complex systems fit together, I’d love to connect!            </p>
           </motion.div>
         </motion.div>
 
