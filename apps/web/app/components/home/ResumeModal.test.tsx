@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { createRef } from "react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("next/dynamic", () => ({
   default: () => function MockPdfViewer() {
@@ -10,8 +10,34 @@ vi.mock("next/dynamic", () => ({
 
 import { ResumeModal } from "./ResumeModal";
 
+function setDesktopViewport(matches: boolean) {
+  const listeners = new Set<() => void>();
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+      matches,
+      media: query,
+      onchange: null,
+      addEventListener: (_event: string, listener: () => void) => {
+        listeners.add(listener);
+      },
+      removeEventListener: (_event: string, listener: () => void) => {
+        listeners.delete(listener);
+      },
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  });
+}
+
 describe("ResumeModal", () => {
-  it("exposes accessible dialog semantics and a direct download", async () => {
+  beforeEach(() => {
+    setDesktopViewport(true);
+  });
+
+  it("exposes accessible dialog semantics and direct PDF links", async () => {
     const returnFocusRef = createRef<HTMLElement>();
     render(
       <ResumeModal
@@ -25,15 +51,66 @@ describe("ResumeModal", () => {
       "aria-modal",
       "true",
     );
-    expect(screen.getByRole("link", { name: "Download resume" })).toHaveAttribute(
-      "href",
-      "/assets/resume.pdf",
-    );
+
+    const openPdf = screen.getByRole("link", { name: "Open PDF" });
+    expect(openPdf).toHaveAttribute("href", "/assets/resume.pdf");
+    expect(openPdf).toHaveAttribute("target", "_blank");
+    expect(openPdf).toHaveAttribute("rel", "noopener noreferrer");
+
+    const downloadPdf = screen.getByRole("link", { name: "Download PDF" });
+    expect(downloadPdf).toHaveAttribute("href", "/assets/resume.pdf");
+    expect(downloadPdf).toHaveAttribute("download", "Juvan_Paulo_Resume.pdf");
+
     expect(screen.getByTestId("pdf-viewer")).toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.getByRole("button", { name: "Close resume" })).toHaveFocus();
     });
+  });
+
+  it("uses native PDF guidance instead of the canvas on mobile", () => {
+    setDesktopViewport(false);
+    const returnFocusRef = createRef<HTMLElement>();
+
+    render(
+      <ResumeModal
+        open
+        onClose={vi.fn()}
+        returnFocusRef={returnFocusRef}
+      />,
+    );
+
+    expect(screen.queryByTestId("pdf-viewer")).not.toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Open the PDF for readable text, zoom, search, and working links.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Open PDF" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Download PDF" })).toBeInTheDocument();
+  });
+
+  it("keeps the embedded PDF preview on desktop and tablet widths", () => {
+    setDesktopViewport(true);
+    const returnFocusRef = createRef<HTMLElement>();
+
+    render(
+      <ResumeModal
+        open
+        onClose={vi.fn()}
+        returnFocusRef={returnFocusRef}
+      />,
+    );
+
+    expect(screen.getByTestId("pdf-viewer")).toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        "Open the PDF for readable text, zoom, search, and working links.",
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("region", { name: "Resume preview" }),
+    ).toBeInTheDocument();
   });
 
   it("closes on Escape and backdrop interaction", () => {
@@ -96,18 +173,18 @@ describe("ResumeModal", () => {
       />,
     );
 
-    const download = screen.getByRole("link", { name: "Download resume" });
-    const close = screen.getByRole("button", { name: "Close resume" });
+    const openPdf = screen.getByRole("link", { name: "Open PDF" });
+    const preview = screen.getByRole("region", { name: "Resume preview" });
 
-    close.focus();
+    preview.focus();
     fireEvent.keyDown(screen.getByRole("dialog"), { key: "Tab" });
-    expect(download).toHaveFocus();
+    expect(openPdf).toHaveFocus();
 
-    download.focus();
+    openPdf.focus();
     fireEvent.keyDown(screen.getByRole("dialog"), {
       key: "Tab",
       shiftKey: true,
     });
-    expect(close).toHaveFocus();
+    expect(preview).toHaveFocus();
   });
 });

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Document, Page, pdfjs } from "react-pdf";
-import { easings } from "../../lib/motion";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
 
 // Configure PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -15,6 +16,26 @@ interface PDFViewerProps {
 export default function PDFViewer({ fileUrl }: PDFViewerProps) {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [containerWidth, setContainerWidth] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const updateWidth = (width: number) => {
+      setContainerWidth(width);
+    };
+
+    updateWidth(container.getBoundingClientRect().width);
+
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry) updateWidth(entry.contentRect.width);
+    });
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, []);
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
@@ -23,11 +44,7 @@ export default function PDFViewer({ fileUrl }: PDFViewerProps) {
   return (
     <div
       className="flex flex-col items-center py-4 gap-4 w-full"
-      ref={(el) => {
-        if (el) {
-          setContainerWidth(el.offsetWidth);
-        }
-      }}
+      ref={containerRef}
     >
       <Document
         file={fileUrl}
@@ -47,7 +64,7 @@ export default function PDFViewer({ fileUrl }: PDFViewerProps) {
         error={
           <div className="flex items-center justify-center py-12">
             <div className="bg-[#171f33] border border-[#494456]/20 rounded-lg p-8 text-center max-w-md">
-              <span className="material-symbols-outlined text-5xl text-[#cfbdff]/30 mb-4">error</span>
+              <span className="material-symbols-outlined text-[#cfbdff]/30 text-5xl mb-4">error</span>
               <p className="text-[#b9c7df] mb-4">
                 Failed to load PDF. Please use the download button above.
               </p>
@@ -65,8 +82,8 @@ export default function PDFViewer({ fileUrl }: PDFViewerProps) {
           >
             <Page
               pageNumber={index + 1}
-              renderTextLayer={false}
-              renderAnnotationLayer={false}
+              renderTextLayer={true}
+              renderAnnotationLayer={true}
               className="max-w-full"
               width={containerWidth > 0 ? Math.min(containerWidth - 32, 800) : undefined}
             />
