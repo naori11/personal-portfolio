@@ -88,25 +88,25 @@ export const supportingProjects: readonly SupportingProjectData[] = [
 export const capabilities: readonly CapabilityData[] = [
   {
     index: "01",
-    title: "Backend systems",
+    title: "Infrastructure & delivery",
     description:
-      "Build application logic, integrations, and data flows that keep product behavior understandable and maintainable.",
-    evidence:
-      "Coffeetory connects inventory and sales workflows through a PHP and MySQL application.",
-  },
-  {
-    index: "02",
-    title: "Delivery and infrastructure",
-    description:
-      "Automate repeatable builds and deployments with containers, CI/CD workflows, and infrastructure as code.",
+      "Automate repeatable builds, deployments, and cloud provisioning using containers, CI/CD pipelines, and Infrastructure as Code.",
     evidence:
       "This portfolio uses GitHub Actions, Azure Bicep, and Azure Static Web Apps as a working delivery example.",
   },
   {
-    index: "03",
-    title: "Connected systems",
+    index: "02",
+    title: "Cloud-native backend",
     description:
-      "Join application software with telemetry and physical devices when a workflow extends beyond the browser.",
+      "Build scalable application logic, database integrations, and robust APIs structured to run efficiently in cloud environments.",
+    evidence:
+      "Coffeetory connects inventory and sales workflows through a PHP and MySQL application.",
+  },
+  {
+    index: "03",
+    title: "Connected systems & telemetry",
+    description:
+      "Integrate physical hardware and telemetry with cloud applications, bridging real-world events and digital databases.",
     evidence:
       "KidSync combines ESP32 and RC522 hardware with a Flutter and Supabase application.",
   },

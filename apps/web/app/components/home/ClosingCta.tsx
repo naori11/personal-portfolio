@@ -15,7 +15,7 @@ export function ClosingCta({ onOpenResume }: ClosingCtaProps) {
             03 / Next step
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-4xl font-black tracking-tight text-[#dae2fd] sm:text-5xl">
-            Need a backend, automation, or infrastructure builder?
+            Need a DevOps, cloud, or automation engineer?
           </h2>
         </div>
 

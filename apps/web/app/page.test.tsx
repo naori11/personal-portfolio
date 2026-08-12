@@ -29,11 +29,11 @@ describe("HomePage", () => {
 
     expect(headings).toEqual(
       expect.arrayContaining([
-        expect.stringMatching(/Backend systems/),
+        expect.stringMatching(/Cloud-native backend/),
         "Systems shown through the work.",
         "Cloud Portfolio IaC",
         "What I build and how it connects.",
-        "Need a backend, automation, or infrastructure builder?",
+        "Need a DevOps, cloud, or automation engineer?",
       ]),
     );
     expect(screen.queryByText(/Cloud Sentinel/i)).not.toBeInTheDocument();
