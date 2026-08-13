@@ -208,7 +208,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.3, delay: 0.3 }}
               />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                <h3 className="text-xl font-bold text-[#dae2fd]">Lead Developer (Thesis)</h3>
+                <h3 className="text-xl font-bold text-[#dae2fd]">Lead Developer - Project-Based Learning (PBL2)</h3>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2024 — 2025</span>
               </div>
               <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">KIDSYNC / NU-FAIRVIEW</div>
@@ -233,10 +233,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.3, delay: 0.4 }}
               />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                <h3 className="text-xl font-bold text-[#dae2fd]">Web Developer (Academic)</h3>
+                <h3 className="text-xl font-bold text-[#dae2fd]">Web Developer - Project-Based Learning (PBL1)</h3>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">2023 — 2024</span>
               </div>
-              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">COFFEETORY PROJECT</div>
+              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">COFFEETORY / NU-FAIRVIEW</div>
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
                 Developed a full-stack inventory and POS system using PHP/MariaDB. Focused on optimizing product tracking and sales reporting logic for local server environments.
               </p>
