@@ -8,6 +8,19 @@ import { fadeInUp, staggerContainer, springs, easings } from "../../lib/motion";
 
 const projects = [
   {
+    title: "JUVAN.TECH",
+    description: "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
+    tech: ["AZURE BICEP", "NEXT.JS", "TURBOREPO"],
+    github: "https://github.com/naori11/personal-portfolio",
+    demo: "https://www.juvan.tech",
+    screenshots: [
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+1",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+2",
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+3",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+4",
+    ],
+  },
+  {
     title: "KidSync: Smart RFID Security",
     description: "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
     tech: ["FLUTTER", "SUPABASE", "ESP32"],
@@ -25,31 +38,7 @@ const projects = [
       { src: "/assets/projects/kidsync/teacher-attendance.png", description: "Teacher Dashboard - Class Attendance" },
       { src: "/assets/projects/kidsync/teacher-schedule.png", description: "Teacher Dashboard - Class Schedule" },
     ],
-  },
-  {
-    title: "AI Code Reviewer",
-    description: "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
-    tech: ["FASTAPI", "GEMINI API", "DOCKER"],
-    github: "https://github.com/naori11/code-reviewer",
-    demo: null,
-    screenshots: [
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=AI+Reviewer+Screenshot+1",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=AI+Reviewer+Screenshot+2",
-    ],
     offset: "lg:mt-12",
-  },
-  {
-    title: "JUVAN.TECH",
-    description: "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
-    tech: ["AZURE BICEP", "NEXT.JS", "TURBOREPO"],
-    github: "https://github.com/naori11/personal-portfolio",
-    demo: "https://www.juvan.tech",
-    screenshots: [
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+1",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+2",
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+3",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+4",
-    ],
   },
   {
     title: "Coffeetory POS",
@@ -63,7 +52,19 @@ const projects = [
       "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Coffeetory+Screenshot+3",
     ],
   },
+  {
+    title: "AI Code Reviewer",
+    description: "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
+    tech: ["FASTAPI", "GEMINI API", "DOCKER"],
+    github: "https://github.com/naori11/code-reviewer",
+    demo: null,
+    screenshots: [
+      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=AI+Reviewer+Screenshot+1",
+      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=AI+Reviewer+Screenshot+2",
+    ],
+  },
 ];
+
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
