@@ -308,12 +308,13 @@ export default function AboutPage() {
                 className="flex items-start gap-4 group cursor-pointer"
               >
                 <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
+                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
                 </div>
-                <div>
+                <div className="flex-grow">
                   <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Microsoft Certified: Azure Fundamentals (AZ-900)</div>
                   <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Microsoft Azure</div>
                 </div>
+                <span className="material-symbols-outlined text-[16px] text-[#b9c7df]/40 group-hover:text-[#cfbdff] transition-colors mt-1">north_east</span>
               </a>
 
               <a
@@ -323,12 +324,13 @@ export default function AboutPage() {
                 className="flex items-start gap-4 group cursor-pointer"
               >
                 <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
+                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
                 </div>
-                <div>
-                  <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associatee</div>
+                <div className="flex-grow">
+                  <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</div>
                   <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Oracle</div>
                 </div>
+                <span className="material-symbols-outlined text-[16px] text-[#b9c7df]/40 group-hover:text-[#cfbdff] transition-colors mt-1">north_east</span>
               </a>
 
               <a
@@ -338,12 +340,13 @@ export default function AboutPage() {
                 className="flex items-start gap-4 group cursor-pointer"
               >
                 <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
+                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
                 </div>
-                <div>
+                <div className="flex-grow">
                   <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Oracle Cloud Infrastructure 2025 Certified Foundations Associate</div>
                   <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb]">Oracle</div>
                 </div>
+                <span className="material-symbols-outlined text-[16px] text-[#b9c7df]/40 group-hover:text-[#cfbdff] transition-colors mt-1">north_east</span>
               </a>
             </div>
           </div>
