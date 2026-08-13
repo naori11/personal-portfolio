@@ -391,7 +391,7 @@ export default function AboutPage() {
               "Que sera, sera."
             </h3>
             <p className="text-[#b9c7df] text-xs sm:text-sm leading-relaxed max-w-md">
-              Whatever will be, will be. Embrace adaptability, focusing on what you can control, and leave the rest to unfold.
+              Whatever will be, will be. Embrace adaptability, focus on what you can control, and leave the rest to unfold.
             </p>
           </div>
         </div>
