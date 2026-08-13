@@ -366,17 +366,51 @@ export default function AboutPage() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: easings.easeOutExpo }}
       >
-        <div className="bg-[#060e20] p-4 sm:p-8 rounded-lg flex flex-col md:flex-row gap-4 sm:gap-8 items-start">
-          <div className="text-[#d0beff]">
-            <span className="material-symbols-outlined text-4xl">school</span>
+        <div className="bg-[#060e20] p-6 sm:p-8 rounded-lg grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Left Column: Degree & University */}
+          <div className="md:col-span-7 flex gap-4 sm:gap-6 items-start">
+            <div className="text-[#d0beff] mt-1">
+              <span className="material-symbols-outlined text-4xl">school</span>
+            </div>
+            <div>
+              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#494456] mb-2">Education</div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-[#dae2fd] leading-tight">
+                B.S. in Information Technology
+              </h3>
+              <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#6bd8cb] mb-1">
+                MOBILE & INTERNET TECHNOLOGIES
+              </p>
+              <p className="text-[#b9c7df] text-sm">National University - Fairview</p>
+              <p className="text-[#b9c7df]/40 text-xs mt-1 font-[family-name:var(--font-jetbrains-mono)]">GRADUATED: AUG 2026</p>
+            </div>
           </div>
-          <div>
-            <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#494456] mb-2">Education</div>
-            <h3 className="text-xl font-bold mb-1">B.S. in Information Technology - Mobile and Internet Technologies</h3>
-            <p className="text-[#b9c7df] text-sm mb-4">National University - Fairview</p>
-            <div className="flex flex-wrap gap-4">
-              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">Magna Cum Laude</div>
-              <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] bg-[#171f33] px-2 py-1">Consistent Dean&apos;s Lister (2022 - 2026)</div>
+
+          {/* Right Column: Achievements & Scholarships */}
+          <div className="md:col-span-5 space-y-4 md:border-l md:border-[#494456]/20 md:pl-8 w-full flex flex-col justify-center">
+            <div className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#494456] tracking-wider uppercase mb-1">Honors & Scholar</div>
+
+            <div className="flex items-center gap-3 group/accolade">
+              <span className="material-symbols-outlined text-[20px] text-[#e5c158]" style={{ fontVariationSettings: "'FILL' 1" }}>emoji_events</span>
+              <div>
+                <div className="text-sm font-semibold text-[#dae2fd]">Magna Cum Laude</div>
+                <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] text-[#b9c7df]/50 uppercase tracking-wider">Academic Distinction</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 group/accolade">
+              <span className="material-symbols-outlined text-[20px] text-[#cfbdff]" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
+              <div>
+                <div className="text-sm font-semibold text-[#dae2fd]">SM Foundation Scholar</div>
+                <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] text-[#b9c7df]/50 uppercase tracking-wider">Full Academic Scholarship</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 group/accolade">
+              <span className="material-symbols-outlined text-[20px] text-[#6bd8cb]" style={{ fontVariationSettings: "'FILL' 1" }}>military_tech</span>
+              <div>
+                <div className="text-sm font-semibold text-[#dae2fd]">Consistent Dean&apos;s Lister</div>
+                <div className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] text-[#b9c7df]/50 uppercase tracking-wider">2022 — 2026 Honor Roll</div>
+              </div>
             </div>
           </div>
         </div>
