@@ -300,7 +300,7 @@ export default function ProjectsPage() {
                         className="object-contain p-4 sm:p-6 md:p-12 pb-16 sm:pb-20"
                       />
                       {typeof projects[selectedProject].screenshots[selectedImage] !== 'string' && (projects[selectedProject].screenshots[selectedImage] as any).description && (
-                        <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
+                        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10 max-w-[calc(100%-4rem)] sm:max-w-md">
                           <span className="inline-block bg-[#131b2e]/95 backdrop-blur-md border border-[#494456]/50 text-[#dae2fd] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
                             {(projects[selectedProject].screenshots[selectedImage] as any).description}
                           </span>
