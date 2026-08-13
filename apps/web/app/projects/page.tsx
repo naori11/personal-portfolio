@@ -65,6 +65,22 @@ const projects = [
   },
 ];
 
+const techStyles: Record<string, { bg: string; text: string; border: string }> = {
+  "FLUTTER": { bg: "bg-[#02569B]/10", text: "text-[#4fc3f7]", border: "border-[#02569B]/20" },
+  "SUPABASE": { bg: "bg-[#3ecf8e]/10", text: "text-[#3ecf8e]", border: "border-[#3ecf8e]/20" },
+  "ESP32": { bg: "bg-[#e7352c]/10", text: "text-[#ff6b6b]", border: "border-[#e7352c]/20" },
+  "FASTAPI": { bg: "bg-[#009485]/10", text: "text-[#00f2fe]", border: "border-[#009485]/20" },
+  "GEMINI API": { bg: "bg-[#4285f4]/10", text: "text-[#8ab4f8]", border: "border-[#4285f4]/20" },
+  "DOCKER": { bg: "bg-[#2496ed]/10", text: "text-[#70b5ff]", border: "border-[#2496ed]/20" },
+  "AZURE BICEP": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20" },
+  "NEXT.JS": { bg: "bg-white/5", text: "text-white", border: "border-white/10" },
+  "TURBOREPO": { bg: "bg-[#ea580c]/10", text: "text-[#ff9248]", border: "border-[#ea580c]/20" },
+  "PHP": { bg: "bg-[#777bb4]/10", text: "text-[#b0b3ff]", border: "border-[#777bb4]/20" },
+  "MYSQL": { bg: "bg-[#00758f]/10", text: "text-[#ffad33]", border: "border-[#00758f]/20" },
+  "JAVASCRIPT": { bg: "bg-[#f7df1e]/10", text: "text-[#f7df1e]", border: "border-[#f7df1e]/20" },
+};
+
+const defaultTechStyle = { bg: "bg-[#3c4a5e]/20", text: "text-[#abb9d1]", border: "border-[#3c4a5e]/30" };
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -162,14 +178,17 @@ export default function ProjectsPage() {
                 </h3>
 
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 bg-[#3c4a5e] text-[#abb9d1] rounded-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  {project.tech.map((tech) => {
+                    const style = techStyles[tech.toUpperCase()] || defaultTechStyle;
+                    return (
+                      <span
+                        key={tech}
+                        className={`font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 rounded-sm border ${style.bg} ${style.text} ${style.border}`}
+                      >
+                        {tech}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 <p className="text-[#b9c7df] text-sm leading-relaxed mb-8">
