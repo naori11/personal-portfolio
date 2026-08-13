@@ -376,11 +376,24 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="bg-[#060e20] p-4 sm:p-8 rounded-lg border-l-4 border-[#6bd8cb]">
-          <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#6bd8cb] mb-2">Philosophy</div>
-          <p className="italic text-[#b9c7df] text-sm leading-relaxed">
-            "Anything worth doing is worth doing poorly at first."
-          </p>
+        <div className="bg-[#060e20] p-6 sm:p-8 rounded-lg border border-[#494456]/10 relative overflow-hidden flex flex-col justify-center min-h-[160px]">
+          {/* Faint Background Quote Decoration */}
+          <div className="absolute right-4 -bottom-6 opacity-[0.03] pointer-events-none select-none">
+            <span className="material-symbols-outlined text-[150px]" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+          </div>
+
+          <div className="relative z-10">
+            <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#6bd8cb] mb-3 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-[#6bd8cb] rounded-full"></span>
+              Philosophy
+            </div>
+            <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-black italic text-[#cfbdff] mb-2 tracking-tight">
+              "Que sera, sera."
+            </h3>
+            <p className="text-[#b9c7df] text-xs sm:text-sm leading-relaxed max-w-md">
+              Whatever will be, will be. Embrace adaptability, focusing on what you can control, and leave the rest to unfold.
+            </p>
+          </div>
         </div>
       </motion.section>
     </main>
