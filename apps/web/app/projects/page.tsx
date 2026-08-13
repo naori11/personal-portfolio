@@ -10,7 +10,7 @@ const projects = [
   {
     title: "JUVAN.TECH",
     description: "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
-    tech: ["AZURE BICEP", "NEXT.JS", "TURBOREPO"],
+    tech: ["NEXT.JS", "TURBOREPO", "AZURE BICEP", "GITHUB ACTIONS", "TAILWIND CSS"],
     github: "https://github.com/naori11/personal-portfolio",
     demo: "https://www.juvan.tech",
     screenshots: [
@@ -23,7 +23,7 @@ const projects = [
   {
     title: "KidSync: Smart RFID Security",
     description: "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
-    tech: ["FLUTTER", "SUPABASE", "ESP32"],
+    tech: ["FLUTTER", "SUPABASE", "PYTHON", "ESP32"],
     github: "https://github.com/naori11/KidSync",
     demo: "https://ksync.netlify.app/",
     screenshots: [
@@ -55,7 +55,7 @@ const projects = [
   {
     title: "AI Code Reviewer",
     description: "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
-    tech: ["FASTAPI", "GEMINI API", "DOCKER"],
+    tech: ["FASTAPI", "GEMINI API", "PYTHON", "GITHUB API", "DOCKER"],
     github: "https://github.com/naori11/code-reviewer",
     demo: null,
     screenshots: [
@@ -65,22 +65,26 @@ const projects = [
   },
 ];
 
-const techStyles: Record<string, { bg: string; text: string; border: string }> = {
-  "FLUTTER": { bg: "bg-[#02569B]/10", text: "text-[#4fc3f7]", border: "border-[#02569B]/20" },
-  "SUPABASE": { bg: "bg-[#3ecf8e]/10", text: "text-[#3ecf8e]", border: "border-[#3ecf8e]/20" },
-  "ESP32": { bg: "bg-[#e7352c]/10", text: "text-[#ff6b6b]", border: "border-[#e7352c]/20" },
-  "FASTAPI": { bg: "bg-[#009485]/10", text: "text-[#00f2fe]", border: "border-[#009485]/20" },
-  "GEMINI API": { bg: "bg-[#4285f4]/10", text: "text-[#8ab4f8]", border: "border-[#4285f4]/20" },
-  "DOCKER": { bg: "bg-[#2496ed]/10", text: "text-[#70b5ff]", border: "border-[#2496ed]/20" },
-  "AZURE BICEP": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20" },
-  "NEXT.JS": { bg: "bg-white/5", text: "text-white", border: "border-white/10" },
-  "TURBOREPO": { bg: "bg-[#ea580c]/10", text: "text-[#ff9248]", border: "border-[#ea580c]/20" },
-  "PHP": { bg: "bg-[#777bb4]/10", text: "text-[#b0b3ff]", border: "border-[#777bb4]/20" },
-  "MYSQL": { bg: "bg-[#00758f]/10", text: "text-[#ffad33]", border: "border-[#00758f]/20" },
-  "JAVASCRIPT": { bg: "bg-[#f7df1e]/10", text: "text-[#f7df1e]", border: "border-[#f7df1e]/20" },
+const techStyles: Record<string, { bg: string; text: string; border: string; slug: string }> = {
+  "FLUTTER": { bg: "bg-[#02569B]/10", text: "text-[#4fc3f7]", border: "border-[#02569B]/20", slug: "flutter" },
+  "SUPABASE": { bg: "bg-[#3ecf8e]/10", text: "text-[#3ecf8e]", border: "border-[#3ecf8e]/20", slug: "supabase" },
+  "ESP32": { bg: "bg-[#e7352c]/10", text: "text-[#ff6b6b]", border: "border-[#e7352c]/20", slug: "espressif" },
+  "FASTAPI": { bg: "bg-[#009485]/10", text: "text-[#00f2fe]", border: "border-[#009485]/20", slug: "fastapi" },
+  "GEMINI API": { bg: "bg-[#4285f4]/10", text: "text-[#8ab4f8]", border: "border-[#4285f4]/20", slug: "googlegemini" },
+  "DOCKER": { bg: "bg-[#2496ed]/10", text: "text-[#70b5ff]", border: "border-[#2496ed]/20", slug: "docker" },
+  "AZURE BICEP": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20", slug: "azure" },
+  "NEXT.JS": { bg: "bg-white/5", text: "text-white", border: "border-white/10", slug: "nextdotjs" },
+  "TURBOREPO": { bg: "bg-[#ea580c]/10", text: "text-[#ff9248]", border: "border-[#ea580c]/20", slug: "turborepo" },
+  "PHP": { bg: "bg-[#777bb4]/10", text: "text-[#b0b3ff]", border: "border-[#777bb4]/20", slug: "php" },
+  "MYSQL": { bg: "bg-[#00758f]/10", text: "text-[#ffad33]", border: "border-[#00758f]/20", slug: "mysql" },
+  "JAVASCRIPT": { bg: "bg-[#f7df1e]/10", text: "text-[#f7df1e]", border: "border-[#f7df1e]/20", slug: "javascript" },
+  "PYTHON": { bg: "bg-[#3776ab]/10", text: "text-[#ffd43b]", border: "border-[#3776ab]/20", slug: "python" },
+  "GITHUB ACTIONS": { bg: "bg-[#2088ff]/10", text: "text-[#58a6ff]", border: "border-[#2088ff]/20", slug: "githubactions" },
+  "TAILWIND CSS": { bg: "bg-[#38bdf8]/10", text: "text-[#38bdf8]", border: "border-[#38bdf8]/20", slug: "tailwindcss" },
+  "GITHUB API": { bg: "bg-[#24292e]/30", text: "text-[#e6edf3]", border: "border-[#30363d]", slug: "github" },
 };
 
-const defaultTechStyle = { bg: "bg-[#3c4a5e]/20", text: "text-[#abb9d1]", border: "border-[#3c4a5e]/30" };
+const defaultTechStyle = { bg: "bg-[#3c4a5e]/20", text: "text-[#abb9d1]", border: "border-[#3c4a5e]/30", slug: "" };
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -183,8 +187,24 @@ export default function ProjectsPage() {
                     return (
                       <span
                         key={tech}
-                        className={`font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 rounded-sm border ${style.bg} ${style.text} ${style.border}`}
+                        className={`inline-flex items-center gap-1.5 font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 rounded-sm border ${style.bg} ${style.text} ${style.border}`}
                       >
+                        {style.slug && (
+                          <span
+                            className="w-3 h-3 flex-shrink-0"
+                            style={{
+                              backgroundColor: 'currentColor',
+                              WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
+                              maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
+                              WebkitMaskRepeat: 'no-repeat',
+                              maskRepeat: 'no-repeat',
+                              WebkitMaskPosition: 'center',
+                              maskPosition: 'center',
+                              WebkitMaskSize: 'contain',
+                              maskSize: 'contain'
+                            }}
+                          />
+                        )}
                         {tech}
                       </span>
                     );
