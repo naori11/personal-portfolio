@@ -12,7 +12,7 @@ const projects = [
     description: "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
     tech: ["FLUTTER", "SUPABASE", "ESP32"],
     github: "https://github.com/naori11/KidSync",
-    demo: null,
+    demo: "https://ksync.netlify.app/",
     screenshots: [
       { src: "/assets/projects/kidsync/admin-overview.png", description: "Admin Dashboard - System Overview" },
       { src: "/assets/projects/kidsync/admin-parents-list.png", description: "Admin Dashboard - Parents & Guardians Management" },
