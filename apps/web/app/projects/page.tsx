@@ -14,9 +14,16 @@ const projects = [
     github: "https://github.com/naori11/KidSync",
     demo: null,
     screenshots: [
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=KidSync+Screenshot+1",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=KidSync+Screenshot+2",
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=KidSync+Screenshot+3",
+      { src: "/assets/projects/kidsync/admin-overview.png", description: "Admin Dashboard - System Overview" },
+      { src: "/assets/projects/kidsync/admin-parents-list.png", description: "Admin Dashboard - Parents & Guardians Management" },
+      { src: "/assets/projects/kidsync/guard-verification.png", description: "Guard Dashboard - Manual Override & Verification" },
+      { src: "/assets/projects/kidsync/guard-recent-activity.png", description: "Guard Dashboard - Recent Activity Logs" },
+      { src: "/assets/projects/kidsync/parent-schedule.png", description: "Parent App - Pick-up & Drop-off Schedule" },
+      { src: "/assets/projects/kidsync/parent-home.png", description: "Parent App - Real-time Status" },
+      { src: "/assets/projects/kidsync/driver-students.png", description: "Driver App - Assigned Students List" },
+      { src: "/assets/projects/kidsync/driver-schedule.png", description: "Driver App - Daily Route Schedule" },
+      { src: "/assets/projects/kidsync/teacher-attendance.png", description: "Teacher Dashboard - Class Attendance" },
+      { src: "/assets/projects/kidsync/teacher-schedule.png", description: "Teacher Dashboard - Class Schedule" },
     ],
   },
   {
@@ -287,11 +294,18 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.3, ease: easings.easeOutExpo }}
                     >
                       <Image
-                        src={projects[selectedProject].screenshots[selectedImage]}
+                        src={typeof projects[selectedProject].screenshots[selectedImage] === 'string' ? (projects[selectedProject].screenshots[selectedImage] as string) : (projects[selectedProject].screenshots[selectedImage] as any).src}
                         alt={`${projects[selectedProject].title} screenshot ${selectedImage + 1}`}
                         fill
-                        className="object-contain p-4 sm:p-6 md:p-8"
+                        className="object-contain p-4 sm:p-6 md:p-12 pb-16 sm:pb-20"
                       />
+                      {typeof projects[selectedProject].screenshots[selectedImage] !== 'string' && (projects[selectedProject].screenshots[selectedImage] as any).description && (
+                        <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
+                          <span className="inline-block bg-[#131b2e]/95 backdrop-blur-md border border-[#494456]/50 text-[#dae2fd] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
+                            {(projects[selectedProject].screenshots[selectedImage] as any).description}
+                          </span>
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
 
@@ -331,15 +345,7 @@ export default function ProjectsPage() {
                     </div>
                   </div>
 
-                  {/* Keyboard Hints */}
-                  <div className="hidden md:flex absolute top-4 left-4 gap-2">
-                    <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
-                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#6bd8cb] uppercase">← →</span>
-                    </div>
-                    <div className="bg-[#131b2e]/80 backdrop-blur-sm border border-[#494456]/30 px-2 py-1 rounded">
-                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#b9c7df]">Navigate</span>
-                    </div>
-                  </div>
+
                 </div>
               </div>
 
@@ -365,7 +371,7 @@ export default function ProjectsPage() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Image
-                        src={screenshot}
+                        src={typeof screenshot === 'string' ? screenshot : (screenshot as any).src}
                         alt={`Thumbnail ${idx + 1}`}
                         fill
                         className="object-cover"
