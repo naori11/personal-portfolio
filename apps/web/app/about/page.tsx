@@ -142,7 +142,7 @@ export default function AboutPage() {
             {/* Timeline line */}
             <div className="absolute left-[7px] top-2 bottom-2 w-px bg-[#494456]/20"></div>
 
-            {/* Entry 1 */}
+            {/* Entry 1: Backend Developer (Apprenticeship) */}
             <motion.div
               className="relative pl-10"
               initial={{ opacity: 0, x: -20 }}
@@ -158,16 +158,41 @@ export default function AboutPage() {
                 transition={{ duration: 0.3, delay: 0.2 }}
               />
               <div className="flex flex-col md:flex-row md:justify-between mb-2">
-                <h3 className="text-xl font-bold text-[#dae2fd]">Backend & DevOps Intern</h3>
-                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">JAN 2026 — PRESENT</span>
+                <h3 className="text-xl font-bold text-[#dae2fd]">Backend Developer (Apprenticeship)</h3>
+                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">JUNE 2026 — PRESENT</span>
               </div>
               <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">GENWATT ENERGY SOLUTIONS</div>
               <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
-                Implementing PayMongo payment gateways and Firebase-driven telemetry. Spearheading SteVe OCPP server integration for EV charger booking systems and real-time backend logic.
+                Migrating OCPP API services and compute instances from Azure to GCP. Hardening GCP Compute instances with strict firewall rules and reverse proxies, while automating staging and production deployments via GitHub Actions CI/CD pipelines.
               </p>
             </motion.div>
 
-            {/* Entry 2 */}
+            {/* Entry 2: Backend Developer Intern */}
+            <motion.div
+              className="relative pl-10"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <motion.div
+                className="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-[#2d3449] border-4 border-[#0b1326]"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.25 }}
+              />
+              <div className="flex flex-col md:flex-row md:justify-between mb-2">
+                <h3 className="text-xl font-bold text-[#dae2fd]">Backend Developer Intern</h3>
+                <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-sm">JAN 2026 — MAY 2026</span>
+              </div>
+              <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[#b9c7df]/60 mb-4 tracking-wider">GENWATT ENERGY SOLUTIONS</div>
+              <p className="text-[#b9c7df] text-sm leading-relaxed max-w-xl">
+                Developed backend architecture for the EV charger booking application. Integrated PayMongo payment gateway APIs for secure transaction processing and configured physical chargers using SteVe OCPP server endpoints.
+              </p>
+            </motion.div>
+
+            {/* Entry 3 */}
             <motion.div
               className="relative pl-10"
               initial={{ opacity: 0, x: -20 }}
@@ -192,7 +217,7 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            {/* Entry 3 */}
+            {/* Entry 4 */}
             <motion.div
               className="relative pl-10"
               initial={{ opacity: 0, x: -20 }}
