@@ -39,7 +39,7 @@ const projects = [
     offset: "lg:mt-12",
   },
   {
-    title: "Cloud Portfolio IaC (This Webpage)",
+    title: "JUVAN.TECH",
     description: "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
     tech: ["AZURE BICEP", "NEXT.JS", "TURBOREPO"],
     github: "https://github.com/naori11/personal-portfolio",
