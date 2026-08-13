@@ -8,11 +8,16 @@ const techStyles: Record<string, { bg: string; text: string; border: string; slu
   "FLUTTER": { bg: "bg-[#02569B]/10", text: "text-[#4fc3f7]", border: "border-[#02569B]/20", slug: "flutter" },
   "SUPABASE": { bg: "bg-[#3ecf8e]/10", text: "text-[#3ecf8e]", border: "border-[#3ecf8e]/20", slug: "supabase" },
   "ESP32": { bg: "bg-[#e7352c]/10", text: "text-[#ff6b6b]", border: "border-[#e7352c]/20", slug: "espressif" },
+  "ARDUINO": { bg: "bg-[#00979C]/10", text: "text-[#00979C]", border: "border-[#00979C]/20", slug: "arduino" },
   "FASTAPI": { bg: "bg-[#009485]/10", text: "text-[#00f2fe]", border: "border-[#009485]/20", slug: "fastapi" },
   "GEMINI API": { bg: "bg-[#4285f4]/10", text: "text-[#8ab4f8]", border: "border-[#4285f4]/20", slug: "googlegemini" },
   "DOCKER": { bg: "bg-[#2496ed]/10", text: "text-[#70b5ff]", border: "border-[#2496ed]/20", slug: "docker" },
-  "AZURE BICEP": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20", slug: "azure" },
-  "GOOGLE CLOUD ": { bg: "bg-[#4285F4]/10", text: "text-[#4285F4]", border: "border-[#4285F4]/20", slug: "googlecloud" },
+  "AZURE": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20", slug: "azure" },
+  "GOOGLE CLOUD": { bg: "bg-[#4285F4]/10", text: "text-[#4285F4]", border: "border-[#4285F4]/20", slug: "googlecloud" },
+  "TERRAFORM": { bg: "bg-[#844FBA]/10", text: "text-[#aa80e0]", border: "border-[#844FBA]/20", slug: "terraform" },
+  "LINUX": { bg: "bg-[#FCC624]/10", text: "text-[#FCC624]", border: "border-[#FCC624]/20", slug: "linux" },
+  "NETWORKING": { bg: "bg-[#005F73]/10", text: "text-[#0a9396]", border: "border-[#005F73]/20", slug: "" },
+  "POSTGRESQL": { bg: "bg-[#336791]/10", text: "text-[#336791]", border: "border-[#336791]/20", slug: "postgresql" },
   "NEXT.JS": { bg: "bg-white/5", text: "text-white", border: "border-white/10", slug: "nextdotjs" },
   "TURBOREPO": { bg: "bg-[#ea580c]/10", text: "text-[#ff9248]", border: "border-[#ea580c]/20", slug: "turborepo" },
   "PHP": { bg: "bg-[#777bb4]/10", text: "text-[#b0b3ff]", border: "border-[#777bb4]/20", slug: "php" },
@@ -29,7 +34,7 @@ const defaultTechStyle = { bg: "bg-[#3c4a5e]/20", text: "text-[#abb9d1]", border
 const techCategories = [
   {
     title: "Cloud & DevOps",
-    techs: ["DOCKER", "AZURE BICEP", "GOOGLE CLOUD", "GITHUB ACTIONS"],
+    techs: ["DOCKER", "TERRAFORM", "LINUX", "NETWORKING", "AZURE", "GITHUB ACTIONS", "GOOGLE CLOUD"],
   },
   {
     title: "Languages",
@@ -41,11 +46,11 @@ const techCategories = [
   },
   {
     title: "Backend & Databases",
-    techs: ["SUPABASE", "MYSQL", "GEMINI API", "GITHUB API"],
+    techs: ["SUPABASE", "MYSQL", "POSTGRESQL", "GEMINI API", "GITHUB API"],
   },
   {
     title: "Hardware & IoT",
-    techs: ["ESP32"],
+    techs: ["ESP32", "ARDUINO"],
   },
 ];
 
