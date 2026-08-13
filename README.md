@@ -21,7 +21,6 @@ This monorepo uses a modular architecture to share configurations and UI compone
 
 ### Apps
 - `apps/web`: The main portfolio website (Next.js with Static Export).
-- `apps/docs`: Documentation site for the project.
 
 ### Shared Packages
 - `packages/ui`: A shared React component library powered by Tailwind CSS.
