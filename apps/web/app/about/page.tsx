@@ -4,6 +4,51 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, springs, easings } from "../../lib/motion";
 
+const techStyles: Record<string, { bg: string; text: string; border: string; slug: string }> = {
+  "FLUTTER": { bg: "bg-[#02569B]/10", text: "text-[#4fc3f7]", border: "border-[#02569B]/20", slug: "flutter" },
+  "SUPABASE": { bg: "bg-[#3ecf8e]/10", text: "text-[#3ecf8e]", border: "border-[#3ecf8e]/20", slug: "supabase" },
+  "ESP32": { bg: "bg-[#e7352c]/10", text: "text-[#ff6b6b]", border: "border-[#e7352c]/20", slug: "espressif" },
+  "FASTAPI": { bg: "bg-[#009485]/10", text: "text-[#00f2fe]", border: "border-[#009485]/20", slug: "fastapi" },
+  "GEMINI API": { bg: "bg-[#4285f4]/10", text: "text-[#8ab4f8]", border: "border-[#4285f4]/20", slug: "googlegemini" },
+  "DOCKER": { bg: "bg-[#2496ed]/10", text: "text-[#70b5ff]", border: "border-[#2496ed]/20", slug: "docker" },
+  "AZURE BICEP": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20", slug: "azure" },
+  "GOOGLE CLOUD ": { bg: "bg-[#4285F4]/10", text: "text-[#4285F4]", border: "border-[#4285F4]/20", slug: "googlecloud" },
+  "NEXT.JS": { bg: "bg-white/5", text: "text-white", border: "border-white/10", slug: "nextdotjs" },
+  "TURBOREPO": { bg: "bg-[#ea580c]/10", text: "text-[#ff9248]", border: "border-[#ea580c]/20", slug: "turborepo" },
+  "PHP": { bg: "bg-[#777bb4]/10", text: "text-[#b0b3ff]", border: "border-[#777bb4]/20", slug: "php" },
+  "MYSQL": { bg: "bg-[#00758f]/10", text: "text-[#ffad33]", border: "border-[#00758f]/20", slug: "mysql" },
+  "JAVASCRIPT": { bg: "bg-[#f7df1e]/10", text: "text-[#f7df1e]", border: "border-[#f7df1e]/20", slug: "javascript" },
+  "PYTHON": { bg: "bg-[#3776ab]/10", text: "text-[#ffd43b]", border: "border-[#3776ab]/20", slug: "python" },
+  "GITHUB ACTIONS": { bg: "bg-[#2088ff]/10", text: "text-[#58a6ff]", border: "border-[#2088ff]/20", slug: "githubactions" },
+  "TAILWIND CSS": { bg: "bg-[#38bdf8]/10", text: "text-[#38bdf8]", border: "border-[#38bdf8]/20", slug: "tailwindcss" },
+  "GITHUB API": { bg: "bg-[#24292e]/30", text: "text-[#e6edf3]", border: "border-[#30363d]", slug: "github" },
+};
+
+const defaultTechStyle = { bg: "bg-[#3c4a5e]/20", text: "text-[#abb9d1]", border: "border-[#3c4a5e]/30", slug: "" };
+
+const techCategories = [
+  {
+    title: "Cloud & DevOps",
+    techs: ["DOCKER", "AZURE BICEP", "GOOGLE CLOUD", "GITHUB ACTIONS"],
+  },
+  {
+    title: "Languages",
+    techs: ["PYTHON", "JAVASCRIPT", "PHP"],
+  },
+  {
+    title: "Frameworks & Library",
+    techs: ["NEXT.JS", "FLUTTER", "FASTAPI", "TAILWIND CSS", "TURBOREPO"],
+  },
+  {
+    title: "Backend & Databases",
+    techs: ["SUPABASE", "MYSQL", "GEMINI API", "GITHUB API"],
+  },
+  {
+    title: "Hardware & IoT",
+    techs: ["ESP32"],
+  },
+];
+
 export default function AboutPage() {
   return (
     <main className="pt-24 sm:pt-32 pb-12 sm:pb-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto overflow-x-hidden">
@@ -188,25 +233,42 @@ export default function AboutPage() {
               Technical Skills
             </div>
             <div className="space-y-8">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#b9c7df]/50 mb-4">Languages</div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Python</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Bash</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">PHP</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#cfbdff] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">JavaScript</span>
+              {techCategories.map((category) => (
+                <div key={category.title}>
+                  <div className="text-xs font-bold uppercase tracking-widest text-[#b9c7df]/50 mb-4">
+                    {category.title}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {category.techs.map((tech) => {
+                      const style = techStyles[tech] || defaultTechStyle;
+                      return (
+                        <span
+                          key={tech}
+                          className={`inline-flex items-center gap-1.5 font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-1 rounded-sm border ${style.bg} ${style.text} ${style.border}`}
+                        >
+                          {style.slug && (
+                            <span
+                              className="w-3 h-3 flex-shrink-0"
+                              style={{
+                                backgroundColor: 'currentColor',
+                                WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
+                                maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskPosition: 'center',
+                                maskPosition: 'center',
+                                WebkitMaskSize: 'contain',
+                                maskSize: 'contain'
+                              }}
+                            />
+                          )}
+                          {tech}
+                        </span>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-[#b9c7df]/50 mb-4">Infrastructure</div>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Docker</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Linux</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Github Actions</span>
-                  <span className="px-3 py-1 bg-[#2d3449] text-[#6bd8cb] text-xs font-[family-name:var(--font-jetbrains-mono)] rounded-sm">Microsoft Azure</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
