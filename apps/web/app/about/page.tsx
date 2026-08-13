@@ -12,7 +12,7 @@ const techStyles: Record<string, { bg: string; text: string; border: string; slu
   "FASTAPI": { bg: "bg-[#009485]/10", text: "text-[#00f2fe]", border: "border-[#009485]/20", slug: "fastapi" },
   "GEMINI API": { bg: "bg-[#4285f4]/10", text: "text-[#8ab4f8]", border: "border-[#4285f4]/20", slug: "googlegemini" },
   "DOCKER": { bg: "bg-[#2496ed]/10", text: "text-[#70b5ff]", border: "border-[#2496ed]/20", slug: "docker" },
-  "AZURE": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20", slug: "azure" },
+  "AZURE": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20", slug: "https://raw.githubusercontent.com/gilbarbara/logos/master/logos/microsoft-azure.svg" },
   "GOOGLE CLOUD": { bg: "bg-[#4285F4]/10", text: "text-[#4285F4]", border: "border-[#4285F4]/20", slug: "googlecloud" },
   "TERRAFORM": { bg: "bg-[#844FBA]/10", text: "text-[#aa80e0]", border: "border-[#844FBA]/20", slug: "terraform" },
   "LINUX": { bg: "bg-[#FCC624]/10", text: "text-[#FCC624]", border: "border-[#FCC624]/20", slug: "linux" },
@@ -281,8 +281,8 @@ export default function AboutPage() {
                               className="w-3 h-3 flex-shrink-0"
                               style={{
                                 backgroundColor: 'currentColor',
-                                WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
-                                maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
+                                WebkitMaskImage: `url(${style.slug.startsWith('http') ? style.slug : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg`})`,
+                                maskImage: `url(${style.slug.startsWith('http') ? style.slug : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg`})`,
                                 WebkitMaskRepeat: 'no-repeat',
                                 maskRepeat: 'no-repeat',
                                 WebkitMaskPosition: 'center',
@@ -313,7 +313,20 @@ export default function AboutPage() {
                 className="flex items-start gap-4 group cursor-pointer"
               >
                 <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
-                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
+                  <span
+                    className="w-5 h-5 flex-shrink-0"
+                    style={{
+                      backgroundColor: 'currentColor',
+                      WebkitMaskImage: `url(https://raw.githubusercontent.com/gilbarbara/logos/master/logos/microsoft-azure.svg)`,
+                      maskImage: `url(https://raw.githubusercontent.com/gilbarbara/logos/master/logos/microsoft-azure.svg)`,
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                      maskPosition: 'center',
+                      WebkitMaskSize: 'contain',
+                      maskSize: 'contain'
+                    }}
+                  />
                 </div>
                 <div className="flex-grow">
                   <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Microsoft Certified: Azure Fundamentals (AZ-900)</div>
@@ -329,7 +342,20 @@ export default function AboutPage() {
                 className="flex items-start gap-4 group cursor-pointer"
               >
                 <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
-                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
+                  <span
+                    className="w-5 h-5 flex-shrink-0"
+                    style={{
+                      backgroundColor: 'currentColor',
+                      WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/oracle.svg)`,
+                      maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/oracle.svg)`,
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                      maskPosition: 'center',
+                      WebkitMaskSize: 'contain',
+                      maskSize: 'contain'
+                    }}
+                  />
                 </div>
                 <div className="flex-grow">
                   <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</div>
@@ -345,7 +371,20 @@ export default function AboutPage() {
                 className="flex items-start gap-4 group cursor-pointer"
               >
                 <div className="w-10 h-10 flex-shrink-0 bg-[#2d3449] rounded-sm flex items-center justify-center text-[#cfbdff] transition-colors group-hover:bg-[#cfbdff] group-hover:text-[#3a0093]">
-                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
+                  <span
+                    className="w-5 h-5 flex-shrink-0"
+                    style={{
+                      backgroundColor: 'currentColor',
+                      WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/oracle.svg)`,
+                      maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/oracle.svg)`,
+                      WebkitMaskRepeat: 'no-repeat',
+                      maskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                      maskPosition: 'center',
+                      WebkitMaskSize: 'contain',
+                      maskSize: 'contain'
+                    }}
+                  />
                 </div>
                 <div className="flex-grow">
                   <div className="text-sm font-semibold group-hover:text-[#cfbdff] transition-colors">Oracle Cloud Infrastructure 2025 Certified Foundations Associate</div>
