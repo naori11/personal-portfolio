@@ -14,10 +14,10 @@ const projects = [
     github: "https://github.com/naori11/personal-portfolio",
     demo: "https://www.juvan.tech",
     screenshots: [
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+1",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+2",
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Portfolio+Screenshot+3",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Portfolio+Screenshot+4",
+      { src: "/assets/projects/juvan.tech/homepage.png", description: "Homepage - Terminal-inspired UI" },
+      { src: "/assets/projects/juvan.tech/projects.png", description: "Projects Page - Portfolio Overview" },
+      { src: "/assets/projects/juvan.tech/about.png", description: "About Section - Professional Experience & Skills" },
+      { src: "/assets/projects/juvan.tech/contact.png", description: "Contact Form - Interactive Inquiry System" },
     ],
   },
   {
@@ -90,6 +90,8 @@ export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<number>(0);
 
+  const selectedProjectData = selectedProject !== null ? projects[selectedProject] : null;
+
   const openGallery = (projectIndex: number) => {
     setSelectedProject(projectIndex);
     setSelectedImage(0);
@@ -101,14 +103,14 @@ export default function ProjectsPage() {
   };
 
   const nextImage = () => {
-    if (selectedProject !== null && projects[selectedProject].screenshots) {
-      setSelectedImage((prev) => (prev + 1) % projects[selectedProject].screenshots.length);
+    if (selectedProjectData?.screenshots) {
+      setSelectedImage((prev) => (prev + 1) % selectedProjectData.screenshots.length);
     }
   };
 
   const prevImage = () => {
-    if (selectedProject !== null && projects[selectedProject].screenshots) {
-      setSelectedImage((prev) => (prev - 1 + projects[selectedProject].screenshots.length) % projects[selectedProject].screenshots.length);
+    if (selectedProjectData?.screenshots) {
+      setSelectedImage((prev) => (prev - 1 + selectedProjectData.screenshots.length) % selectedProjectData.screenshots.length);
     }
   };
 
@@ -273,7 +275,7 @@ export default function ProjectsPage() {
 
       {/* Screenshot Gallery Modal */}
       <AnimatePresence>
-        {selectedProject !== null && (
+        {selectedProjectData && (
           <motion.div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 bg-[#0b1326]/95 backdrop-blur-sm"
             initial={{ opacity: 0 }}
@@ -301,7 +303,7 @@ export default function ProjectsPage() {
                   </div>
                   <div>
                     <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg sm:text-xl md:text-2xl font-bold text-[#dae2fd]">
-                      {projects[selectedProject].title}
+                      {selectedProjectData.title}
                     </h3>
                     <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#6bd8cb] uppercase tracking-wider">
                       Screenshots
@@ -334,15 +336,15 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.3, ease: easings.easeOutExpo }}
                     >
                       <Image
-                        src={typeof projects[selectedProject].screenshots[selectedImage] === 'string' ? (projects[selectedProject].screenshots[selectedImage] as string) : (projects[selectedProject].screenshots[selectedImage] as any).src}
-                        alt={`${projects[selectedProject].title} screenshot ${selectedImage + 1}`}
+                        src={typeof selectedProjectData.screenshots[selectedImage] === 'string' ? (selectedProjectData.screenshots[selectedImage] as string) : (selectedProjectData.screenshots[selectedImage] as any).src}
+                        alt={`${selectedProjectData.title} screenshot ${selectedImage + 1}`}
                         fill
                         className="object-contain p-4 sm:p-6 md:p-12 pb-16 sm:pb-20"
                       />
-                      {typeof projects[selectedProject].screenshots[selectedImage] !== 'string' && (projects[selectedProject].screenshots[selectedImage] as any).description && (
+                      {typeof selectedProjectData.screenshots[selectedImage] !== 'string' && (selectedProjectData.screenshots[selectedImage] as any).description && (
                         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10 max-w-[calc(100%-4rem)] sm:max-w-md">
                           <span className="inline-block bg-[#131b2e]/95 backdrop-blur-md border border-[#494456]/50 text-[#dae2fd] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
-                            {(projects[selectedProject].screenshots[selectedImage] as any).description}
+                            {(selectedProjectData.screenshots[selectedImage] as any).description}
                           </span>
                         </div>
                       )}
@@ -350,7 +352,7 @@ export default function ProjectsPage() {
                   </AnimatePresence>
 
                   {/* Navigation Arrows */}
-                  {projects[selectedProject].screenshots.length > 1 && (
+                  {selectedProjectData.screenshots.length > 1 && (
                     <>
                       <motion.button
                         onClick={prevImage}
@@ -380,7 +382,7 @@ export default function ProjectsPage() {
                       </span>
                       <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#494456]">/</span>
                       <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#b9c7df]">
-                        {projects[selectedProject].screenshots.length}
+                        {selectedProjectData.screenshots.length}
                       </span>
                     </div>
                   </div>
@@ -398,7 +400,7 @@ export default function ProjectsPage() {
                   </span>
                 </div>
                 <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#494456] scrollbar-track-[#171f33] scroll-smooth">
-                  {projects[selectedProject].screenshots.map((screenshot, idx) => (
+                  {selectedProjectData.screenshots.map((screenshot, idx) => (
                     <motion.button
                       key={idx}
                       onClick={() => setSelectedImage(idx)}
