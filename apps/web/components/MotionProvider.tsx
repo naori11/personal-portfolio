@@ -9,9 +9,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
   return (
     <MotionConfig reducedMotion="user">
       <AnimatePresence mode="wait">
-        <div key={pathname}>
-          {children}
-        </div>
+        <div key={pathname}>{children}</div>
       </AnimatePresence>
     </MotionConfig>
   );

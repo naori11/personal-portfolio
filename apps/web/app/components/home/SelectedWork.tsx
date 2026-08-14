@@ -15,14 +15,15 @@ export function SelectedWork() {
           variants={fadeInUp}
           className="mb-10 max-w-3xl"
         >
-          <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.2em] text-[#6bd8cb]">
+          <p className="font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-[0.2em] text-[var(--tertiary)]">
             01 / Selected work
           </p>
-          <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-4xl font-black tracking-tight text-[#dae2fd] sm:text-5xl">
+          <h2 className="mt-4 font-[family-name:var(--font-space-grotesk)] text-4xl font-black tracking-tight text-[var(--foreground)] sm:text-5xl">
             Systems shown through the work.
           </h2>
-          <p className="mt-5 text-lg leading-8 text-[#b9c7df]">
-            A focused look at the infrastructure, backend, and connected-system projects behind the skill list.
+          <p className="mt-5 text-lg leading-8 text-[var(--secondary)]">
+            A focused look at the infrastructure, backend, and connected-system
+            projects behind the skill list.
           </p>
         </motion.header>
 

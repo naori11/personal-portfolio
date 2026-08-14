@@ -43,7 +43,7 @@ export const easings = {
 export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 40
+    y: 40,
   },
   visible: {
     opacity: 1,
@@ -51,14 +51,14 @@ export const fadeInUp: Variants = {
     transition: {
       duration: 0.6,
       ease: easings.easeOutExpo,
-    }
+    },
   },
 };
 
 export const fadeInDown: Variants = {
   hidden: {
     opacity: 0,
-    y: -40
+    y: -40,
   },
   visible: {
     opacity: 1,
@@ -66,14 +66,14 @@ export const fadeInDown: Variants = {
     transition: {
       duration: 0.6,
       ease: easings.easeOutExpo,
-    }
+    },
   },
 };
 
 export const fadeInLeft: Variants = {
   hidden: {
     opacity: 0,
-    x: -60
+    x: -60,
   },
   visible: {
     opacity: 1,
@@ -81,14 +81,14 @@ export const fadeInLeft: Variants = {
     transition: {
       duration: 0.7,
       ease: easings.easeOutExpo,
-    }
+    },
   },
 };
 
 export const fadeInRight: Variants = {
   hidden: {
     opacity: 0,
-    x: 60
+    x: 60,
   },
   visible: {
     opacity: 1,
@@ -96,14 +96,14 @@ export const fadeInRight: Variants = {
     transition: {
       duration: 0.7,
       ease: easings.easeOutExpo,
-    }
+    },
   },
 };
 
 export const scaleIn: Variants = {
   hidden: {
     opacity: 0,
-    scale: 0.8
+    scale: 0.8,
   },
   visible: {
     opacity: 1,
@@ -111,7 +111,7 @@ export const scaleIn: Variants = {
     transition: {
       duration: 0.5,
       ease: easings.easeOutExpo,
-    }
+    },
   },
 };
 
@@ -133,7 +133,7 @@ export const staggerContainer: Variants = {
 export const staggerItem: Variants = {
   hidden: {
     opacity: 0,
-    y: 20
+    y: 20,
   },
   visible: {
     opacity: 1,
@@ -141,7 +141,7 @@ export const staggerItem: Variants = {
     transition: {
       duration: 0.5,
       ease: easings.easeOutExpo,
-    }
+    },
   },
 };
 
@@ -163,7 +163,7 @@ export const navContainer: Variants = {
 export const navItem: Variants = {
   hidden: {
     opacity: 0,
-    y: -10
+    y: -10,
   },
   visible: {
     opacity: 1,
@@ -171,7 +171,7 @@ export const navItem: Variants = {
     transition: {
       duration: 0.4,
       ease: easings.easeOutExpo,
-    }
+    },
   },
 };
 
@@ -181,17 +181,20 @@ export const navItem: Variants = {
 
 export const terminalReveal: Variants = {
   hidden: {
-    opacity: 0
+    opacity: 0,
   },
   visible: {
     opacity: 1,
     transition: {
       duration: 0.3,
-    }
+    },
   },
 };
 
-export const typewriter = (text: string, duration: number = 2000): Transition => ({
+export const typewriter = (
+  text: string,
+  duration: number = 2000,
+): Transition => ({
   duration: duration / 1000,
   ease: "linear",
 });
@@ -228,10 +231,13 @@ export const pageTransition: Variants = {
 // UTILITY FUNCTIONS
 // ============================================================================
 
-export const getStaggerDelay = (index: number, baseDelay: number = 0.15): number => {
+export const getStaggerDelay = (
+  index: number,
+  baseDelay: number = 0.15,
+): number => {
   return index * baseDelay;
 };
 
 export const getGridStaggerDelay = (row: number, col: number): number => {
-  return (row * 0.1) + (col * 0.15);
+  return row * 0.1 + col * 0.15;
 };

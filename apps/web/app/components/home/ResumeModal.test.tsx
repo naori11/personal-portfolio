@@ -3,9 +3,10 @@ import { createRef } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("next/dynamic", () => ({
-  default: () => function MockPdfViewer() {
-    return <div data-testid="pdf-viewer">PDF viewer</div>;
-  },
+  default: () =>
+    function MockPdfViewer() {
+      return <div data-testid="pdf-viewer">PDF viewer</div>;
+    },
 }));
 
 import { ResumeModal } from "./ResumeModal";
@@ -40,11 +41,7 @@ describe("ResumeModal", () => {
   it("exposes accessible dialog semantics and direct PDF links", async () => {
     const returnFocusRef = createRef<HTMLElement>();
     render(
-      <ResumeModal
-        open
-        onClose={vi.fn()}
-        returnFocusRef={returnFocusRef}
-      />,
+      <ResumeModal open onClose={vi.fn()} returnFocusRef={returnFocusRef} />,
     );
 
     expect(screen.getByRole("dialog", { name: "View resume" })).toHaveAttribute(
@@ -64,7 +61,9 @@ describe("ResumeModal", () => {
     expect(screen.getByTestId("pdf-viewer")).toBeInTheDocument();
 
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: "Close resume" })).toHaveFocus();
+      expect(
+        screen.getByRole("button", { name: "Close resume" }),
+      ).toHaveFocus();
     });
   });
 
@@ -73,11 +72,7 @@ describe("ResumeModal", () => {
     const returnFocusRef = createRef<HTMLElement>();
 
     render(
-      <ResumeModal
-        open
-        onClose={vi.fn()}
-        returnFocusRef={returnFocusRef}
-      />,
+      <ResumeModal open onClose={vi.fn()} returnFocusRef={returnFocusRef} />,
     );
 
     expect(screen.queryByTestId("pdf-viewer")).not.toBeInTheDocument();
@@ -87,7 +82,9 @@ describe("ResumeModal", () => {
       ),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Open PDF" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Download PDF" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Download PDF" }),
+    ).toBeInTheDocument();
   });
 
   it("keeps the embedded PDF preview on desktop and tablet widths", () => {
@@ -95,11 +92,7 @@ describe("ResumeModal", () => {
     const returnFocusRef = createRef<HTMLElement>();
 
     render(
-      <ResumeModal
-        open
-        onClose={vi.fn()}
-        returnFocusRef={returnFocusRef}
-      />,
+      <ResumeModal open onClose={vi.fn()} returnFocusRef={returnFocusRef} />,
     );
 
     expect(screen.getByTestId("pdf-viewer")).toBeInTheDocument();
@@ -117,11 +110,7 @@ describe("ResumeModal", () => {
     const onClose = vi.fn();
     const returnFocusRef = createRef<HTMLElement>();
     render(
-      <ResumeModal
-        open
-        onClose={onClose}
-        returnFocusRef={returnFocusRef}
-      />,
+      <ResumeModal open onClose={onClose} returnFocusRef={returnFocusRef} />,
     );
 
     fireEvent.keyDown(screen.getByRole("dialog"), { key: "Escape" });
@@ -138,11 +127,7 @@ describe("ResumeModal", () => {
 
     const returnFocusRef = { current: trigger };
     const { rerender } = render(
-      <ResumeModal
-        open
-        onClose={vi.fn()}
-        returnFocusRef={returnFocusRef}
-      />,
+      <ResumeModal open onClose={vi.fn()} returnFocusRef={returnFocusRef} />,
     );
 
     expect(document.body.style.overflow).toBe("hidden");
@@ -166,11 +151,7 @@ describe("ResumeModal", () => {
   it("wraps focus from the final control to the first control", async () => {
     const returnFocusRef = createRef<HTMLElement>();
     render(
-      <ResumeModal
-        open
-        onClose={vi.fn()}
-        returnFocusRef={returnFocusRef}
-      />,
+      <ResumeModal open onClose={vi.fn()} returnFocusRef={returnFocusRef} />,
     );
 
     const openPdf = screen.getByRole("link", { name: "Open PDF" });

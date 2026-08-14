@@ -5,44 +5,126 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { fadeInUp, staggerContainer, springs, easings } from "../../lib/motion";
+import { getTechBadgeStyle } from "../../lib/tech-badges";
+import { useTheme } from "../../components/ThemeProvider";
 
-const projects = [
+interface ScreenshotObject {
+  src: string;
+  description?: string;
+}
+
+type Screenshot = string | ScreenshotObject;
+
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  demo: string | null;
+  screenshots: Screenshot[];
+  offset?: string;
+}
+
+function getScreenshotSrc(item: Screenshot | undefined): string {
+  if (!item) return "";
+  return typeof item === "string" ? item : item.src;
+}
+
+function getScreenshotDescription(
+  item: Screenshot | undefined,
+): string | undefined {
+  if (!item) return undefined;
+  return typeof item === "string" ? undefined : item.description;
+}
+
+const projects: Project[] = [
   {
     title: "JUVAN.TECH",
-    description: "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
-    tech: ["NEXT.JS", "TURBOREPO", "AZURE BICEP", "GITHUB ACTIONS", "TAILWIND CSS"],
+    description:
+      "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
+    tech: [
+      "NEXT.JS",
+      "TURBOREPO",
+      "AZURE BICEP",
+      "GITHUB ACTIONS",
+      "TAILWIND CSS",
+    ],
     github: "https://github.com/naori11/personal-portfolio",
     demo: "https://www.juvan.tech",
     screenshots: [
-      { src: "/assets/projects/juvan.tech/homepage.png", description: "Homepage - Terminal-inspired UI" },
-      { src: "/assets/projects/juvan.tech/projects.png", description: "Projects Page - Portfolio Overview" },
-      { src: "/assets/projects/juvan.tech/about.png", description: "About Section - Professional Experience & Skills" },
-      { src: "/assets/projects/juvan.tech/contact.png", description: "Contact Form - Interactive Inquiry System" },
+      {
+        src: "/assets/projects/juvan.tech/homepage.png",
+        description: "Homepage - Terminal-inspired UI",
+      },
+      {
+        src: "/assets/projects/juvan.tech/projects.png",
+        description: "Projects Page - Portfolio Overview",
+      },
+      {
+        src: "/assets/projects/juvan.tech/about.png",
+        description: "About Section - Professional Experience & Skills",
+      },
+      {
+        src: "/assets/projects/juvan.tech/contact.png",
+        description: "Contact Form - Interactive Inquiry System",
+      },
     ],
   },
   {
     title: "KidSync: Smart RFID Security",
-    description: "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
+    description:
+      "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
     tech: ["FLUTTER", "SUPABASE", "PYTHON", "ESP32"],
     github: "https://github.com/naori11/KidSync",
     demo: "https://ksync.netlify.app/",
     screenshots: [
-      { src: "/assets/projects/kidsync/admin-overview.png", description: "Admin Dashboard - System Overview" },
-      { src: "/assets/projects/kidsync/admin-parents-list.png", description: "Admin Dashboard - Parents & Guardians Management" },
-      { src: "/assets/projects/kidsync/guard-verification.png", description: "Guard Dashboard - Manual Override & Verification" },
-      { src: "/assets/projects/kidsync/guard-recent-activity.png", description: "Guard Dashboard - Recent Activity Logs" },
-      { src: "/assets/projects/kidsync/parent-schedule.png", description: "Parent App - Pick-up & Drop-off Schedule" },
-      { src: "/assets/projects/kidsync/parent-home.png", description: "Parent App - Real-time Status" },
-      { src: "/assets/projects/kidsync/driver-students.png", description: "Driver App - Assigned Students List" },
-      { src: "/assets/projects/kidsync/driver-schedule.png", description: "Driver App - Daily Route Schedule" },
-      { src: "/assets/projects/kidsync/teacher-attendance.png", description: "Teacher Dashboard - Class Attendance" },
-      { src: "/assets/projects/kidsync/teacher-schedule.png", description: "Teacher Dashboard - Class Schedule" },
+      {
+        src: "/assets/projects/kidsync/admin-overview.png",
+        description: "Admin Dashboard - System Overview",
+      },
+      {
+        src: "/assets/projects/kidsync/admin-parents-list.png",
+        description: "Admin Dashboard - Parents & Guardians Management",
+      },
+      {
+        src: "/assets/projects/kidsync/guard-verification.png",
+        description: "Guard Dashboard - Manual Override & Verification",
+      },
+      {
+        src: "/assets/projects/kidsync/guard-recent-activity.png",
+        description: "Guard Dashboard - Recent Activity Logs",
+      },
+      {
+        src: "/assets/projects/kidsync/parent-schedule.png",
+        description: "Parent App - Pick-up & Drop-off Schedule",
+      },
+      {
+        src: "/assets/projects/kidsync/parent-home.png",
+        description: "Parent App - Real-time Status",
+      },
+      {
+        src: "/assets/projects/kidsync/driver-students.png",
+        description: "Driver App - Assigned Students List",
+      },
+      {
+        src: "/assets/projects/kidsync/driver-schedule.png",
+        description: "Driver App - Daily Route Schedule",
+      },
+      {
+        src: "/assets/projects/kidsync/teacher-attendance.png",
+        description: "Teacher Dashboard - Class Attendance",
+      },
+      {
+        src: "/assets/projects/kidsync/teacher-schedule.png",
+        description: "Teacher Dashboard - Class Schedule",
+      },
     ],
     offset: "lg:mt-12",
   },
   {
     title: "Coffeetory POS",
-    description: "An inventory management system built with PHP and MySQL. Streamlines product tracking and sales operations for small-scale retail.",
+    description:
+      "An inventory management system built with PHP and MySQL. Streamlines product tracking and sales operations for small-scale retail.",
     tech: ["PHP", "MYSQL", "JAVASCRIPT"],
     github: "https://github.com/naori11/Coffeetory",
     demo: null,
@@ -54,7 +136,8 @@ const projects = [
   },
   {
     title: "AI Code Reviewer",
-    description: "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
+    description:
+      "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
     tech: ["FASTAPI", "GEMINI API", "PYTHON", "GITHUB API", "DOCKER"],
     github: "https://github.com/naori11/code-reviewer",
     demo: null,
@@ -65,32 +148,13 @@ const projects = [
   },
 ];
 
-const techStyles: Record<string, { bg: string; text: string; border: string; slug: string }> = {
-  "FLUTTER": { bg: "bg-[#02569B]/10", text: "text-[#4fc3f7]", border: "border-[#02569B]/20", slug: "flutter" },
-  "SUPABASE": { bg: "bg-[#3ecf8e]/10", text: "text-[#3ecf8e]", border: "border-[#3ecf8e]/20", slug: "supabase" },
-  "ESP32": { bg: "bg-[#e7352c]/10", text: "text-[#ff6b6b]", border: "border-[#e7352c]/20", slug: "espressif" },
-  "FASTAPI": { bg: "bg-[#009485]/10", text: "text-[#00f2fe]", border: "border-[#009485]/20", slug: "fastapi" },
-  "GEMINI API": { bg: "bg-[#4285f4]/10", text: "text-[#8ab4f8]", border: "border-[#4285f4]/20", slug: "googlegemini" },
-  "DOCKER": { bg: "bg-[#2496ed]/10", text: "text-[#70b5ff]", border: "border-[#2496ed]/20", slug: "docker" },
-  "AZURE BICEP": { bg: "bg-[#0078d4]/10", text: "text-[#79c0ff]", border: "border-[#0078d4]/20", slug: "azure" },
-  "NEXT.JS": { bg: "bg-white/5", text: "text-white", border: "border-white/10", slug: "nextdotjs" },
-  "TURBOREPO": { bg: "bg-[#ea580c]/10", text: "text-[#ff9248]", border: "border-[#ea580c]/20", slug: "turborepo" },
-  "PHP": { bg: "bg-[#777bb4]/10", text: "text-[#b0b3ff]", border: "border-[#777bb4]/20", slug: "php" },
-  "MYSQL": { bg: "bg-[#00758f]/10", text: "text-[#ffad33]", border: "border-[#00758f]/20", slug: "mysql" },
-  "JAVASCRIPT": { bg: "bg-[#f7df1e]/10", text: "text-[#f7df1e]", border: "border-[#f7df1e]/20", slug: "javascript" },
-  "PYTHON": { bg: "bg-[#3776ab]/10", text: "text-[#ffd43b]", border: "border-[#3776ab]/20", slug: "python" },
-  "GITHUB ACTIONS": { bg: "bg-[#2088ff]/10", text: "text-[#58a6ff]", border: "border-[#2088ff]/20", slug: "githubactions" },
-  "TAILWIND CSS": { bg: "bg-[#38bdf8]/10", text: "text-[#38bdf8]", border: "border-[#38bdf8]/20", slug: "tailwindcss" },
-  "GITHUB API": { bg: "bg-[#24292e]/30", text: "text-[#e6edf3]", border: "border-[#30363d]", slug: "github" },
-};
-
-const defaultTechStyle = { bg: "bg-[#3c4a5e]/20", text: "text-[#abb9d1]", border: "border-[#3c4a5e]/30", slug: "" };
-
 export default function ProjectsPage() {
+  const { theme } = useTheme();
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<number>(0);
 
-  const selectedProjectData = selectedProject !== null ? projects[selectedProject] : null;
+  const selectedProjectData =
+    selectedProject !== null ? projects[selectedProject] : null;
 
   const openGallery = (projectIndex: number) => {
     setSelectedProject(projectIndex);
@@ -104,13 +168,19 @@ export default function ProjectsPage() {
 
   const nextImage = () => {
     if (selectedProjectData?.screenshots) {
-      setSelectedImage((prev) => (prev + 1) % selectedProjectData.screenshots.length);
+      setSelectedImage(
+        (prev) => (prev + 1) % selectedProjectData.screenshots.length,
+      );
     }
   };
 
   const prevImage = () => {
     if (selectedProjectData?.screenshots) {
-      setSelectedImage((prev) => (prev - 1 + selectedProjectData.screenshots.length) % selectedProjectData.screenshots.length);
+      setSelectedImage(
+        (prev) =>
+          (prev - 1 + selectedProjectData.screenshots.length) %
+          selectedProjectData.screenshots.length,
+      );
     }
   };
 
@@ -130,27 +200,31 @@ export default function ProjectsPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <motion.span
-            className="w-3 h-3 bg-[#6bd8cb] rounded-full"
+            className="w-3 h-3 bg-[var(--tertiary)] rounded-full"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
-          <span className="font-[family-name:var(--font-jetbrains-mono)] text-[#6bd8cb] text-xs uppercase tracking-[0.2em]">Project Portfolio</span>
+          <span className="font-[family-name:var(--font-jetbrains-mono)] text-[var(--tertiary)] text-xs uppercase tracking-[0.2em]">
+            Project Portfolio
+          </span>
         </motion.div>
         <motion.h1
-          className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-7xl font-bold text-[#dae2fd] tracking-tighter mb-6"
+          className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-7xl font-bold text-[var(--foreground)] tracking-tighter mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
         >
-          Things I've <span className="text-[#cfbdff] italic">Built.</span>
+          Things I&apos;ve{" "}
+          <span className="text-[var(--primary)] italic">Built.</span>
         </motion.h1>
         <motion.p
-          className="text-base sm:text-lg text-[#b9c7df] leading-relaxed max-w-2xl"
+          className="text-base sm:text-lg text-[var(--secondary)] leading-relaxed max-w-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
         >
-          From hardware-integrated IoT systems to automated deployment pipelines. Real projects solving real problems.
+          From hardware-integrated IoT systems to automated deployment
+          pipelines. Real projects solving real problems.
         </motion.p>
       </motion.header>
 
@@ -165,27 +239,27 @@ export default function ProjectsPage() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className={`group relative bg-[#131b2e] p-1 rounded-lg ${project.offset || ""}`}
+            className={`group relative bg-[var(--surface-container-low)] p-1 rounded-lg ${project.offset || ""}`}
             variants={fadeInUp}
-            whileHover={{ y: -8, boxShadow: "0 0 30px rgba(207,189,255,0.15)" }}
+            whileHover={{ y: -8, boxShadow: "0 0 30px var(--primary-shadow)" }}
             transition={{ duration: 0.3, ease: easings.easeOutExpo }}
           >
-            <div className="bg-[#171f33] rounded-sm overflow-hidden flex flex-col h-full border border-[#494456]/15 group-hover:border-[#cfbdff]/40 transition-colors">
+            <div className="bg-[var(--surface-container)] rounded-sm overflow-hidden flex flex-col h-full border border-[var(--outline-variant)]/15 group-hover:border-[var(--primary)]/40 transition-colors">
               <div className="p-6">
                 {/* Terminal Header Decoration */}
                 <div className="flex gap-1.5 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-[#494456]/30"></div>
-                  <div className="w-2 h-2 rounded-full bg-[#494456]/30"></div>
-                  <div className="w-2 h-2 rounded-full bg-[#494456]/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
+                  <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
                 </div>
 
-                <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[#dae2fd] mb-3 group-hover:text-[#cfbdff] transition-colors">
+                <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[var(--foreground)] mb-3 group-hover:text-[var(--primary)] transition-colors">
                   {project.title}
                 </h3>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech) => {
-                    const style = techStyles[tech.toUpperCase()] || defaultTechStyle;
+                    const style = getTechBadgeStyle(tech.toUpperCase(), theme);
                     return (
                       <span
                         key={tech}
@@ -195,15 +269,15 @@ export default function ProjectsPage() {
                           <span
                             className="w-3 h-3 flex-shrink-0"
                             style={{
-                              backgroundColor: 'currentColor',
+                              backgroundColor: "currentColor",
                               WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
                               maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
-                              WebkitMaskRepeat: 'no-repeat',
-                              maskRepeat: 'no-repeat',
-                              WebkitMaskPosition: 'center',
-                              maskPosition: 'center',
-                              WebkitMaskSize: 'contain',
-                              maskSize: 'contain'
+                              WebkitMaskRepeat: "no-repeat",
+                              maskRepeat: "no-repeat",
+                              WebkitMaskPosition: "center",
+                              maskPosition: "center",
+                              WebkitMaskSize: "contain",
+                              maskSize: "contain",
                             }}
                           />
                         )}
@@ -213,36 +287,45 @@ export default function ProjectsPage() {
                   })}
                 </div>
 
-                <p className="text-[#b9c7df] text-sm leading-relaxed mb-8">
+                <p className="text-[var(--secondary)] text-sm leading-relaxed mb-8">
                   {project.description}
                 </p>
               </div>
 
-              <div className="mt-auto p-6 bg-[#222a3d]/30 border-t border-[#494456]/10 flex flex-wrap gap-3 items-center">
+              <div className="mt-auto p-6 bg-[var(--surface-container-high)]/30 border-t border-[var(--outline-variant)]/10 flex flex-wrap gap-3 items-center">
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[#6bd8cb] hover:underline flex items-center gap-1"
+                  className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[var(--tertiary)] hover:underline flex items-center gap-1"
                 >
-                  <span className="material-symbols-outlined text-sm">code</span> GITHUB
+                  <span className="material-symbols-outlined text-sm">
+                    code
+                  </span>{" "}
+                  GITHUB
                 </a>
                 {project.demo && (
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[#cfbdff] hover:underline flex items-center gap-1"
+                    className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[var(--primary)] hover:underline flex items-center gap-1"
                   >
-                    <span className="material-symbols-outlined text-sm">open_in_new</span> LIVE DEMO
+                    <span className="material-symbols-outlined text-sm">
+                      open_in_new
+                    </span>{" "}
+                    LIVE DEMO
                   </a>
                 )}
                 {project.screenshots && project.screenshots.length > 0 && (
                   <button
                     onClick={() => openGallery(index)}
-                    className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[#b9c7df] hover:text-[#cfbdff] hover:underline flex items-center gap-1 transition-colors"
+                    className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[var(--secondary)] hover:text-[var(--primary)] hover:underline flex items-center gap-1 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-sm">photo_library</span> SCREENSHOTS
+                    <span className="material-symbols-outlined text-sm">
+                      photo_library
+                    </span>{" "}
+                    SCREENSHOTS
                   </button>
                 )}
               </div>
@@ -253,20 +336,38 @@ export default function ProjectsPage() {
 
       {/* CTA Section */}
       <motion.section
-        className="mt-16 sm:mt-32 p-6 sm:p-12 bg-[#131b2e] border border-[#494456]/15 rounded-sm relative overflow-hidden"
+        className="mt-16 sm:mt-32 p-6 sm:p-12 bg-[var(--surface-container-low)] border border-[var(--outline-variant)]/15 rounded-sm relative overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: easings.easeOutExpo }}
       >
         <div className="absolute -right-16 -bottom-16 opacity-5 pointer-events-none">
-          <span className="material-symbols-outlined text-[300px]" style={{ fontVariationSettings: "'FILL' 1" }}>terminal</span>
+          <span
+            className="material-symbols-outlined text-[300px]"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+          >
+            terminal
+          </span>
         </div>
         <div className="relative z-10 max-w-xl">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-bold text-[#dae2fd] mb-4 tracking-tight">Want to work together?</h2>
-          <p className="text-[#b9c7df] mb-8">I'm always interested in projects involving cloud infrastructure, backend development, or IoT systems. Let's talk.</p>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", ...springs.snappy }}>
-            <Link href="/contact" className="inline-block bg-gradient-to-r from-[#cfbdff] to-[#6200ee] text-[#3a0093] px-6 sm:px-8 py-2.5 sm:py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-xs sm:text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_rgba(207,189,255,0.3)] transition-all">
+          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-bold text-[var(--foreground)] mb-4 tracking-tight">
+            Want to work together?
+          </h2>
+          <p className="text-[var(--secondary)] mb-8">
+            I&apos;m always interested in projects involving cloud
+            infrastructure, backend development, or IoT systems. Let&apos;s
+            talk.
+          </p>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", ...springs.snappy }}
+          >
+            <Link
+              href="/contact"
+              className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--primary-container)] text-[var(--on-primary)] px-6 sm:px-8 py-2.5 sm:py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-xs sm:text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_var(--primary-shadow-strong)] transition-all"
+            >
               Get in Touch
             </Link>
           </motion.div>
@@ -277,7 +378,7 @@ export default function ProjectsPage() {
       <AnimatePresence>
         {selectedProjectData && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 bg-[#0b1326]/95 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12 lg:p-16 bg-[var(--background)]/95 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -297,15 +398,15 @@ export default function ProjectsPage() {
                 <div className="flex items-center gap-3">
                   {/* Terminal Dots */}
                   <div className="hidden sm:flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#494456]/40"></div>
+                    <div className="w-3 h-3 rounded-full bg-[var(--outline-variant)]/40"></div>
+                    <div className="w-3 h-3 rounded-full bg-[var(--outline-variant)]/40"></div>
+                    <div className="w-3 h-3 rounded-full bg-[var(--outline-variant)]/40"></div>
                   </div>
                   <div>
-                    <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg sm:text-xl md:text-2xl font-bold text-[#dae2fd]">
+                    <h3 className="font-[family-name:var(--font-space-grotesk)] text-lg sm:text-xl md:text-2xl font-bold text-[var(--foreground)]">
                       {selectedProjectData.title}
                     </h3>
-                    <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#6bd8cb] uppercase tracking-wider">
+                    <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[var(--tertiary)] uppercase tracking-wider">
                       Screenshots
                     </p>
                   </div>
@@ -314,18 +415,22 @@ export default function ProjectsPage() {
                 {/* Close Button */}
                 <motion.button
                   onClick={closeGallery}
-                  className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#2d3449] hover:bg-[#3a4259] border border-[#494456]/20 rounded-lg text-[#b9c7df] hover:text-[#cfbdff] transition-all group"
+                  className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-[var(--surface-container-highest)] hover:bg-[var(--surface-hover)] border border-[var(--outline-variant)]/20 rounded-lg text-[var(--secondary)] hover:text-[var(--primary)] transition-all group"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="hidden sm:inline font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider">ESC</span>
-                  <span className="material-symbols-outlined text-xl">close</span>
+                  <span className="hidden sm:inline font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider">
+                    ESC
+                  </span>
+                  <span className="material-symbols-outlined text-xl">
+                    close
+                  </span>
                 </motion.button>
               </div>
 
               {/* Main Image Container */}
-              <div className="relative bg-[#131b2e] rounded-lg border border-[#494456]/20 overflow-hidden mb-4 sm:mb-6">
-                <div className="relative aspect-video bg-[#171f33]">
+              <div className="relative bg-[var(--surface-container-low)] rounded-lg border border-[var(--outline-variant)]/20 overflow-hidden mb-4 sm:mb-6">
+                <div className="relative aspect-video bg-[var(--surface-container)]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={selectedImage}
@@ -336,15 +441,21 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.3, ease: easings.easeOutExpo }}
                     >
                       <Image
-                        src={typeof selectedProjectData.screenshots[selectedImage] === 'string' ? (selectedProjectData.screenshots[selectedImage] as string) : (selectedProjectData.screenshots[selectedImage] as any).src}
+                        src={getScreenshotSrc(
+                          selectedProjectData.screenshots[selectedImage],
+                        )}
                         alt={`${selectedProjectData.title} screenshot ${selectedImage + 1}`}
                         fill
                         className="object-contain p-4 sm:p-6 md:p-12 pb-16 sm:pb-20"
                       />
-                      {typeof selectedProjectData.screenshots[selectedImage] !== 'string' && (selectedProjectData.screenshots[selectedImage] as any).description && (
+                      {getScreenshotDescription(
+                        selectedProjectData.screenshots[selectedImage],
+                      ) && (
                         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10 max-w-[calc(100%-4rem)] sm:max-w-md">
-                          <span className="inline-block bg-[#131b2e]/95 backdrop-blur-md border border-[#494456]/50 text-[#dae2fd] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
-                            {(selectedProjectData.screenshots[selectedImage] as any).description}
+                          <span className="inline-block bg-[var(--surface-container-low)]/95 backdrop-blur-md border border-[var(--outline-variant)]/50 text-[var(--foreground)] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
+                            {getScreenshotDescription(
+                              selectedProjectData.screenshots[selectedImage],
+                            )}
                           </span>
                         </div>
                       )}
@@ -356,78 +467,86 @@ export default function ProjectsPage() {
                     <>
                       <motion.button
                         onClick={prevImage}
-                        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-[#2d3449]/90 hover:bg-[#cfbdff] border border-[#494456]/30 hover:border-[#cfbdff] text-[#cfbdff] hover:text-[#3a0093] p-2 sm:p-3 rounded-lg transition-all backdrop-blur-sm"
+                        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-[var(--surface-container-highest)]/90 hover:bg-[var(--primary)] border border-[var(--outline-variant)]/30 hover:border-[var(--primary)] text-[var(--primary)] hover:text-[var(--on-primary)] p-2 sm:p-3 rounded-lg transition-all backdrop-blur-sm"
                         whileHover={{ scale: 1.1, x: -4 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <span className="material-symbols-outlined text-xl sm:text-2xl">chevron_left</span>
+                        <span className="material-symbols-outlined text-xl sm:text-2xl">
+                          chevron_left
+                        </span>
                       </motion.button>
                       <motion.button
                         onClick={nextImage}
-                        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-[#2d3449]/90 hover:bg-[#cfbdff] border border-[#494456]/30 hover:border-[#cfbdff] text-[#cfbdff] hover:text-[#3a0093] p-2 sm:p-3 rounded-lg transition-all backdrop-blur-sm"
+                        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-[var(--surface-container-highest)]/90 hover:bg-[var(--primary)] border border-[var(--outline-variant)]/30 hover:border-[var(--primary)] text-[var(--primary)] hover:text-[var(--on-primary)] p-2 sm:p-3 rounded-lg transition-all backdrop-blur-sm"
                         whileHover={{ scale: 1.1, x: 4 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <span className="material-symbols-outlined text-xl sm:text-2xl">chevron_right</span>
+                        <span className="material-symbols-outlined text-xl sm:text-2xl">
+                          chevron_right
+                        </span>
                       </motion.button>
                     </>
                   )}
 
                   {/* Image Counter Badge */}
-                  <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 bg-[#131b2e]/90 backdrop-blur-sm border border-[#494456]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                  <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 bg-[var(--surface-container-low)]/90 backdrop-blur-sm border border-[var(--outline-variant)]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                     <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[#6bd8cb] text-sm sm:text-base">image</span>
-                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#cfbdff] font-bold">
+                      <span className="material-symbols-outlined text-[var(--tertiary)] text-sm sm:text-base">
+                        image
+                      </span>
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[var(--primary)] font-bold">
                         {selectedImage + 1}
                       </span>
-                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#494456]">/</span>
-                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[#b9c7df]">
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[var(--outline-variant)]">
+                        /
+                      </span>
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[var(--secondary)]">
                         {selectedProjectData.screenshots.length}
                       </span>
                     </div>
                   </div>
-
-
                 </div>
               </div>
 
               {/* Thumbnail Strip */}
-              <div className="relative bg-[#131b2e] rounded-lg border border-[#494456]/20 p-3 sm:p-4">
+              <div className="relative bg-[var(--surface-container-low)] rounded-lg border border-[var(--outline-variant)]/20 p-3 sm:p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="material-symbols-outlined text-[#6bd8cb] text-sm">photo_library</span>
-                  <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[#b9c7df] uppercase tracking-wider">
+                  <span className="material-symbols-outlined text-[var(--tertiary)] text-sm">
+                    photo_library
+                  </span>
+                  <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[var(--secondary)] uppercase tracking-wider">
                     All Screenshots
                   </span>
                 </div>
-                <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#494456] scrollbar-track-[#171f33] scroll-smooth">
+                <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[var(--outline-variant)] scrollbar-track-[var(--surface-container)] scroll-smooth">
                   {selectedProjectData.screenshots.map((screenshot, idx) => (
                     <motion.button
                       key={idx}
                       onClick={() => setSelectedImage(idx)}
                       className={`relative flex-shrink-0 w-24 h-16 sm:w-32 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                         idx === selectedImage
-                          ? "border-[#cfbdff] shadow-[0_0_20px_rgba(207,189,255,0.3)]"
-                          : "border-[#494456]/30 hover:border-[#6bd8cb]/50"
+                          ? "border-[var(--primary)] shadow-[0_0_20px_var(--primary-shadow-strong)]"
+                          : "border-[var(--outline-variant)]/30 hover:border-[var(--tertiary)]/50"
                       }`}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <Image
-                        src={typeof screenshot === 'string' ? screenshot : (screenshot as any).src}
+                        src={getScreenshotSrc(screenshot)}
                         alt={`Thumbnail ${idx + 1}`}
                         fill
                         className="object-cover"
                       />
                       {idx === selectedImage && (
                         <motion.div
-                          className="absolute inset-0 bg-gradient-to-t from-[#cfbdff]/20 to-transparent"
+                          className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/20 to-transparent"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.2 }}
                         />
                       )}
-                      <div className="absolute bottom-1 right-1 bg-[#131b2e]/80 backdrop-blur-sm px-1.5 py-0.5 rounded">
-                        <span className="font-[family-name:var(--font-jetbrains-mono)] text-[8px] sm:text-[10px] text-[#6bd8cb]">
+                      <div className="absolute bottom-1 right-1 bg-[var(--surface-container-low)]/80 backdrop-blur-sm px-1.5 py-0.5 rounded">
+                        <span className="font-[family-name:var(--font-jetbrains-mono)] text-[8px] sm:text-[10px] text-[var(--tertiary)]">
                           {idx + 1}
                         </span>
                       </div>

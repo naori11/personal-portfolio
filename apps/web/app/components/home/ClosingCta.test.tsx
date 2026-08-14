@@ -7,10 +7,9 @@ describe("ClosingCta", () => {
     const onOpenResume = vi.fn();
     render(<ClosingCta onOpenResume={onOpenResume} />);
 
-    expect(screen.getByRole("link", { name: "Start a conversation" })).toHaveAttribute(
-      "href",
-      "/contact",
-    );
+    expect(
+      screen.getByRole("link", { name: "Start a conversation" }),
+    ).toHaveAttribute("href", "/contact");
 
     fireEvent.click(screen.getByRole("button", { name: "View resume" }));
     expect(onOpenResume).toHaveBeenCalledOnce();

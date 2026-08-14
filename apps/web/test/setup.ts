@@ -30,4 +30,3 @@ if (typeof window !== "undefined" && !window.IntersectionObserver) {
 afterEach(() => {
   cleanup();
 });
-

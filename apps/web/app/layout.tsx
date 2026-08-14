@@ -5,6 +5,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { MotionProvider } from "../components/MotionProvider";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -26,7 +27,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "JUVAN.TECH | DevOps & Cloud Engineer",
-  description: "DevOps and Cloud Engineer specializing in infrastructure automation, CI/CD pipelines, and backend systems.",
+  description:
+    "DevOps and Cloud Engineer specializing in infrastructure automation, CI/CD pipelines, and backend systems.",
 };
 
 export default function RootLayout({
@@ -36,20 +38,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] bg-[#0b1326] text-[#dae2fd] selection:bg-primary/30`}>
-        <Navbar />
-        <MotionProvider>
-          <main className="min-h-screen">
-            {children}
-          </main>
-        </MotionProvider>
-        <Footer />
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] selection:bg-[var(--primary)]/30`}
+      >
+        <ThemeProvider>
+          <Navbar />
+          <MotionProvider>
+            <main className="min-h-screen">{children}</main>
+          </MotionProvider>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
