@@ -2,14 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  fadeInUp,
-  fadeInLeft,
-  fadeInRight,
-  staggerContainer,
-  springs,
-  easings,
-} from "../../lib/motion";
+import { easings } from "../../lib/motion";
 import { getTechBadgeStyle } from "../../lib/tech-badges";
 import { useTheme } from "../../components/ThemeProvider";
 
@@ -94,7 +87,7 @@ export default function AboutPage() {
               I recently graduated Magna Cum Laude from National University –
               Fairview with a degree in BSIT-MI, based in Caloocan City,
               Philippines. As a kid, I had a habit of taking apart some of our
-              household electronics to see how they work, though I didn't
+              household electronics to see how they work, though I didn&apos;t
               exactly repaired any of it. Luckily, taking apart software and
               cloud infrastructure is way easier to repair, which led me to
               pursue backend development and DevOps.
@@ -580,7 +573,7 @@ export default function AboutPage() {
               Philosophy
             </div>
             <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-3xl font-black italic text-[var(--primary)] mb-2 tracking-tight">
-              "Que sera, sera."
+              &ldquo;Que sera, sera.&rdquo;
             </h3>
             <p className="text-[var(--secondary)] text-xs sm:text-sm leading-relaxed max-w-md">
               Whatever will be, will be. Embrace adaptability, focus on what you

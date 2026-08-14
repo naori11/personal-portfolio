@@ -70,7 +70,7 @@ export default function ContactPage() {
           e.currentTarget.reset();
         }, 3000);
       }
-    } catch (error) {
+    } catch {
       setSubmitState("error");
       setErrorMessage("Network error. Please try again.");
     } finally {

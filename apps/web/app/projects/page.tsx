@@ -8,7 +8,36 @@ import { fadeInUp, staggerContainer, springs, easings } from "../../lib/motion";
 import { getTechBadgeStyle } from "../../lib/tech-badges";
 import { useTheme } from "../../components/ThemeProvider";
 
-const projects = [
+interface ScreenshotObject {
+  src: string;
+  description?: string;
+}
+
+type Screenshot = string | ScreenshotObject;
+
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  demo: string | null;
+  screenshots: Screenshot[];
+  offset?: string;
+}
+
+function getScreenshotSrc(item: Screenshot | undefined): string {
+  if (!item) return "";
+  return typeof item === "string" ? item : item.src;
+}
+
+function getScreenshotDescription(
+  item: Screenshot | undefined,
+): string | undefined {
+  if (!item) return undefined;
+  return typeof item === "string" ? undefined : item.description;
+}
+
+const projects: Project[] = [
   {
     title: "JUVAN.TECH",
     description:
@@ -185,7 +214,7 @@ export default function ProjectsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
         >
-          Things I've{" "}
+          Things I&apos;ve{" "}
           <span className="text-[var(--primary)] italic">Built.</span>
         </motion.h1>
         <motion.p
@@ -326,8 +355,9 @@ export default function ProjectsPage() {
             Want to work together?
           </h2>
           <p className="text-[var(--secondary)] mb-8">
-            I'm always interested in projects involving cloud infrastructure,
-            backend development, or IoT systems. Let's talk.
+            I&apos;m always interested in projects involving cloud
+            infrastructure, backend development, or IoT systems. Let&apos;s
+            talk.
           </p>
           <motion.div
             whileHover={{ scale: 1.02 }}
@@ -411,39 +441,24 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.3, ease: easings.easeOutExpo }}
                     >
                       <Image
-                        src={
-                          typeof selectedProjectData.screenshots[
-                            selectedImage
-                          ] === "string"
-                            ? (selectedProjectData.screenshots[
-                                selectedImage
-                              ] as string)
-                            : (
-                                selectedProjectData.screenshots[
-                                  selectedImage
-                                ] as any
-                              ).src
-                        }
+                        src={getScreenshotSrc(
+                          selectedProjectData.screenshots[selectedImage],
+                        )}
                         alt={`${selectedProjectData.title} screenshot ${selectedImage + 1}`}
                         fill
                         className="object-contain p-4 sm:p-6 md:p-12 pb-16 sm:pb-20"
                       />
-                      {typeof selectedProjectData.screenshots[selectedImage] !==
-                        "string" &&
-                        (selectedProjectData.screenshots[selectedImage] as any)
-                          .description && (
-                          <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10 max-w-[calc(100%-4rem)] sm:max-w-md">
-                            <span className="inline-block bg-[var(--surface-container-low)]/95 backdrop-blur-md border border-[var(--outline-variant)]/50 text-[var(--foreground)] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
-                              {
-                                (
-                                  selectedProjectData.screenshots[
-                                    selectedImage
-                                  ] as any
-                                ).description
-                              }
-                            </span>
-                          </div>
-                        )}
+                      {getScreenshotDescription(
+                        selectedProjectData.screenshots[selectedImage],
+                      ) && (
+                        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10 max-w-[calc(100%-4rem)] sm:max-w-md">
+                          <span className="inline-block bg-[var(--surface-container-low)]/95 backdrop-blur-md border border-[var(--outline-variant)]/50 text-[var(--foreground)] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
+                            {getScreenshotDescription(
+                              selectedProjectData.screenshots[selectedImage],
+                            )}
+                          </span>
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
 
@@ -517,11 +532,7 @@ export default function ProjectsPage() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Image
-                        src={
-                          typeof screenshot === "string"
-                            ? screenshot
-                            : (screenshot as any).src
-                        }
+                        src={getScreenshotSrc(screenshot)}
                         alt={`Thumbnail ${idx + 1}`}
                         fill
                         className="object-cover"

@@ -7,8 +7,8 @@ export function Footer() {
         {/* Left: Branding */}
         <div className="text-xs sm:text-sm font-bold text-[var(--primary)] font-[family-name:var(--font-space-grotesk)] text-center md:text-left">
           JUVAN.TECH{" "}
-          <span className="text-[var(--tertiary)] font-normal">//</span> DevOps
-          & Cloud Engineer
+          <span className="text-[var(--tertiary)] font-normal">{"//"}</span>{" "}
+          DevOps & Cloud Engineer
         </div>
 
         {/* Center-Right: Social Links */}
