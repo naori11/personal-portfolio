@@ -51,6 +51,89 @@
   --inverse-surface: #dae2fd;
   --inverse-on-surface: #283044;
   --inverse-primary: #6d23f9;
+
+  --terminal-bg: #131b2e;
+  --terminal-border: #494456;
+  --terminal-text: #b9c7df;
+  --terminal-prompt: #6bd8cb;
+  --terminal-command: #dae2fd;
+  --terminal-muted: #b9c7df;
+  --terminal-secondary: #cfbdff;
+  --terminal-success: #6bd8cb;
+
+  --success: #6bd8cb;
+  --accent-gold: #e5c158;
+  --glass-surface: rgb(45 52 73 / 60%);
+  --surface-hover: #3a4259;
+  --primary-shadow: rgb(207 189 255 / 15%);
+  --primary-shadow-strong: rgb(207 189 255 / 30%);
+}
+
+:root.light {
+  --background: #faf8fd;
+  --foreground: #27212f;
+
+  --primary: #775798;
+  --primary-container: #e5d6f2;
+  --primary-fixed: #e5d6f2;
+  --primary-fixed-dim: #d7bfea;
+  --on-primary: #ffffff;
+  --on-primary-container: #4a2e63;
+
+  --secondary: #544b5a;
+  --secondary-container: #f2edf7;
+  --secondary-fixed: #e5dceb;
+  --secondary-fixed-dim: #bdb2c9;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #3a3340;
+
+  --tertiary: #1f7a70;
+  --tertiary-container: #cdefe9;
+  --tertiary-fixed: #a8ddd5;
+  --tertiary-fixed-dim: #75beb4;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #0e4942;
+
+  --surface: #faf8fd;
+  --surface-dim: #eae4ef;
+  --surface-bright: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f7f2fa;
+  --surface-container: #f2edf7;
+  --surface-container-high: #e9e1f0;
+  --surface-container-highest: #ded4e7;
+  --surface-variant: #e9e1f0;
+  --surface-tint: #775798;
+  --on-surface: #27212f;
+  --on-surface-variant: #615968;
+
+  --error: #b44352;
+  --error-container: #f9dde0;
+  --on-error: #ffffff;
+  --on-error-container: #5a1420;
+
+  --outline: #817486;
+  --outline-variant: #d9d1df;
+
+  --inverse-surface: #27212f;
+  --inverse-on-surface: #f7f2fa;
+  --inverse-primary: #d7bfea;
+
+  --success: #2d7865;
+  --accent-gold: #8a6500;
+  --glass-surface: rgb(242 237 247 / 72%);
+  --surface-hover: #d4c9df;
+  --primary-shadow: rgb(119 87 152 / 15%);
+  --primary-shadow-strong: rgb(119 87 152 / 30%);
+
+  --terminal-bg: #f2edf7;
+  --terminal-border: #d8cde2;
+  --terminal-text: #362f3e;
+  --terminal-prompt: #775798;
+  --terminal-command: #362f3e;
+  --terminal-muted: #68606f;
+  --terminal-secondary: #72528f;
+  --terminal-success: #2d7865;
 }
 
 body {
@@ -58,4 +141,5 @@ body {
   background: var(--background);
   font-feature-settings: "rlig" 1, "calt" 1;
   overflow-x: hidden;
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -5,6 +5,7 @@ import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { MotionProvider } from "../components/MotionProvider";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -42,14 +43,16 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] bg-[#0b1326] text-[#dae2fd] selection:bg-primary/30`}>
-        <Navbar />
-        <MotionProvider>
-          <main className="min-h-screen">
-            {children}
-          </main>
-        </MotionProvider>
-        <Footer />
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] selection:bg-[var(--primary)]/30`}>
+        <ThemeProvider>
+          <Navbar />
+          <MotionProvider>
+            <main className="min-h-screen">
+              {children}
+            </main>
+          </MotionProvider>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
