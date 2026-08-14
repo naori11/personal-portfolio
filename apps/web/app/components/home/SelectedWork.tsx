@@ -22,7 +22,8 @@ export function SelectedWork() {
             Systems shown through the work.
           </h2>
           <p className="mt-5 text-lg leading-8 text-[var(--secondary)]">
-            A focused look at the infrastructure, backend, and connected-system projects behind the skill list.
+            A focused look at the infrastructure, backend, and connected-system
+            projects behind the skill list.
           </p>
         </motion.header>
 

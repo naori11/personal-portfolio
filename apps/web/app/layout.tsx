@@ -27,7 +27,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "JUVAN.TECH | DevOps & Cloud Engineer",
-  description: "DevOps and Cloud Engineer specializing in infrastructure automation, CI/CD pipelines, and backend systems.",
+  description:
+    "DevOps and Cloud Engineer specializing in infrastructure automation, CI/CD pipelines, and backend systems.",
 };
 
 export default function RootLayout({
@@ -43,13 +44,13 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] selection:bg-[var(--primary)]/30`}>
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] selection:bg-[var(--primary)]/30`}
+      >
         <ThemeProvider>
           <Navbar />
           <MotionProvider>
-            <main className="min-h-screen">
-              {children}
-            </main>
+            <main className="min-h-screen">{children}</main>
           </MotionProvider>
           <Footer />
         </ThemeProvider>

@@ -57,14 +57,18 @@ export default function PDFViewer({ fileUrl }: PDFViewerProps) {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               />
-              <p className="font-[family-name:var(--font-jetbrains-mono)] text-sm text-[var(--secondary)]">Loading resume...</p>
+              <p className="font-[family-name:var(--font-jetbrains-mono)] text-sm text-[var(--secondary)]">
+                Loading resume...
+              </p>
             </div>
           </div>
         }
         error={
           <div className="flex items-center justify-center py-12">
             <div className="bg-[var(--surface-container)] border border-[var(--outline-variant)]/20 rounded-lg p-8 text-center max-w-md">
-              <span className="material-symbols-outlined text-[var(--primary)]/30 text-5xl mb-4">error</span>
+              <span className="material-symbols-outlined text-[var(--primary)]/30 text-5xl mb-4">
+                error
+              </span>
               <p className="text-[var(--secondary)] mb-4">
                 Failed to load PDF. Please use the download button above.
               </p>
@@ -72,23 +76,28 @@ export default function PDFViewer({ fileUrl }: PDFViewerProps) {
           </div>
         }
       >
-        {numPages && Array.from(new Array(numPages), (_, index) => (
-          <motion.div
-            key={`page_${index + 1}`}
-            className="shadow-lg w-full max-w-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-          >
-            <Page
-              pageNumber={index + 1}
-              renderTextLayer={true}
-              renderAnnotationLayer={true}
-              className="max-w-full"
-              width={containerWidth > 0 ? Math.min(containerWidth - 32, 800) : undefined}
-            />
-          </motion.div>
-        ))}
+        {numPages &&
+          Array.from(new Array(numPages), (_, index) => (
+            <motion.div
+              key={`page_${index + 1}`}
+              className="shadow-lg w-full max-w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              <Page
+                pageNumber={index + 1}
+                renderTextLayer={true}
+                renderAnnotationLayer={true}
+                className="max-w-full"
+                width={
+                  containerWidth > 0
+                    ? Math.min(containerWidth - 32, 800)
+                    : undefined
+                }
+              />
+            </motion.div>
+          ))}
       </Document>
     </div>
   );

@@ -2,9 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("framer-motion", async () => {
-  const actual = await vi.importActual<typeof import("framer-motion")>(
-    "framer-motion",
-  );
+  const actual =
+    await vi.importActual<typeof import("framer-motion")>("framer-motion");
 
   return {
     ...actual,
@@ -22,11 +21,7 @@ import {
 describe("TerminalPreview", () => {
   it("defines the complete sequence timing", () => {
     expect([0, 1, 2, 3, 4].map(getTerminalDelay)).toEqual([
-      1500,
-      1200,
-      800,
-      1000,
-      10000,
+      1500, 1200, 800, 1000, 10000,
     ]);
   });
 

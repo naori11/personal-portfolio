@@ -29,7 +29,10 @@ const focusableSelector = [
 const desktopPreviewQuery = "(min-width: 768px)";
 
 function subscribeToDesktopPreview(callback: () => void) {
-  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+  if (
+    typeof window === "undefined" ||
+    typeof window.matchMedia !== "function"
+  ) {
     return () => {};
   }
   const mediaQuery = window.matchMedia(desktopPreviewQuery);
@@ -39,7 +42,10 @@ function subscribeToDesktopPreview(callback: () => void) {
 }
 
 function getDesktopPreviewSnapshot() {
-  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+  if (
+    typeof window === "undefined" ||
+    typeof window.matchMedia !== "function"
+  ) {
     return false;
   }
   return window.matchMedia(desktopPreviewQuery).matches;
@@ -205,7 +211,8 @@ export function ResumeModal({
                       Read the full-size resume
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-[var(--secondary)]">
-                      Open the PDF for readable text, zoom, search, and working links.
+                      Open the PDF for readable text, zoom, search, and working
+                      links.
                     </p>
                     <p className="mt-3 font-[family-name:var(--font-jetbrains-mono)] text-[10px] uppercase tracking-[0.12em] text-[var(--secondary)]/65">
                       Use Open PDF above to view it in your browser.

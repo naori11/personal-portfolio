@@ -24,7 +24,10 @@ export function Navbar() {
       <div className="flex justify-between items-center px-4 sm:px-8 py-4 max-w-7xl mx-auto">
         {/* Branding - Left */}
         <motion.div variants={navItem}>
-          <Link href="/" className="text-lg sm:text-xl font-black tracking-tighter text-[var(--primary)] uppercase font-[family-name:var(--font-space-grotesk)]">
+          <Link
+            href="/"
+            className="text-lg sm:text-xl font-black tracking-tighter text-[var(--primary)] uppercase font-[family-name:var(--font-space-grotesk)]"
+          >
             JUVAN.TECH
           </Link>
         </motion.div>
@@ -34,7 +37,11 @@ export function Navbar() {
           <motion.div variants={navItem} className="relative">
             <Link
               href="/"
-              className={isActive("/") ? "text-[var(--primary)] pb-1" : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"}
+              className={
+                isActive("/")
+                  ? "text-[var(--primary)] pb-1"
+                  : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"
+              }
             >
               Home
             </Link>
@@ -49,7 +56,11 @@ export function Navbar() {
           <motion.div variants={navItem} className="relative">
             <Link
               href="/projects"
-              className={isActive("/projects") ? "text-[var(--primary)] pb-1" : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"}
+              className={
+                isActive("/projects")
+                  ? "text-[var(--primary)] pb-1"
+                  : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"
+              }
             >
               Projects
             </Link>
@@ -64,7 +75,11 @@ export function Navbar() {
           <motion.div variants={navItem} className="relative">
             <Link
               href="/about"
-              className={isActive("/about") ? "text-[var(--primary)] pb-1" : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"}
+              className={
+                isActive("/about")
+                  ? "text-[var(--primary)] pb-1"
+                  : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"
+              }
             >
               About
             </Link>
@@ -79,7 +94,11 @@ export function Navbar() {
           <motion.div variants={navItem} className="relative">
             <Link
               href="/contact"
-              className={isActive("/contact") ? "text-[var(--primary)] pb-1" : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"}
+              className={
+                isActive("/contact")
+                  ? "text-[var(--primary)] pb-1"
+                  : "text-[var(--secondary)] hover:text-[var(--primary)] transition-colors pb-1"
+              }
             >
               Contact
             </Link>
@@ -101,13 +120,23 @@ export function Navbar() {
             aria-label="Toggle theme"
           >
             <span className="material-symbols-outlined">
-              {theme === 'dark' ? 'light_mode' : 'dark_mode'}
+              {theme === "dark" ? "light_mode" : "dark_mode"}
             </span>
           </button>
-          <a href="https://github.com/naori11" target="_blank" rel="noopener noreferrer" className="p-2 text-[var(--primary)] hover:bg-[var(--surface-variant)]/50 transition-all rounded">
+          <a
+            href="https://github.com/naori11"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-[var(--primary)] hover:bg-[var(--surface-variant)]/50 transition-all rounded"
+          >
             <span className="material-symbols-outlined">code</span>
           </a>
-          <a href="https://www.linkedin.com/in/juvan-emanuel-paulo/" target="_blank" rel="noopener noreferrer" className="p-2 text-[var(--primary)] hover:bg-[var(--surface-variant)]/50 transition-all rounded">
+          <a
+            href="https://www.linkedin.com/in/juvan-emanuel-paulo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-[var(--primary)] hover:bg-[var(--surface-variant)]/50 transition-all rounded"
+          >
             <span className="material-symbols-outlined">open_in_new</span>
           </a>
 

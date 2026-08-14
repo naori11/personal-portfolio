@@ -12,10 +12,9 @@ describe("SelectedWork", () => {
     expect(
       screen.getByLabelText("Cloud Portfolio deployment flow"),
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "View repository" })).toHaveAttribute(
-      "href",
-      "https://github.com/naori11/personal-portfolio",
-    );
+    expect(
+      screen.getByRole("link", { name: "View repository" }),
+    ).toHaveAttribute("href", "https://github.com/naori11/personal-portfolio");
   });
 
   it("renders the two supporting projects as compact articles", () => {

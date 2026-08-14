@@ -23,10 +23,9 @@ describe("HeroIntro", () => {
       "href",
       "/projects",
     );
-    expect(screen.getByAltText("Portrait of Juvan Emanuel Paulo")).toHaveAttribute(
-      "src",
-      expect.stringContaining("image.jpg"),
-    );
+    expect(
+      screen.getByAltText("Portrait of Juvan Emanuel Paulo"),
+    ).toHaveAttribute("src", expect.stringContaining("image.jpg"));
     expect(screen.queryByText("Available for Work")).not.toBeInTheDocument();
   });
 

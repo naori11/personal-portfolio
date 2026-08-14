@@ -2,15 +2,15 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("next/dynamic", () => ({
-  default: () => function MockPdfViewer() {
-    return <div>PDF viewer</div>;
-  },
+  default: () =>
+    function MockPdfViewer() {
+      return <div>PDF viewer</div>;
+    },
 }));
 
 vi.mock("framer-motion", async () => {
-  const actual = await vi.importActual<typeof import("framer-motion")>(
-    "framer-motion",
-  );
+  const actual =
+    await vi.importActual<typeof import("framer-motion")>("framer-motion");
 
   return {
     ...actual,
@@ -25,7 +25,9 @@ describe("HomePage", () => {
   it("renders the editorial information hierarchy", () => {
     render(<HomePage />);
 
-    const headings = screen.getAllByRole("heading").map((heading) => heading.textContent);
+    const headings = screen
+      .getAllByRole("heading")
+      .map((heading) => heading.textContent);
 
     expect(headings).toEqual(
       expect.arrayContaining([
@@ -44,10 +46,14 @@ describe("HomePage", () => {
   it("opens the resume dialog from the hero", () => {
     render(<HomePage />);
 
-    const [viewResumeButton] = screen.getAllByRole("button", { name: "View resume" });
+    const [viewResumeButton] = screen.getAllByRole("button", {
+      name: "View resume",
+    });
     expect(viewResumeButton).toBeDefined();
     fireEvent.click(viewResumeButton!);
 
-    expect(screen.getByRole("dialog", { name: "View resume" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("dialog", { name: "View resume" }),
+    ).toBeInTheDocument();
   });
 });

@@ -16,8 +16,12 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
           <h3 className="mt-5 font-[family-name:var(--font-space-grotesk)] text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-4xl">
             {project.title}
           </h3>
-          <p className="mt-5 leading-7 text-[var(--secondary)]">{project.summary}</p>
-          <p className="mt-4 leading-7 text-[var(--secondary)]/80">{project.contribution}</p>
+          <p className="mt-5 leading-7 text-[var(--secondary)]">
+            {project.summary}
+          </p>
+          <p className="mt-4 leading-7 text-[var(--secondary)]/80">
+            {project.contribution}
+          </p>
         </div>
 
         <div className="mt-8">
@@ -51,7 +55,10 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
       </div>
 
       <div className="relative border-t border-[var(--outline-variant)]/25 bg-[var(--surface-container)] p-6 sm:p-8 lg:col-span-7 lg:border-l lg:border-t-0 lg:p-10">
-        <div aria-hidden="true" className="absolute inset-0 opacity-25 [background-image:linear-gradient(var(--outline-variant)_1px,transparent_1px),linear-gradient(90deg,var(--outline-variant)_1px,transparent_1px)] [background-size:32px_32px] [mask-image:linear-gradient(to_bottom_right,black,transparent)]" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-25 [background-image:linear-gradient(var(--outline-variant)_1px,transparent_1px),linear-gradient(90deg,var(--outline-variant)_1px,transparent_1px)] [background-size:32px_32px] [mask-image:linear-gradient(to_bottom_right,black,transparent)]"
+        />
         <div className="relative">
           <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] uppercase tracking-[0.18em] text-[var(--secondary)]/60">
             Delivery path / repository derived
@@ -69,7 +76,9 @@ export function FeaturedProject({ project }: FeaturedProjectProps) {
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <p className="font-bold text-[var(--foreground)]">{step.label}</p>
+                  <p className="font-bold text-[var(--foreground)]">
+                    {step.label}
+                  </p>
                   <p className="mt-1 text-sm leading-6 text-[var(--secondary)]">
                     {step.detail}
                   </p>

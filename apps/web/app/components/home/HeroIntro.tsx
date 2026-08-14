@@ -34,10 +34,14 @@ export function HeroIntro({ onOpenResume }: HeroIntroProps) {
           </p>
           <h1 className="max-w-4xl font-[family-name:var(--font-space-grotesk)] text-5xl font-black leading-[0.96] tracking-[-0.055em] text-[var(--foreground)] sm:text-6xl lg:text-7xl xl:text-8xl">
             Backend systems.{" "}
-            <span className="block text-[var(--primary)]">Reliable delivery.</span>
+            <span className="block text-[var(--primary)]">
+              Reliable delivery.
+            </span>
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-8 text-[var(--secondary)] sm:text-lg">
-            I build backend applications and the delivery workflows that move them from development to production. My work spans integrations, deployment automation, cloud infrastructure, and connected systems.
+            I build backend applications and the delivery workflows that move
+            them from development to production. My work spans integrations,
+            deployment automation, cloud infrastructure, and connected systems.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -87,7 +91,12 @@ export function HeroIntro({ onOpenResume }: HeroIntroProps) {
               >
                 <Image
                   src="/assets/image.jpg"
-                  style={{ filter: theme === 'light' ? 'saturate(0.8) brightness(1.05)' : 'none' }}
+                  style={{
+                    filter:
+                      theme === "light"
+                        ? "saturate(0.8) brightness(1.05)"
+                        : "none",
+                  }}
                   alt="Portrait of Juvan Emanuel Paulo"
                   fill
                   priority
@@ -96,7 +105,10 @@ export function HeroIntro({ onOpenResume }: HeroIntroProps) {
                 />
               </motion.div>
             </AnimatePresence>
-            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/75 via-transparent to-transparent transition-colors duration-500" />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/75 via-transparent to-transparent transition-colors duration-500"
+            />
           </div>
           <div className="relative -mt-20 mr-auto w-[92%] sm:-mt-24 sm:w-[78%]">
             <TerminalPreview />

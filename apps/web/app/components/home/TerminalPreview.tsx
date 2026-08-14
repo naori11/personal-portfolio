@@ -51,7 +51,9 @@ export function TerminalPreview() {
       </div>
 
       <div className="space-y-2">
-        <p className="text-[var(--terminal-prompt)]">λ main: ~/projects/portfolio</p>
+        <p className="text-[var(--terminal-prompt)]">
+          λ main: ~/projects/portfolio
+        </p>
         <p className="text-[var(--terminal-command)]">
           $ terraform plan
           {step === 0 && !shouldReduceMotion && (
@@ -62,7 +64,11 @@ export function TerminalPreview() {
           )}
         </p>
 
-        {step >= 2 && <p className="text-[var(--terminal-muted)]/75"># Refreshing state...</p>}
+        {step >= 2 && (
+          <p className="text-[var(--terminal-muted)]/75">
+            # Refreshing state...
+          </p>
+        )}
         {step >= 3 && (
           <motion.p
             initial={shouldReduceMotion ? false : { opacity: 0, y: -4 }}
@@ -78,7 +84,10 @@ export function TerminalPreview() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-2 pt-2 text-[var(--terminal-command)]"
           >
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--terminal-success)]" />
+            <span
+              aria-hidden="true"
+              className="h-1.5 w-1.5 rounded-full bg-[var(--terminal-success)]"
+            />
             Infrastructure synced successfully.
           </motion.p>
         )}

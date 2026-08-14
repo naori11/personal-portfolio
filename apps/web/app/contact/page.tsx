@@ -18,7 +18,9 @@ function SubmitButton({ pending }: { pending: boolean }) {
       {!pending && (
         <>
           Send Message
-          <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+          <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
+            send
+          </span>
         </>
       )}
     </motion.button>
@@ -26,7 +28,9 @@ function SubmitButton({ pending }: { pending: boolean }) {
 }
 
 export default function ContactPage() {
-  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
+  const [submitState, setSubmitState] = useState<"idle" | "success" | "error">(
+    "idle",
+  );
   const [errorMessage, setErrorMessage] = useState("");
   const [pending, setPending] = useState(false);
 
@@ -45,7 +49,9 @@ export default function ContactPage() {
     };
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_RENDER_API_URL || "http://localhost:3000/api/contact";
+      const apiUrl =
+        process.env.NEXT_PUBLIC_RENDER_API_URL ||
+        "http://localhost:3000/api/contact";
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -87,7 +93,9 @@ export default function ContactPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <span className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] uppercase tracking-widest">Status: Available</span>
+          <span className="text-[10px] font-[family-name:var(--font-jetbrains-mono)] uppercase tracking-widest">
+            Status: Available
+          </span>
         </motion.div>
         <motion.h1
           className="text-3xl sm:text-5xl md:text-7xl font-[family-name:var(--font-space-grotesk)] font-bold tracking-tighter text-[var(--foreground)] mb-4"
@@ -103,7 +111,8 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
         >
-          Want to discuss a project, ask about my work, or just talk tech? Send me a message.
+          Want to discuss a project, ask about my work, or just talk tech? Send
+          me a message.
         </motion.p>
       </motion.header>
 
@@ -215,11 +224,17 @@ export default function ContactPage() {
           {/* Communication Graphic (Glass Panel) */}
           <div
             className="rounded-lg p-8 border border-[var(--outline-variant)]/15 flex flex-col items-center justify-center text-center space-y-6 aspect-square md:aspect-auto md:h-64"
-            style={{ background: "var(--glass-surface)", backdropFilter: "blur(20px)" }}
+            style={{
+              background: "var(--glass-surface)",
+              backdropFilter: "blur(20px)",
+            }}
           >
             <div className="relative">
               <div className="absolute inset-0 bg-[var(--primary)]/20 blur-3xl rounded-full"></div>
-              <span className="material-symbols-outlined text-6xl text-[var(--primary)] relative z-10" style={{ fontVariationSettings: "'FILL' 1" }}>
+              <span
+                className="material-symbols-outlined text-6xl text-[var(--primary)] relative z-10"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
                 hub
               </span>
             </div>
@@ -233,33 +248,59 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="p-2 rounded bg-[var(--surface-container-high)] text-[var(--primary)]">
-                  <span className="material-symbols-outlined">alternate_email</span>
+                  <span className="material-symbols-outlined">
+                    alternate_email
+                  </span>
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[var(--secondary)] uppercase mb-1">E-mail</p>
-                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[var(--foreground)]">juvanpaulo1@gmail.com</p>
+                  <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[var(--secondary)] uppercase mb-1">
+                    E-mail
+                  </p>
+                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[var(--foreground)]">
+                    juvanpaulo1@gmail.com
+                  </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
                 <div className="p-2 rounded bg-[var(--surface-container-high)] text-[var(--primary)]">
-                  <span className="material-symbols-outlined">share_location</span>
+                  <span className="material-symbols-outlined">
+                    share_location
+                  </span>
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[var(--secondary)] uppercase mb-1">Location</p>
-                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[var(--foreground)]">Caloocan City, PH // Remote</p>
+                  <p className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[var(--secondary)] uppercase mb-1">
+                    Location
+                  </p>
+                  <p className="font-[family-name:var(--font-space-grotesk)] font-medium text-[var(--foreground)]">
+                    Caloocan City, PH // Remote
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className="pt-8 border-t border-[var(--outline-variant)]/15 flex flex-col gap-4">
-              <a className="flex items-center justify-between group" href="https://github.com/naori11">
-                <span className="font-[family-name:var(--font-space-grotesk)] text-[var(--secondary)] group-hover:text-[var(--primary)] transition-colors">GitHub</span>
-                <span className="material-symbols-outlined text-[var(--outline-variant)] group-hover:text-[var(--primary)] transition-colors">open_in_new</span>
+              <a
+                className="flex items-center justify-between group"
+                href="https://github.com/naori11"
+              >
+                <span className="font-[family-name:var(--font-space-grotesk)] text-[var(--secondary)] group-hover:text-[var(--primary)] transition-colors">
+                  GitHub
+                </span>
+                <span className="material-symbols-outlined text-[var(--outline-variant)] group-hover:text-[var(--primary)] transition-colors">
+                  open_in_new
+                </span>
               </a>
-              <a className="flex items-center justify-between group" href="https://www.linkedin.com/in/juvan-emanuel-paulo/">
-                <span className="font-[family-name:var(--font-space-grotesk)] text-[var(--secondary)] group-hover:text-[var(--primary)] transition-colors">LinkedIn</span>
-                <span className="material-symbols-outlined text-[var(--outline-variant)] group-hover:text-[var(--primary)] transition-colors">open_in_new</span>
+              <a
+                className="flex items-center justify-between group"
+                href="https://www.linkedin.com/in/juvan-emanuel-paulo/"
+              >
+                <span className="font-[family-name:var(--font-space-grotesk)] text-[var(--secondary)] group-hover:text-[var(--primary)] transition-colors">
+                  LinkedIn
+                </span>
+                <span className="material-symbols-outlined text-[var(--outline-variant)] group-hover:text-[var(--primary)] transition-colors">
+                  open_in_new
+                </span>
               </a>
             </div>
           </div>

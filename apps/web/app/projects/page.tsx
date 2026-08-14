@@ -11,40 +11,91 @@ import { useTheme } from "../../components/ThemeProvider";
 const projects = [
   {
     title: "JUVAN.TECH",
-    description: "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
-    tech: ["NEXT.JS", "TURBOREPO", "AZURE BICEP", "GITHUB ACTIONS", "TAILWIND CSS"],
+    description:
+      "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
+    tech: [
+      "NEXT.JS",
+      "TURBOREPO",
+      "AZURE BICEP",
+      "GITHUB ACTIONS",
+      "TAILWIND CSS",
+    ],
     github: "https://github.com/naori11/personal-portfolio",
     demo: "https://www.juvan.tech",
     screenshots: [
-      { src: "/assets/projects/juvan.tech/homepage.png", description: "Homepage - Terminal-inspired UI" },
-      { src: "/assets/projects/juvan.tech/projects.png", description: "Projects Page - Portfolio Overview" },
-      { src: "/assets/projects/juvan.tech/about.png", description: "About Section - Professional Experience & Skills" },
-      { src: "/assets/projects/juvan.tech/contact.png", description: "Contact Form - Interactive Inquiry System" },
+      {
+        src: "/assets/projects/juvan.tech/homepage.png",
+        description: "Homepage - Terminal-inspired UI",
+      },
+      {
+        src: "/assets/projects/juvan.tech/projects.png",
+        description: "Projects Page - Portfolio Overview",
+      },
+      {
+        src: "/assets/projects/juvan.tech/about.png",
+        description: "About Section - Professional Experience & Skills",
+      },
+      {
+        src: "/assets/projects/juvan.tech/contact.png",
+        description: "Contact Form - Interactive Inquiry System",
+      },
     ],
   },
   {
     title: "KidSync: Smart RFID Security",
-    description: "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
+    description:
+      "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
     tech: ["FLUTTER", "SUPABASE", "PYTHON", "ESP32"],
     github: "https://github.com/naori11/KidSync",
     demo: "https://ksync.netlify.app/",
     screenshots: [
-      { src: "/assets/projects/kidsync/admin-overview.png", description: "Admin Dashboard - System Overview" },
-      { src: "/assets/projects/kidsync/admin-parents-list.png", description: "Admin Dashboard - Parents & Guardians Management" },
-      { src: "/assets/projects/kidsync/guard-verification.png", description: "Guard Dashboard - Manual Override & Verification" },
-      { src: "/assets/projects/kidsync/guard-recent-activity.png", description: "Guard Dashboard - Recent Activity Logs" },
-      { src: "/assets/projects/kidsync/parent-schedule.png", description: "Parent App - Pick-up & Drop-off Schedule" },
-      { src: "/assets/projects/kidsync/parent-home.png", description: "Parent App - Real-time Status" },
-      { src: "/assets/projects/kidsync/driver-students.png", description: "Driver App - Assigned Students List" },
-      { src: "/assets/projects/kidsync/driver-schedule.png", description: "Driver App - Daily Route Schedule" },
-      { src: "/assets/projects/kidsync/teacher-attendance.png", description: "Teacher Dashboard - Class Attendance" },
-      { src: "/assets/projects/kidsync/teacher-schedule.png", description: "Teacher Dashboard - Class Schedule" },
+      {
+        src: "/assets/projects/kidsync/admin-overview.png",
+        description: "Admin Dashboard - System Overview",
+      },
+      {
+        src: "/assets/projects/kidsync/admin-parents-list.png",
+        description: "Admin Dashboard - Parents & Guardians Management",
+      },
+      {
+        src: "/assets/projects/kidsync/guard-verification.png",
+        description: "Guard Dashboard - Manual Override & Verification",
+      },
+      {
+        src: "/assets/projects/kidsync/guard-recent-activity.png",
+        description: "Guard Dashboard - Recent Activity Logs",
+      },
+      {
+        src: "/assets/projects/kidsync/parent-schedule.png",
+        description: "Parent App - Pick-up & Drop-off Schedule",
+      },
+      {
+        src: "/assets/projects/kidsync/parent-home.png",
+        description: "Parent App - Real-time Status",
+      },
+      {
+        src: "/assets/projects/kidsync/driver-students.png",
+        description: "Driver App - Assigned Students List",
+      },
+      {
+        src: "/assets/projects/kidsync/driver-schedule.png",
+        description: "Driver App - Daily Route Schedule",
+      },
+      {
+        src: "/assets/projects/kidsync/teacher-attendance.png",
+        description: "Teacher Dashboard - Class Attendance",
+      },
+      {
+        src: "/assets/projects/kidsync/teacher-schedule.png",
+        description: "Teacher Dashboard - Class Schedule",
+      },
     ],
     offset: "lg:mt-12",
   },
   {
     title: "Coffeetory POS",
-    description: "An inventory management system built with PHP and MySQL. Streamlines product tracking and sales operations for small-scale retail.",
+    description:
+      "An inventory management system built with PHP and MySQL. Streamlines product tracking and sales operations for small-scale retail.",
     tech: ["PHP", "MYSQL", "JAVASCRIPT"],
     github: "https://github.com/naori11/Coffeetory",
     demo: null,
@@ -56,7 +107,8 @@ const projects = [
   },
   {
     title: "AI Code Reviewer",
-    description: "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
+    description:
+      "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
     tech: ["FASTAPI", "GEMINI API", "PYTHON", "GITHUB API", "DOCKER"],
     github: "https://github.com/naori11/code-reviewer",
     demo: null,
@@ -72,7 +124,8 @@ export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState<number>(0);
 
-  const selectedProjectData = selectedProject !== null ? projects[selectedProject] : null;
+  const selectedProjectData =
+    selectedProject !== null ? projects[selectedProject] : null;
 
   const openGallery = (projectIndex: number) => {
     setSelectedProject(projectIndex);
@@ -86,13 +139,19 @@ export default function ProjectsPage() {
 
   const nextImage = () => {
     if (selectedProjectData?.screenshots) {
-      setSelectedImage((prev) => (prev + 1) % selectedProjectData.screenshots.length);
+      setSelectedImage(
+        (prev) => (prev + 1) % selectedProjectData.screenshots.length,
+      );
     }
   };
 
   const prevImage = () => {
     if (selectedProjectData?.screenshots) {
-      setSelectedImage((prev) => (prev - 1 + selectedProjectData.screenshots.length) % selectedProjectData.screenshots.length);
+      setSelectedImage(
+        (prev) =>
+          (prev - 1 + selectedProjectData.screenshots.length) %
+          selectedProjectData.screenshots.length,
+      );
     }
   };
 
@@ -116,7 +175,9 @@ export default function ProjectsPage() {
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
-          <span className="font-[family-name:var(--font-jetbrains-mono)] text-[var(--tertiary)] text-xs uppercase tracking-[0.2em]">Project Portfolio</span>
+          <span className="font-[family-name:var(--font-jetbrains-mono)] text-[var(--tertiary)] text-xs uppercase tracking-[0.2em]">
+            Project Portfolio
+          </span>
         </motion.div>
         <motion.h1
           className="font-[family-name:var(--font-space-grotesk)] text-3xl sm:text-5xl md:text-7xl font-bold text-[var(--foreground)] tracking-tighter mb-6"
@@ -124,7 +185,8 @@ export default function ProjectsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: easings.easeOutExpo }}
         >
-          Things I've <span className="text-[var(--primary)] italic">Built.</span>
+          Things I've{" "}
+          <span className="text-[var(--primary)] italic">Built.</span>
         </motion.h1>
         <motion.p
           className="text-base sm:text-lg text-[var(--secondary)] leading-relaxed max-w-2xl"
@@ -132,7 +194,8 @@ export default function ProjectsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: easings.easeOutExpo }}
         >
-          From hardware-integrated IoT systems to automated deployment pipelines. Real projects solving real problems.
+          From hardware-integrated IoT systems to automated deployment
+          pipelines. Real projects solving real problems.
         </motion.p>
       </motion.header>
 
@@ -177,15 +240,15 @@ export default function ProjectsPage() {
                           <span
                             className="w-3 h-3 flex-shrink-0"
                             style={{
-                              backgroundColor: 'currentColor',
+                              backgroundColor: "currentColor",
                               WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
                               maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
-                              WebkitMaskRepeat: 'no-repeat',
-                              maskRepeat: 'no-repeat',
-                              WebkitMaskPosition: 'center',
-                              maskPosition: 'center',
-                              WebkitMaskSize: 'contain',
-                              maskSize: 'contain'
+                              WebkitMaskRepeat: "no-repeat",
+                              maskRepeat: "no-repeat",
+                              WebkitMaskPosition: "center",
+                              maskPosition: "center",
+                              WebkitMaskSize: "contain",
+                              maskSize: "contain",
                             }}
                           />
                         )}
@@ -207,7 +270,10 @@ export default function ProjectsPage() {
                   rel="noopener noreferrer"
                   className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[var(--tertiary)] hover:underline flex items-center gap-1"
                 >
-                  <span className="material-symbols-outlined text-sm">code</span> GITHUB
+                  <span className="material-symbols-outlined text-sm">
+                    code
+                  </span>{" "}
+                  GITHUB
                 </a>
                 {project.demo && (
                   <a
@@ -216,7 +282,10 @@ export default function ProjectsPage() {
                     rel="noopener noreferrer"
                     className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[var(--primary)] hover:underline flex items-center gap-1"
                   >
-                    <span className="material-symbols-outlined text-sm">open_in_new</span> LIVE DEMO
+                    <span className="material-symbols-outlined text-sm">
+                      open_in_new
+                    </span>{" "}
+                    LIVE DEMO
                   </a>
                 )}
                 {project.screenshots && project.screenshots.length > 0 && (
@@ -224,7 +293,10 @@ export default function ProjectsPage() {
                     onClick={() => openGallery(index)}
                     className="font-[family-name:var(--font-jetbrains-mono)] text-[11px] text-[var(--secondary)] hover:text-[var(--primary)] hover:underline flex items-center gap-1 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-sm">photo_library</span> SCREENSHOTS
+                    <span className="material-symbols-outlined text-sm">
+                      photo_library
+                    </span>{" "}
+                    SCREENSHOTS
                   </button>
                 )}
               </div>
@@ -242,13 +314,30 @@ export default function ProjectsPage() {
         transition={{ duration: 0.6, ease: easings.easeOutExpo }}
       >
         <div className="absolute -right-16 -bottom-16 opacity-5 pointer-events-none">
-          <span className="material-symbols-outlined text-[300px]" style={{ fontVariationSettings: "'FILL' 1" }}>terminal</span>
+          <span
+            className="material-symbols-outlined text-[300px]"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+          >
+            terminal
+          </span>
         </div>
         <div className="relative z-10 max-w-xl">
-          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-bold text-[var(--foreground)] mb-4 tracking-tight">Want to work together?</h2>
-          <p className="text-[var(--secondary)] mb-8">I'm always interested in projects involving cloud infrastructure, backend development, or IoT systems. Let's talk.</p>
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", ...springs.snappy }}>
-            <Link href="/contact" className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--primary-container)] text-[var(--on-primary)] px-6 sm:px-8 py-2.5 sm:py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-xs sm:text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_var(--primary-shadow-strong)] transition-all">
+          <h2 className="font-[family-name:var(--font-space-grotesk)] text-2xl sm:text-4xl font-bold text-[var(--foreground)] mb-4 tracking-tight">
+            Want to work together?
+          </h2>
+          <p className="text-[var(--secondary)] mb-8">
+            I'm always interested in projects involving cloud infrastructure,
+            backend development, or IoT systems. Let's talk.
+          </p>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", ...springs.snappy }}
+          >
+            <Link
+              href="/contact"
+              className="inline-block bg-gradient-to-r from-[var(--primary)] to-[var(--primary-container)] text-[var(--on-primary)] px-6 sm:px-8 py-2.5 sm:py-3 font-[family-name:var(--font-jetbrains-mono)] font-bold text-xs sm:text-sm tracking-widest uppercase rounded-lg hover:shadow-[0_0_20px_var(--primary-shadow-strong)] transition-all"
+            >
               Get in Touch
             </Link>
           </motion.div>
@@ -300,8 +389,12 @@ export default function ProjectsPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="hidden sm:inline font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider">ESC</span>
-                  <span className="material-symbols-outlined text-xl">close</span>
+                  <span className="hidden sm:inline font-[family-name:var(--font-jetbrains-mono)] text-xs uppercase tracking-wider">
+                    ESC
+                  </span>
+                  <span className="material-symbols-outlined text-xl">
+                    close
+                  </span>
                 </motion.button>
               </div>
 
@@ -318,18 +411,39 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.3, ease: easings.easeOutExpo }}
                     >
                       <Image
-                        src={typeof selectedProjectData.screenshots[selectedImage] === 'string' ? (selectedProjectData.screenshots[selectedImage] as string) : (selectedProjectData.screenshots[selectedImage] as any).src}
+                        src={
+                          typeof selectedProjectData.screenshots[
+                            selectedImage
+                          ] === "string"
+                            ? (selectedProjectData.screenshots[
+                                selectedImage
+                              ] as string)
+                            : (
+                                selectedProjectData.screenshots[
+                                  selectedImage
+                                ] as any
+                              ).src
+                        }
                         alt={`${selectedProjectData.title} screenshot ${selectedImage + 1}`}
                         fill
                         className="object-contain p-4 sm:p-6 md:p-12 pb-16 sm:pb-20"
                       />
-                      {typeof selectedProjectData.screenshots[selectedImage] !== 'string' && (selectedProjectData.screenshots[selectedImage] as any).description && (
-                        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10 max-w-[calc(100%-4rem)] sm:max-w-md">
-                          <span className="inline-block bg-[var(--surface-container-low)]/95 backdrop-blur-md border border-[var(--outline-variant)]/50 text-[var(--foreground)] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
-                            {(selectedProjectData.screenshots[selectedImage] as any).description}
-                          </span>
-                        </div>
-                      )}
+                      {typeof selectedProjectData.screenshots[selectedImage] !==
+                        "string" &&
+                        (selectedProjectData.screenshots[selectedImage] as any)
+                          .description && (
+                          <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-10 max-w-[calc(100%-4rem)] sm:max-w-md">
+                            <span className="inline-block bg-[var(--surface-container-low)]/95 backdrop-blur-md border border-[var(--outline-variant)]/50 text-[var(--foreground)] text-xs sm:text-sm px-4 py-2 rounded-lg font-[family-name:var(--font-jetbrains-mono)] shadow-lg">
+                              {
+                                (
+                                  selectedProjectData.screenshots[
+                                    selectedImage
+                                  ] as any
+                                ).description
+                              }
+                            </span>
+                          </div>
+                        )}
                     </motion.div>
                   </AnimatePresence>
 
@@ -342,7 +456,9 @@ export default function ProjectsPage() {
                         whileHover={{ scale: 1.1, x: -4 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <span className="material-symbols-outlined text-xl sm:text-2xl">chevron_left</span>
+                        <span className="material-symbols-outlined text-xl sm:text-2xl">
+                          chevron_left
+                        </span>
                       </motion.button>
                       <motion.button
                         onClick={nextImage}
@@ -350,7 +466,9 @@ export default function ProjectsPage() {
                         whileHover={{ scale: 1.1, x: 4 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <span className="material-symbols-outlined text-xl sm:text-2xl">chevron_right</span>
+                        <span className="material-symbols-outlined text-xl sm:text-2xl">
+                          chevron_right
+                        </span>
                       </motion.button>
                     </>
                   )}
@@ -358,25 +476,29 @@ export default function ProjectsPage() {
                   {/* Image Counter Badge */}
                   <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 bg-[var(--surface-container-low)]/90 backdrop-blur-sm border border-[var(--outline-variant)]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                     <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[var(--tertiary)] text-sm sm:text-base">image</span>
+                      <span className="material-symbols-outlined text-[var(--tertiary)] text-sm sm:text-base">
+                        image
+                      </span>
                       <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[var(--primary)] font-bold">
                         {selectedImage + 1}
                       </span>
-                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[var(--outline-variant)]">/</span>
+                      <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[var(--outline-variant)]">
+                        /
+                      </span>
                       <span className="font-[family-name:var(--font-jetbrains-mono)] text-xs sm:text-sm text-[var(--secondary)]">
                         {selectedProjectData.screenshots.length}
                       </span>
                     </div>
                   </div>
-
-
                 </div>
               </div>
 
               {/* Thumbnail Strip */}
               <div className="relative bg-[var(--surface-container-low)] rounded-lg border border-[var(--outline-variant)]/20 p-3 sm:p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="material-symbols-outlined text-[var(--tertiary)] text-sm">photo_library</span>
+                  <span className="material-symbols-outlined text-[var(--tertiary)] text-sm">
+                    photo_library
+                  </span>
                   <span className="font-[family-name:var(--font-jetbrains-mono)] text-[10px] sm:text-xs text-[var(--secondary)] uppercase tracking-wider">
                     All Screenshots
                   </span>
@@ -395,7 +517,11 @@ export default function ProjectsPage() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Image
-                        src={typeof screenshot === 'string' ? screenshot : (screenshot as any).src}
+                        src={
+                          typeof screenshot === "string"
+                            ? screenshot
+                            : (screenshot as any).src
+                        }
                         alt={`Thumbnail ${idx + 1}`}
                         fill
                         className="object-cover"
