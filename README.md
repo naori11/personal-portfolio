@@ -121,6 +121,7 @@ Rather than writing brittle snapshot tests for purely static presentation, the t
 
 | Test File                                                                   | Target Module                                  | Description & Scope                                                                               |
 | :-------------------------------------------------------------------------- | :--------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| [`contact.test.js`](apps/api/src/functions/contact.test.js)                 | `apps/api/src/functions/contact.js`            | Tests environment configuration, input validation, Resend email dispatch, and error handling.    |
 | [`tech-badges.test.ts`](apps/web/lib/tech-badges.test.ts)                   | `apps/web/lib/tech-badges.ts`                  | Validates badge styling for light & dark modes and ensures unknown technologies fall back safely. |
 | [`page.test.tsx`](apps/web/app/contact/page.test.tsx)                       | `apps/web/app/contact/page.tsx`                | Tests contact form validation, API submission, success state transitions, and error handling.     |
 | [`Navbar.test.tsx`](apps/web/components/Navbar.test.tsx)                    | `apps/web/components/Navbar.tsx`               | Verifies desktop routing links, mobile drawer toggling, and light/dark theme switcher state.      |
