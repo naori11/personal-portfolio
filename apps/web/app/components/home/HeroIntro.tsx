@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeInUp, staggerContainer } from "../../../lib/motion";
+import { fadeInUp, staggerContainer, easings } from "../../../lib/motion";
 import { heroStack } from "./home-content";
 import { TerminalPreview } from "./TerminalPreview";
 import { useTheme } from "../../../components/ThemeProvider";
@@ -80,17 +80,21 @@ export function HeroIntro({ onOpenResume }: HeroIntroProps) {
           className="relative mx-auto w-full max-w-xl lg:col-span-5 lg:translate-y-8"
         >
           <div className="relative ml-auto aspect-[4/5] w-[88%] overflow-hidden rounded-lg border border-[var(--outline-variant)]/25 bg-[var(--surface-container)]">
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               <motion.div
                 key={theme}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
+                transition={{ duration: 0.6, ease: easings.materialStandard }}
                 className="absolute inset-0"
               >
                 <Image
-                  src="/assets/image.jpg"
+                  src={
+                    theme === "light"
+                      ? "/assets/image-light.jpg"
+                      : "/assets/image.jpg"
+                  }
                   style={{
                     filter:
                       theme === "light"
@@ -107,7 +111,7 @@ export function HeroIntro({ onOpenResume }: HeroIntroProps) {
             </AnimatePresence>
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/75 via-transparent to-transparent transition-colors duration-500"
+              className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/75 via-transparent to-transparent transition-colors duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
             />
           </div>
           <div className="relative -mt-20 mr-auto w-[92%] sm:-mt-24 sm:w-[78%]">
