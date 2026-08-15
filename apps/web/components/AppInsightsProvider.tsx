@@ -1,20 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { appInsights } from "../lib/appinsights";
 
-export function AppInsightsProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     if (appInsights) {
-      const url = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ""}`;
+      const query = searchParams?.toString();
+      const url = `${pathname}${query ? `?${query}` : ""}`;
       appInsights.trackPageView({
         name: pathname,
         uri: url,
@@ -23,5 +20,20 @@ export function AppInsightsProvider({
     }
   }, [pathname, searchParams]);
 
-  return <>{children}</>;
+  return null;
+}
+
+export function AppInsightsProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <Suspense fallback={null}>
+        <PageViewTracker />
+      </Suspense>
+      {children}
+    </>
+  );
 }
