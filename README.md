@@ -7,6 +7,8 @@ A modern, high-performance portfolio monorepo built with a focus on scalability,
 - **Framework:** [Next.js (React)](https://nextjs.org/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Animation:** [Framer Motion](https://www.framer.com/motion/)
+- **Serverless Backend:** [Azure Functions (Node.js v4 model)](https://learn.microsoft.com/en-us/azure/azure-functions/)
+- **Email Service:** [Resend SDK](https://resend.com/)
 - **Monorepo Management:** [Turborepo](https://turbo.build/)
 - **Package Manager:** [pnpm](https://pnpm.io/)
 - **Infrastructure as Code (IaC):** [Azure Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview)
@@ -22,6 +24,7 @@ This monorepo uses a modular architecture to share configurations and UI compone
 ### Apps
 
 - `apps/web`: The main portfolio website (Next.js with Static Export).
+- `apps/api`: Azure Functions serverless backend (Node.js v4 model) for contact form processing and email delivery via Resend.
 
 ### Shared Packages
 
@@ -85,6 +88,12 @@ pnpm --filter web lint:fix     # Auto-fix ESLint issues
 pnpm --filter web test         # Run unit tests with Vitest
 ```
 
+#### Serverless Backend API (`apps/api`)
+
+```bash
+pnpm --filter @repo/api start  # Run Azure Functions locally (via Azure Functions Core Tools)
+```
+
 #### Shared UI Library (`packages/ui`)
 
 ```bash
@@ -134,6 +143,38 @@ pnpm --filter web test apps/web/lib/tech-badges.test.ts
 
 ---
 
+## ⚡ Serverless Backend Architecture
+
+The backend email delivery service is built as a zero-cost **Azure Managed Function** inside `apps/api`:
+
+- **Runtime & Model:** Node.js (v20+) using the Azure Functions **v4 programming model**.
+- **Email Service:** [Resend](https://resend.com/) for transactional email handling.
+- **Routing & Proxy:** Integrated directly with Azure Static Web Apps. The frontend calls the relative path `/api/contact`, and Azure SWA automatically proxies the request to the Managed Function without custom CORS configuration.
+- **Zero Idle Cost:** Serverless execution that scales to zero when not handling requests.
+
+### Local Development
+
+Local settings and environment variables can be placed in `apps/api/local.settings.json`:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "RESEND_API_KEY": "your_resend_api_key"
+  }
+}
+```
+
+Run locally:
+
+```bash
+pnpm --filter @repo/api start
+```
+
+---
+
 ## 🏗️ Infrastructure as Code (IaC)
 
 The infrastructure is defined using **Azure Bicep** in the `infra/` directory.
@@ -172,15 +213,18 @@ The repository includes automated GitHub Actions workflows under `.github/workfl
 
 - **Trigger:** Push or merged PR to the `main` branch.
 - **Tasks:**
-  1. Sets up Node.js 20 and pnpm with dependency cache.
+  1. Sets up Node.js 22 and pnpm with dependency cache.
   2. Runs `pnpm build --filter=web` with static HTML export (`apps/web/out`).
-  3. Deploys static build to Azure Static Web Apps via `Azure/static-web-apps-deploy`.
+  3. Deploys frontend static build (`app_location: apps/web/out`) and Azure Functions backend (`api_location: apps/api`) simultaneously via `Azure/static-web-apps-deploy`.
 
-### Required Secrets
+### Environment Variables & Secrets
 
-To enable automated deployments, configure this secret in GitHub:
+Configure the following:
 
-- `AZURE_STATIC_WEB_APPS_API_TOKEN`: Deployment token from the Azure Portal for the Static Web App.
+- **GitHub Repository Secret:**
+  - `AZURE_STATIC_WEB_APPS_API_TOKEN`: Deployment token from the Azure Portal for the Static Web App.
+- **Azure Portal Application Setting (under Static Web App -> Environment variables):**
+  - `RESEND_API_KEY`: Your Resend API secret key for email dispatch.
 
 ---
 
