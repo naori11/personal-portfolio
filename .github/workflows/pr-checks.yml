@@ -36,3 +36,8 @@ jobs:
 
       - name: Unit Tests (Vitest)
         run: pnpm test
+
+      - name: Build Check (Turborepo)
+        run: pnpm build
+        env:
+          SKIP_ENV_VALIDATION: true
