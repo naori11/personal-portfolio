@@ -1,12 +1,23 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { appInsights } from '../lib/appinsights';
 
 export function AppInsightsProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   useEffect(() => {
-    // App Insights initialized on module load if connection string is present
-  }, []);
+    if (appInsights) {
+      const url = `${pathname}${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`;
+      appInsights.trackPageView({
+        name: pathname,
+        uri: url,
+      });
+      appInsights.flush();
+    }
+  }, [pathname, searchParams]);
 
   return <>{children}</>;
 }
