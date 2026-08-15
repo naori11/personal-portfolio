@@ -22,5 +22,30 @@ resource staticWebApp 'Microsoft.Web/staticSites@2022-09-01' = {
   }
 }
 
-// 5. Output the auto-generated URL
+// 5. Log Analytics Workspace (Required for Application Insights)
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
+  name: '${appName}-law'
+  location: location
+  properties: {
+    sku: {
+      name: 'PerGB2018'
+    }
+    retentionInDays: 30
+  }
+}
+
+// 6. Application Insights
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: '${appName}-appinsights'
+  location: location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+    WorkspaceResourceId: logAnalyticsWorkspace.id
+  }
+}
+
+// 7. Outputs
 output siteUrl string = staticWebApp.properties.defaultHostname
+output appInsightsConnectionString string = appInsights.properties.ConnectionString
+output appInsightsInstrumentationKey string = appInsights.properties.InstrumentationKey
