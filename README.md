@@ -224,8 +224,22 @@ Configure the following:
 
 - **GitHub Repository Secret:**
   - `AZURE_STATIC_WEB_APPS_API_TOKEN`: Deployment token from the Azure Portal for the Static Web App.
+  - `NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING`: Application Insights Connection String passed during the Next.js build step for client-side telemetry.
 - **Azure Portal Application Setting (under Static Web App -> Environment variables):**
   - `RESEND_API_KEY`: Your Resend API secret key for email dispatch.
+  - `APPLICATIONINSIGHTS_CONNECTION_STRING`: Application Insights Connection String for serverless Azure Function telemetry and exception logging.
+
+---
+
+## 📊 Observability & Monitoring
+
+This project uses **Azure Application Insights** backed by a **Log Analytics Workspace** for end-to-end monitoring across both frontend and serverless backend layers.
+
+### Architecture & Capabilities
+
+- **Infrastructure Provisioning (`infra/main.bicep`):** Provisions a dedicated Log Analytics Workspace (`portfolio-site-law`) and linked Application Insights resource (`portfolio-site-appinsights`).
+- **Frontend Real User Monitoring (RUM):** Uses `@microsoft/applicationinsights-web` and `@microsoft/applicationinsights-react-js` wrapped in `AppInsightsProvider` to capture client-side page views, route transitions, unhandled promise rejections, and user interaction metrics.
+- **Backend Function Telemetry:** Uses the `applicationinsights` Node.js SDK to capture function invocations, execution timings, unhandled exceptions (`trackException`), and custom events like `EmailSentSuccessfully`.
 
 ---
 
