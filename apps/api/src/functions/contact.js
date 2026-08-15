@@ -1,10 +1,19 @@
 import { app } from '@azure/functions';
 import { Resend } from 'resend';
+import * as appInsights from 'applicationinsights';
+
+// Initialize Application Insights
+if (process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
+    appInsights.setup().start();
+}
 
 export async function contactHandler(request, context = { warn: () => {}, error: () => {} }) {
     const resendApiKey = process.env.RESEND_API_KEY;
+    const client = appInsights.defaultClient;
+
     if (!resendApiKey) {
         context.warn?.("Email service not configured.");
+        client?.trackException({ exception: new Error("Email service not configured") });
         return { status: 500, jsonBody: { error: "Email service not configured" } };
     }
 
@@ -37,12 +46,15 @@ export async function contactHandler(request, context = { warn: () => {}, error:
 
         if (error) {
             context.error?.("Email send error:", error);
+            client?.trackException({ exception: new Error(error.message || "Resend API Error") });
             return { status: 500, jsonBody: { error: "Failed to send message. Please try again." } };
         }
 
+        client?.trackEvent({ name: "EmailSentSuccessfully", properties: { subject } });
         return { status: 200, jsonBody: { success: true } };
     } catch (error) {
         context.error?.("Email send error:", error);
+        client?.trackException({ exception: error instanceof Error ? error : new Error(String(error)) });
         return { status: 500, jsonBody: { error: "Failed to send message. Please try again." } };
     }
 }

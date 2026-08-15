@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "Azure Serverless API",
   "type": "module",
-  "main": "src/functions/*.js",
+  "main": "src/functions/!(*.test).js",
   "scripts": {
     "start": "func start",
     "test": "vitest run"
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
+    "applicationinsights": "^3.16.0",
     "resend": "^3.0.0"
   },
   "devDependencies": {
