@@ -61,7 +61,8 @@ Run these commands from the root directory:
 | :------------------ | :-------------------- | :-------------------------------------------------------------------------------- |
 | `pnpm dev`          | **Start Dev Servers** | Runs all applications in dev mode (Next.js at `localhost:3001`).                  |
 | `pnpm build`        | **Build All**         | Builds all apps and packages for production via Turborepo.                        |
-| `pnpm check`        | **Full Verification** | Runs type check, lint check, and formatting check across the entire repo.         |
+| `pnpm test`         | **Run Unit Tests**    | Executes unit test suites across workspaces using Vitest.                         |
+| `pnpm check`        | **Full Verification** | Runs type check, lint check, format check, and tests across the repo.             |
 | `pnpm fix`          | **Auto-Fix All**      | Auto-formats code with Prettier and auto-fixes ESLint warnings across workspaces. |
 | `pnpm check-types`  | **Type Check**        | Runs TypeScript compiler / Next.js typegen across all packages (`tsc --noEmit`).  |
 | `pnpm lint`         | **Lint Check**        | Runs ESLint across all packages with zero-warning threshold (`--max-warnings 0`). |
@@ -91,6 +92,44 @@ pnpm --filter @repo/ui check-types  # Type check UI package
 pnpm --filter @repo/ui lint         # Lint UI components
 pnpm --filter @repo/ui lint:fix     # Auto-fix UI lint issues
 pnpm --filter @repo/ui build:styles # Compile Tailwind styles
+```
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+This repository uses [Vitest](https://vitest.dev/) and [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) for fast, isolated unit testing.
+
+### Testing Philosophy
+
+Rather than writing brittle snapshot tests for purely static presentation, the test suite focuses on **high-ROI business logic, state machines, and interactive components**:
+
+- **Deterministic Logic:** Pure utility functions (badge color resolution, theme contrast, data integrity).
+- **Interactive UI Lifecycle:** Modal state toggling, keyboard accessibility (`Escape` listeners), PDF zoom handling, and mobile menu transitions.
+- **Form Handling & Resiliency:** Contact form field validation, API payload serialization, error states, and network fault handling.
+
+### Test Suites Overview
+
+| Test File                                                                   | Target Module                                  | Description & Scope                                                                               |
+| :-------------------------------------------------------------------------- | :--------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| [`tech-badges.test.ts`](apps/web/lib/tech-badges.test.ts)                   | `apps/web/lib/tech-badges.ts`                  | Validates badge styling for light & dark modes and ensures unknown technologies fall back safely. |
+| [`page.test.tsx`](apps/web/app/contact/page.test.tsx)                       | `apps/web/app/contact/page.tsx`                | Tests contact form validation, API submission, success state transitions, and error handling.     |
+| [`Navbar.test.tsx`](apps/web/components/Navbar.test.tsx)                    | `apps/web/components/Navbar.tsx`               | Verifies desktop routing links, mobile drawer toggling, and light/dark theme switcher state.      |
+| [`ResumeModal.test.tsx`](apps/web/app/components/home/ResumeModal.test.tsx) | `apps/web/app/components/home/ResumeModal.tsx` | Verifies modal accessibility, dialog rendering, zoom controls, and keyboard `Escape` closing.     |
+| [`PDFViewer.test.tsx`](apps/web/app/components/PDFViewer.test.tsx)          | `apps/web/app/components/PDFViewer.tsx`        | Validates PDF rendering initialization and fallback error handling.                               |
+| [`home-content.test.ts`](apps/web/app/components/home/home-content.test.ts) | `apps/web/app/components/home/home-content.ts` | Asserts structural integrity and schema conformity of featured projects and career data.          |
+
+### Running Tests
+
+```bash
+# Run all unit tests across the monorepo
+pnpm test
+
+# Run tests in watch mode during development
+pnpm --filter web test --watch
+
+# Run a specific test suite
+pnpm --filter web test apps/web/lib/tech-badges.test.ts
 ```
 
 ---
@@ -126,6 +165,7 @@ The repository includes automated GitHub Actions workflows under `.github/workfl
   - `pnpm format:check` (Prettier)
   - `pnpm check-types` (TypeScript)
   - `pnpm lint` (ESLint with zero-warning tolerance)
+  - `pnpm test` (Vitest unit test suites)
 - **Purpose:** Quality gate that blocks regressions before PR approval and merge.
 
 ### 2. Build & Deploy (`.github/workflows/ci.yml`)
