@@ -143,6 +143,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <motion.button
             variants={navItem}
+            aria-label="Toggle navigation menu"
             className="md:hidden p-2 hover:bg-[var(--surface-variant)]/50 transition-all duration-300 text-[var(--primary)]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
