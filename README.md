@@ -40,7 +40,7 @@ This monorepo uses a modular architecture to share configurations and UI compone
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v20 or higher)
+- [Node.js](https://nodejs.org/) (v22 or higher)
 - [pnpm](https://pnpm.io/installation) (v10 or higher)
 
 ### Installation
