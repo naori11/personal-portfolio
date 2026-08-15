@@ -32,6 +32,10 @@ jobs:
         env:
           SKIP_ENV_VALIDATION: true
           NEXT_PUBLIC_RENDER_API_URL: ${{ secrets.NEXT_PUBLIC_RENDER_API_URL }}
+          NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING }}
+
+      - name: Clean API node_modules for Oryx build
+        run: rm -rf apps/api/node_modules
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
