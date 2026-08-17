@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Azure Serverless API",
   "type": "module",
-  "main": "src/functions/!(*.test).js",
+  "main": "src/functions/*.js",
   "scripts": {
     "start": "func start",
     "test": "vitest run"

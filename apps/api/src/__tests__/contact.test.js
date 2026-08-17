@@ -14,7 +14,7 @@ vi.mock('resend', () => {
   };
 });
 
-import { contactHandler } from './contact.js';
+import { contactHandler } from '../functions/contact.js';
 
 function createMockContext() {
   return {
