@@ -71,6 +71,25 @@ const projects: Project[] = [
     ],
   },
   {
+    inProgress: true,
+    title: "MaaS (Math-as-a-Service)",
+    description: "An enterprise-grade arithmetic computing platform. Features user authentication, calculation history logs, and a tier-based billing system.",
+    tech: [
+      "NEXT.JS", "TAILWIND CSS", "FASTAPI", "POSTGRESQL",
+      "DOCKER", "TERRAFORM", "AZURE", "KUBERNETES",
+      "PROMETHEUS", "GRAFANA"
+    ],
+    github: "#",
+    demo: null,
+    screenshots: [
+      { src: "/assets/projects/maas/login.png", description: "Initiate Session - Enterprise Authentication" },
+      { src: "/assets/projects/maas/signup.png", description: "Provision Account - User Registration" },
+      { src: "/assets/projects/maas/calculator.png", description: "Calculator View - High-Precision Arithmetic" },
+      { src: "/assets/projects/maas/history.png", description: "Calculation History - Enterprise Logs" },
+      { src: "/assets/projects/maas/billing.png", description: "Subscription Management - Tiered Billing" },
+    ],
+  },
+  {
     title: "KidSync: Smart RFID Security",
     description:
       "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
