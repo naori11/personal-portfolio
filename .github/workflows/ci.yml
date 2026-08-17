@@ -34,8 +34,10 @@ jobs:
           NEXT_PUBLIC_RENDER_API_URL: ${{ secrets.NEXT_PUBLIC_RENDER_API_URL }}
           NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING }}
 
-      - name: Clean API node_modules for Oryx build
-        run: rm -rf apps/api/node_modules
+      - name: Clean up for Oryx build
+        run: |
+          rm -rf apps/api/node_modules
+          rm -f pnpm-lock.yaml pnpm-workspace.yaml
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
