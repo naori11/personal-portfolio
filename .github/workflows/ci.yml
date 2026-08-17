@@ -34,11 +34,11 @@ jobs:
           NEXT_PUBLIC_RENDER_API_URL: ${{ secrets.NEXT_PUBLIC_RENDER_API_URL }}
           NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING }}
 
-      - name: Build API manually
+      - name: Hide root package files to force Oryx to only build the API
         run: |
-          cd apps/api
-          rm -rf node_modules package-lock.json
-          npm install --production
+          mv package.json package.json.bak
+          mv pnpm-lock.yaml pnpm-lock.yaml.bak
+          rm -rf apps/api/node_modules apps/api/package-lock.json
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
@@ -49,4 +49,3 @@ jobs:
           app_location: "apps/web/out"
           api_location: "apps/api"
           skip_app_build: true
-          api_build_command: "echo 'Skipping API build as it is done manually'"
