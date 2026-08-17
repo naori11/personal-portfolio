@@ -73,7 +73,8 @@ const projects: Project[] = [
   {
     inProgress: true,
     title: "MaaS (Math-as-a-Service)",
-    description: "A microservices-based platform built primarily as a sandbox for self-studying DevOps tools and practices. While not intended for commercial deployment, it will be hosted on a dedicated server to demonstrate cloud infrastructure and CI/CD workflows.",
+    description:
+      "A microservices-based platform built primarily as a sandbox for self-studying DevOps tools and practices. While not intended for commercial deployment, it will be hosted on a dedicated server to demonstrate cloud infrastructure and CI/CD workflows.",
     tech: [
       "NEXT.JS", "TAILWIND CSS", "FASTAPI", "POSTGRESQL",
       "DOCKER", "TERRAFORM", "AZURE", "KUBERNETES",
@@ -82,11 +83,26 @@ const projects: Project[] = [
     github: "#",
     demo: null,
     screenshots: [
-      { src: "/assets/projects/maas/login.png", description: "Initiate Session - Enterprise Authentication" },
-      { src: "/assets/projects/maas/signup.png", description: "Provision Account - User Registration" },
-      { src: "/assets/projects/maas/calculator.png", description: "Calculator View - High-Precision Arithmetic" },
-      { src: "/assets/projects/maas/history.png", description: "Calculation History - Enterprise Logs" },
-      { src: "/assets/projects/maas/billing.png", description: "Subscription Management - Tiered Billing" },
+      {
+        src: "/assets/projects/maas/login.png",
+        description: "Initiate Session - Enterprise Authentication",
+      },
+      {
+        src: "/assets/projects/maas/signup.png",
+        description: "Provision Account - User Registration",
+      },
+      {
+        src: "/assets/projects/maas/calculator.png",
+        description: "Calculator View - High-Precision Arithmetic",
+      },
+      {
+        src: "/assets/projects/maas/history.png",
+        description: "Calculation History - Enterprise Logs",
+      },
+      {
+        src: "/assets/projects/maas/billing.png",
+        description: "Subscription Management - Tiered Billing",
+      },
     ],
   },
   {
