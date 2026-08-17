@@ -2,14 +2,15 @@ import { app } from '@azure/functions';
 import { Resend } from 'resend';
 import * as appInsights from 'applicationinsights';
 
-// Initialize Application Insights
+// Do not call appInsights.setup().start() in Azure Functions! 
+// The host automatically instruments the process. Calling it manually causes conflicts and crashes.
+let client;
 if (process.env.APPLICATIONINSIGHTS_CONNECTION_STRING) {
-    appInsights.setup().start();
+    client = new appInsights.TelemetryClient();
 }
 
 export async function contactHandler(request, context = { warn: () => {}, error: () => {} }) {
     const resendApiKey = process.env.RESEND_API_KEY;
-    const client = appInsights.defaultClient;
 
     if (!resendApiKey) {
         context.warn?.("Email service not configured.");
