@@ -6,7 +6,6 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { MotionProvider } from "../components/MotionProvider";
 import { ThemeProvider } from "../components/ThemeProvider";
-import { AppInsightsProvider } from "../components/AppInsightsProvider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -50,13 +49,11 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] selection:bg-[var(--primary)]/30`}
       >
         <ThemeProvider>
-          <AppInsightsProvider>
-            <Navbar />
-            <MotionProvider>
-              <main className="min-h-screen">{children}</main>
-            </MotionProvider>
-            <Footer />
-          </AppInsightsProvider>
+          <Navbar />
+          <MotionProvider>
+            <main className="min-h-screen">{children}</main>
+          </MotionProvider>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

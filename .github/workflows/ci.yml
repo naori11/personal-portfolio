@@ -29,10 +29,6 @@ jobs:
 
       - name: Build Next.js App
         run: pnpm build --filter=web
-        env:
-          SKIP_ENV_VALIDATION: true
-          NEXT_PUBLIC_RENDER_API_URL: ${{ secrets.NEXT_PUBLIC_RENDER_API_URL }}
-          NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APPINSIGHTS_CONNECTION_STRING }}
 
       - name: Hide root package files to force Oryx to only build the API
         run: |
