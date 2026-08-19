@@ -1,4 +1,5 @@
 local.settings.json
 .turbo
 *.test.js
+__tests__
 vitest.config.ts
