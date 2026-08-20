@@ -67,20 +67,26 @@ export function ParticleBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
+        const pI = particlesArray[i];
+        if (!pI) continue;
+
+        pI.update();
+        pI.draw();
 
         for (let j = i; j < particlesArray.length; j++) {
-          const dx = particlesArray[i].x - particlesArray[j].x;
-          const dy = particlesArray[i].y - particlesArray[j].y;
+          const pJ = particlesArray[j];
+          if (!pJ) continue;
+
+          const dx = pI.x - pJ.x;
+          const dy = pI.y - pJ.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(185, 199, 223, ${1 - distance / 120})`;
             ctx.lineWidth = 0.5;
-            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+            ctx.moveTo(pI.x, pI.y);
+            ctx.lineTo(pJ.x, pJ.y);
             ctx.stroke();
           }
         }
