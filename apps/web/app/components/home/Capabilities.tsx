@@ -1,5 +1,6 @@
 import { capabilities } from "./home-content";
-
+import { FadeUpStagger } from "../../../components/motion/FadeUpStagger";
+import { FadeUpItem } from "../../../components/motion/FadeUpItem";
 export function Capabilities() {
   return (
     <section className="px-4 py-20 sm:px-8 sm:py-28">
@@ -13,9 +14,9 @@ export function Capabilities() {
           </h2>
         </header>
 
-        <div className="mt-12 grid border-t border-[var(--outline-variant)]/30 md:grid-cols-3">
+        <FadeUpStagger className="mt-12 grid border-t border-[var(--outline-variant)]/30 md:grid-cols-3">
           {capabilities.map((capability, index) => (
-            <article
+            <FadeUpItem
               key={capability.title}
               className={`py-8 md:px-8 md:py-10 ${
                 index > 0
@@ -35,9 +36,9 @@ export function Capabilities() {
               <p className="mt-6 border-l-2 border-[var(--primary)]/50 pl-4 text-sm leading-6 text-[var(--secondary)]/75">
                 {capability.evidence}
               </p>
-            </article>
+            </FadeUpItem>
           ))}
-        </div>
+        </FadeUpStagger>
       </div>
     </section>
   );
