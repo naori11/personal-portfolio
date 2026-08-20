@@ -23,6 +23,7 @@ interface Project {
   demo: string | null;
   screenshots: Screenshot[];
   offset?: string;
+  inProgress?: boolean;
 }
 
 function getScreenshotSrc(item: Screenshot | undefined): string {
@@ -170,6 +171,7 @@ const projects: Project[] = [
     ],
   },
   {
+    inProgress: true,
     title: "AI Code Reviewer",
     description:
       "CLI - based assistant utilizing Google Gemini API and FastAPI to provide real-time pull request feedback. Features Dockerized deployment and GitHub Webhook integration.",
@@ -282,10 +284,18 @@ export default function ProjectsPage() {
             <div className="bg-[var(--surface-container)] rounded-sm overflow-hidden flex flex-col h-full border border-[var(--outline-variant)]/15 group-hover:border-[var(--primary)]/40 transition-colors">
               <div className="p-6">
                 {/* Terminal Header Decoration */}
-                <div className="flex gap-1.5 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
-                  <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
-                  <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
+                    <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
+                    <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
+                  </div>
+                  {project.inProgress && (
+                    <span className="flex items-center font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#ffad33] bg-[#ffad33]/10 border border-[#ffad33]/20 px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ffad33] mr-1.5 animate-pulse"></span>
+                      In Progress
+                    </span>
+                  )}
                 </div>
 
                 <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[var(--foreground)] mb-3 group-hover:text-[var(--primary)] transition-colors">
