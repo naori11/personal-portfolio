@@ -77,9 +77,16 @@ const projects: Project[] = [
     description:
       "A microservices-based platform built primarily as a sandbox for self-studying DevOps tools and practices. While not intended for commercial deployment, it will be hosted on a dedicated server to demonstrate cloud infrastructure and CI/CD workflows.",
     tech: [
-      "NEXT.JS", "TAILWIND CSS", "FASTAPI", "POSTGRESQL",
-      "DOCKER", "TERRAFORM", "AZURE", "KUBERNETES",
-      "PROMETHEUS", "GRAFANA"
+      "NEXT.JS",
+      "TAILWIND CSS",
+      "FASTAPI",
+      "POSTGRESQL",
+      "DOCKER",
+      "TERRAFORM",
+      "AZURE",
+      "KUBERNETES",
+      "PROMETHEUS",
+      "GRAFANA",
     ],
     github: "#",
     demo: null,
