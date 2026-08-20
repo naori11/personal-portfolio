@@ -46,7 +46,7 @@ const projects: Project[] = [
     tech: [
       "NEXT.JS",
       "TURBOREPO",
-      "AZURE BICEP",
+      "AZURE",
       "GITHUB ACTIONS",
       "TAILWIND CSS",
     ],
@@ -379,8 +379,8 @@ export default function ProjectsPage() {
                             className="w-3 h-3 flex-shrink-0"
                             style={{
                               backgroundColor: "currentColor",
-                              WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
-                              maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
+                              WebkitMaskImage: `url(${style.slug.startsWith("http") ? style.slug : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg`})`,
+                              maskImage: `url(${style.slug.startsWith("http") ? style.slug : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg`})`,
                               WebkitMaskRepeat: "no-repeat",
                               maskRepeat: "no-repeat",
                               WebkitMaskPosition: "center",
