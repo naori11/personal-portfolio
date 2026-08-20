@@ -50,7 +50,7 @@ const projects: Project[] = [
       color: "emerald",
     },
     description:
-      "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
+      "My personal portfolio website (this website literally). A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code and CI/CD workflows in a continuous development scenario.",
     tech: [
       "NEXT.JS",
       "TURBOREPO",
@@ -86,7 +86,7 @@ const projects: Project[] = [
       color: "cyan",
     },
     description:
-      "A microservices-based platform built primarily as a sandbox for self-studying DevOps tools and practices. While not intended for commercial deployment, it will be hosted on a dedicated server to demonstrate cloud infrastructure and CI/CD workflows.",
+      "A personal SaaS concept project that I built primarily for studying backend development and system design concepts along with DevOps tools. Definitely not intended for commercial use/deployment, but would be deployed in a dedicated server to demonstrate my cloud infrastructure CI/CD workflows.",
     tech: [
       "NEXT.JS",
       "TAILWIND CSS",
@@ -127,7 +127,7 @@ const projects: Project[] = [
   {
     title: "KidSync: Smart RFID Security",
     description:
-      "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
+      "A student pickup and drop-off verification system with attendance monitoring, SMS notifications, and an IoT-based Physical Turnstile gate. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
     tech: ["FLUTTER", "SUPABASE", "PYTHON", "ESP32"],
     github: "https://github.com/naori11/KidSync",
     demo: "https://ksync.netlify.app/",
@@ -178,7 +178,7 @@ const projects: Project[] = [
   {
     title: "Coffeetory POS",
     description:
-      "An inventory management system built with PHP and MySQL. Streamlines product tracking and sales operations for small-scale retail.",
+      "A point-of-sales and inventory management system built using LAMP stack (pure vanilla PHP yes). Also the first system that I developed for a client-based academic thesis project. Will be improved in the near future probably (???).",
     tech: ["PHP", "MYSQL", "JAVASCRIPT"],
     github: "https://github.com/naori11/Coffeetory",
     demo: null,
