@@ -1,10 +1,17 @@
 import { app } from '@azure/functions';
 import { Resend } from 'resend';
+import * as Sentry from '@sentry/node';
+
+Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    tracesSampleRate: 1.0,
+});
 
 export async function contactHandler(request, context = { warn: () => {}, error: () => {} }) {
     const resendApiKey = process.env.RESEND_API_KEY;
 
     if (!resendApiKey) {
+        Sentry.captureMessage("Email service not configured");
         context.warn?.("Email service not configured.");
         return { status: 500, jsonBody: { error: "Email service not configured" } };
     }
@@ -37,12 +44,14 @@ export async function contactHandler(request, context = { warn: () => {}, error:
         });
 
         if (error) {
+            Sentry.captureException(error);
             context.error?.("Email send error:", error);
             return { status: 500, jsonBody: { error: "Failed to send message. Please try again." } };
         }
 
         return { status: 200, jsonBody: { success: true } };
     } catch (error) {
+        Sentry.captureException(error);
         context.error?.("Email send error:", error);
         return { status: 500, jsonBody: { error: "Failed to send message. Please try again." } };
     }

@@ -29,6 +29,8 @@ jobs:
 
       - name: Build Next.js App
         run: pnpm build --filter=web
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       - name: Clean up for Oryx build
         run: |
