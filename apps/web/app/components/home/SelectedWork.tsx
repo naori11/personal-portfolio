@@ -3,6 +3,9 @@ import { fadeInUp } from "../../../lib/motion";
 import { FeaturedProject } from "./FeaturedProject";
 import { featuredProject, supportingProjects } from "./home-content";
 import { ProjectLink } from "./ProjectLink";
+import { FadeUpStagger } from "../../../components/motion/FadeUpStagger";
+import { FadeUpItem } from "../../../components/motion/FadeUpItem";
+import { HoverLift } from "../../../components/motion/HoverLift";
 
 export function SelectedWork() {
   return (
@@ -29,14 +32,15 @@ export function SelectedWork() {
 
         <FeaturedProject project={featuredProject} />
 
-        <div
-          aria-label="Supporting projects"
-          className="mt-12 grid gap-x-12 md:grid-cols-2"
-        >
+        <FadeUpStagger className="mt-12 grid gap-x-12 md:grid-cols-2">
           {supportingProjects.map((project) => (
-            <ProjectLink key={project.title} project={project} />
+            <FadeUpItem key={project.title}>
+              <HoverLift>
+                <ProjectLink project={project} />
+              </HoverLift>
+            </FadeUpItem>
           ))}
-        </div>
+        </FadeUpStagger>
       </div>
     </section>
   );
