@@ -6,7 +6,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { MotionProvider } from "../components/MotionProvider";
 import { ThemeProvider } from "../components/ThemeProvider";
-
+import { ParticleBackground } from "../components/ParticleBackground";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
@@ -49,6 +49,7 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] selection:bg-[var(--primary)]/30`}
       >
         <ThemeProvider>
+          <ParticleBackground />
           <Navbar />
           <MotionProvider>
             <main className="min-h-screen">{children}</main>
