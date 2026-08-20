@@ -24,6 +24,10 @@ interface Project {
   screenshots: Screenshot[];
   offset?: string;
   inProgress?: boolean;
+  statusBadge?: {
+    text: string;
+    color: "emerald" | "amber" | "cyan";
+  };
 }
 
 function getScreenshotSrc(item: Screenshot | undefined): string {
@@ -41,6 +45,10 @@ function getScreenshotDescription(
 const projects: Project[] = [
   {
     title: "JUVAN.TECH",
+    statusBadge: {
+      text: "LIVE // ACTIVE DEV",
+      color: "emerald",
+    },
     description:
       "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
     tech: [
@@ -72,8 +80,11 @@ const projects: Project[] = [
     ],
   },
   {
-    inProgress: true,
     title: "MaaS (Math-as-a-Service)",
+    statusBadge: {
+      text: "PERSONAL SANDBOX",
+      color: "cyan",
+    },
     description:
       "A microservices-based platform built primarily as a sandbox for self-studying DevOps tools and practices. While not intended for commercial deployment, it will be hosted on a dedicated server to demonstrate cloud infrastructure and CI/CD workflows.",
     tech: [
@@ -354,12 +365,33 @@ export default function ProjectsPage() {
                     <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
                     <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
                   </div>
-                  {project.inProgress && (
+                  {project.statusBadge ? (
+                    <span
+                      className={`flex items-center font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider ${
+                        project.statusBadge.color === "emerald"
+                          ? "text-emerald-400 bg-emerald-500/10 border border-emerald-500/25"
+                          : project.statusBadge.color === "cyan"
+                            ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/25"
+                            : "text-[#ffad33] bg-[#ffad33]/10 border border-[#ffad33]/20"
+                      }`}
+                    >
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full mr-1.5 animate-pulse ${
+                          project.statusBadge.color === "emerald"
+                            ? "bg-emerald-400"
+                            : project.statusBadge.color === "cyan"
+                              ? "bg-cyan-400"
+                              : "bg-[#ffad33]"
+                        }`}
+                      ></span>
+                      {project.statusBadge.text}
+                    </span>
+                  ) : project.inProgress ? (
                     <span className="flex items-center font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#ffad33] bg-[#ffad33]/10 border border-[#ffad33]/20 px-2 py-0.5 rounded-sm uppercase tracking-wider">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ffad33] mr-1.5 animate-pulse"></span>
                       In Progress
                     </span>
-                  )}
+                  ) : null}
                 </div>
 
                 <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[var(--foreground)] mb-3 group-hover:text-[var(--primary)] transition-colors">
