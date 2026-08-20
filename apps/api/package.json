@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
+    "@sentry/node": "^10.70.0",
     "resend": "^3.0.0"
   },
   "devDependencies": {
