@@ -172,9 +172,66 @@ const projects: Project[] = [
     github: "https://github.com/naori11/Coffeetory",
     demo: null,
     screenshots: [
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Coffeetory+Screenshot+1",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Coffeetory+Screenshot+2",
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Coffeetory+Screenshot+3",
+      {
+        src: "/assets/projects/coffeetory/login.png",
+        description: "Authentication - Role-Based Portal Access",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-pos-menu.png",
+        description: "Cashier POS - Real-Time Ordering & Menu Management",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-online-payment-modal.png",
+        description: "Cashier POS - E-Wallet & Digital Payment Gateway (GCash / Maya)",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-discount-modal.png",
+        description: "Cashier POS - Senior, PWD & Custom Discount Calculator",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-receipt-preview.png",
+        description: "Cashier POS - Transaction Summary & Instant Receipt Modal",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-printable-receipt.png",
+        description: "Cashier POS - Auto-Generated Printable Thermal Receipt (PDF)",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-stock-levels.png",
+        description: "Inventory Clerk - Real-Time Stock Levels & Reorder Thresholds",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-movements-tracking.png",
+        description: "Inventory Clerk - Automated Stock Deduction & Movement History",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-expiration-tracking.png",
+        description: "Inventory Clerk - Batch Expiration Alert & Monitoring Matrix",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-supplier-management.png",
+        description: "Inventory Clerk - Supplier Directory & Contact Records",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-dashboard-overview.png",
+        description: "Admin Panel - Executive Sales, Alerts & Best Sellers Dashboard",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-user-accounts.png",
+        description: "Admin Panel - Role & Account Access Control Management",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-product-management.png",
+        description: "Admin Panel - Product Catalog & COGS Pricing Control",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-transaction-history.png",
+        description: "Admin Panel - Multi-Period Sales & Transaction Analytics",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-system-audit-logs.png",
+        description: "Admin Panel - User Action Security Audit & System Logs",
+      },
     ],
   },
   {
