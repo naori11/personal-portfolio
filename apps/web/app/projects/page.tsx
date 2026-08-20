@@ -24,6 +24,10 @@ interface Project {
   screenshots: Screenshot[];
   offset?: string;
   inProgress?: boolean;
+  statusBadge?: {
+    text: string;
+    color: "emerald" | "amber" | "cyan";
+  };
 }
 
 function getScreenshotSrc(item: Screenshot | undefined): string {
@@ -41,15 +45,13 @@ function getScreenshotDescription(
 const projects: Project[] = [
   {
     title: "JUVAN.TECH",
+    statusBadge: {
+      text: "LIVE // ACTIVE DEV",
+      color: "emerald",
+    },
     description:
-      "A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code using Azure Bicep and GitHub Actions.",
-    tech: [
-      "NEXT.JS",
-      "TURBOREPO",
-      "AZURE BICEP",
-      "GITHUB ACTIONS",
-      "TAILWIND CSS",
-    ],
+      "My personal portfolio website (this website literally). A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code and CI/CD workflows in a continuous development scenario.",
+    tech: ["NEXT.JS", "TURBOREPO", "AZURE", "GITHUB ACTIONS", "TAILWIND CSS"],
     github: "https://github.com/naori11/personal-portfolio",
     demo: "https://www.juvan.tech",
     screenshots: [
@@ -72,10 +74,13 @@ const projects: Project[] = [
     ],
   },
   {
-    inProgress: true,
     title: "MaaS (Math-as-a-Service)",
+    statusBadge: {
+      text: "PERSONAL SANDBOX",
+      color: "cyan",
+    },
     description:
-      "A microservices-based platform built primarily as a sandbox for self-studying DevOps tools and practices. While not intended for commercial deployment, it will be hosted on a dedicated server to demonstrate cloud infrastructure and CI/CD workflows.",
+      "A personal SaaS concept project that I built primarily for studying backend development and system design concepts along with DevOps tools. Definitely not intended for commercial use/deployment, but would be deployed in a dedicated server to demonstrate my cloud infrastructure CI/CD workflows.",
     tech: [
       "NEXT.JS",
       "TAILWIND CSS",
@@ -116,7 +121,7 @@ const projects: Project[] = [
   {
     title: "KidSync: Smart RFID Security",
     description:
-      "A hardware-software hybrid for secure student verification. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
+      "A student pickup and drop-off verification system with attendance monitoring, SMS notifications, and an IoT-based Physical Turnstile gate. Uses ESP32 microcontrollers and RC522 scanners synced with a Flutter/Supabase backend.",
     tech: ["FLUTTER", "SUPABASE", "PYTHON", "ESP32"],
     github: "https://github.com/naori11/KidSync",
     demo: "https://ksync.netlify.app/",
@@ -167,14 +172,78 @@ const projects: Project[] = [
   {
     title: "Coffeetory POS",
     description:
-      "An inventory management system built with PHP and MySQL. Streamlines product tracking and sales operations for small-scale retail.",
+      "A point-of-sales and inventory management system built using LAMP stack (pure vanilla PHP yes). Also the first system that I developed for a client-based academic thesis project. Will be improved in the near future probably (???).",
     tech: ["PHP", "MYSQL", "JAVASCRIPT"],
     github: "https://github.com/naori11/Coffeetory",
     demo: null,
     screenshots: [
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Coffeetory+Screenshot+1",
-      "https://via.placeholder.com/1200x800/131b2e/6bd8cb?text=Coffeetory+Screenshot+2",
-      "https://via.placeholder.com/1200x800/131b2e/cfbdff?text=Coffeetory+Screenshot+3",
+      {
+        src: "/assets/projects/coffeetory/login.png",
+        description: "Authentication - Role-Based Portal Access",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-pos-menu.png",
+        description: "Cashier POS - Real-Time Ordering & Menu Management",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-online-payment-modal.png",
+        description:
+          "Cashier POS - E-Wallet & Digital Payment Gateway (GCash / Maya)",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-discount-modal.png",
+        description: "Cashier POS - Senior, PWD & Custom Discount Calculator",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-receipt-preview.png",
+        description:
+          "Cashier POS - Transaction Summary & Instant Receipt Modal",
+      },
+      {
+        src: "/assets/projects/coffeetory/cashier-printable-receipt.png",
+        description:
+          "Cashier POS - Auto-Generated Printable Thermal Receipt (PDF)",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-stock-levels.png",
+        description:
+          "Inventory Clerk - Real-Time Stock Levels & Reorder Thresholds",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-movements-tracking.png",
+        description:
+          "Inventory Clerk - Automated Stock Deduction & Movement History",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-expiration-tracking.png",
+        description:
+          "Inventory Clerk - Batch Expiration Alert & Monitoring Matrix",
+      },
+      {
+        src: "/assets/projects/coffeetory/inventory-supplier-management.png",
+        description: "Inventory Clerk - Supplier Directory & Contact Records",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-dashboard-overview.png",
+        description:
+          "Admin Panel - Executive Sales, Alerts & Best Sellers Dashboard",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-user-accounts.png",
+        description: "Admin Panel - Role & Account Access Control Management",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-product-management.png",
+        description: "Admin Panel - Product Catalog & COGS Pricing Control",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-transaction-history.png",
+        description: "Admin Panel - Multi-Period Sales & Transaction Analytics",
+      },
+      {
+        src: "/assets/projects/coffeetory/admin-system-audit-logs.png",
+        description: "Admin Panel - User Action Security Audit & System Logs",
+      },
     ],
   },
   {
@@ -297,12 +366,33 @@ export default function ProjectsPage() {
                     <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
                     <div className="w-2 h-2 rounded-full bg-[var(--outline-variant)]/30"></div>
                   </div>
-                  {project.inProgress && (
+                  {project.statusBadge ? (
+                    <span
+                      className={`flex items-center font-[family-name:var(--font-jetbrains-mono)] text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider ${
+                        project.statusBadge.color === "emerald"
+                          ? "text-emerald-400 bg-emerald-500/10 border border-emerald-500/25"
+                          : project.statusBadge.color === "cyan"
+                            ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/25"
+                            : "text-[#ffad33] bg-[#ffad33]/10 border border-[#ffad33]/20"
+                      }`}
+                    >
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full mr-1.5 animate-pulse ${
+                          project.statusBadge.color === "emerald"
+                            ? "bg-emerald-400"
+                            : project.statusBadge.color === "cyan"
+                              ? "bg-cyan-400"
+                              : "bg-[#ffad33]"
+                        }`}
+                      ></span>
+                      {project.statusBadge.text}
+                    </span>
+                  ) : project.inProgress ? (
                     <span className="flex items-center font-[family-name:var(--font-jetbrains-mono)] text-[10px] text-[#ffad33] bg-[#ffad33]/10 border border-[#ffad33]/20 px-2 py-0.5 rounded-sm uppercase tracking-wider">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ffad33] mr-1.5 animate-pulse"></span>
                       In Progress
                     </span>
-                  )}
+                  ) : null}
                 </div>
 
                 <h3 className="font-[family-name:var(--font-space-grotesk)] text-2xl font-bold text-[var(--foreground)] mb-3 group-hover:text-[var(--primary)] transition-colors">
@@ -322,8 +412,8 @@ export default function ProjectsPage() {
                             className="w-3 h-3 flex-shrink-0"
                             style={{
                               backgroundColor: "currentColor",
-                              WebkitMaskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
-                              maskImage: `url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg)`,
+                              WebkitMaskImage: `url(${style.slug.startsWith("http") ? style.slug : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg`})`,
+                              maskImage: `url(${style.slug.startsWith("http") ? style.slug : `https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/${style.slug}.svg`})`,
                               WebkitMaskRepeat: "no-repeat",
                               maskRepeat: "no-repeat",
                               WebkitMaskPosition: "center",

@@ -144,6 +144,24 @@ const techStylesDark: Record<string, BadgeStyle> = {
     border: "border-[#30363d]",
     slug: "github",
   },
+  KUBERNETES: {
+    bg: "bg-[#326ce5]/10",
+    text: "text-[#6297ff]",
+    border: "border-[#326ce5]/20",
+    slug: "kubernetes",
+  },
+  PROMETHEUS: {
+    bg: "bg-[#e6522c]/10",
+    text: "text-[#ff7854]",
+    border: "border-[#e6522c]/20",
+    slug: "prometheus",
+  },
+  GRAFANA: {
+    bg: "bg-[#f46800]/10",
+    text: "text-[#ff8a33]",
+    border: "border-[#f46800]/20",
+    slug: "grafana",
+  },
 };
 
 const techStylesLight: Record<string, BadgeStyle> = {
@@ -284,6 +302,24 @@ const techStylesLight: Record<string, BadgeStyle> = {
     text: "text-content-text",
     border: "border-structure-border",
     slug: "github",
+  },
+  KUBERNETES: {
+    bg: "bg-[#326ce5]/8",
+    text: "text-[#1b52c0]",
+    border: "border-[#326ce5]/20",
+    slug: "kubernetes",
+  },
+  PROMETHEUS: {
+    bg: "bg-[#e6522c]/8",
+    text: "text-[#c2330d]",
+    border: "border-[#e6522c]/20",
+    slug: "prometheus",
+  },
+  GRAFANA: {
+    bg: "bg-[#f46800]/8",
+    text: "text-[#c45300]",
+    border: "border-[#f46800]/20",
+    slug: "grafana",
   },
 };
 
