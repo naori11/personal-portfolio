@@ -51,13 +51,7 @@ const projects: Project[] = [
     },
     description:
       "My personal portfolio website (this website literally). A Next.js monorepo featuring automated CI/CD. This project serves as a live demo of Infrastructure as Code and CI/CD workflows in a continuous development scenario.",
-    tech: [
-      "NEXT.JS",
-      "TURBOREPO",
-      "AZURE",
-      "GITHUB ACTIONS",
-      "TAILWIND CSS",
-    ],
+    tech: ["NEXT.JS", "TURBOREPO", "AZURE", "GITHUB ACTIONS", "TAILWIND CSS"],
     github: "https://github.com/naori11/personal-portfolio",
     demo: "https://www.juvan.tech",
     screenshots: [
@@ -193,7 +187,8 @@ const projects: Project[] = [
       },
       {
         src: "/assets/projects/coffeetory/cashier-online-payment-modal.png",
-        description: "Cashier POS - E-Wallet & Digital Payment Gateway (GCash / Maya)",
+        description:
+          "Cashier POS - E-Wallet & Digital Payment Gateway (GCash / Maya)",
       },
       {
         src: "/assets/projects/coffeetory/cashier-discount-modal.png",
@@ -201,23 +196,28 @@ const projects: Project[] = [
       },
       {
         src: "/assets/projects/coffeetory/cashier-receipt-preview.png",
-        description: "Cashier POS - Transaction Summary & Instant Receipt Modal",
+        description:
+          "Cashier POS - Transaction Summary & Instant Receipt Modal",
       },
       {
         src: "/assets/projects/coffeetory/cashier-printable-receipt.png",
-        description: "Cashier POS - Auto-Generated Printable Thermal Receipt (PDF)",
+        description:
+          "Cashier POS - Auto-Generated Printable Thermal Receipt (PDF)",
       },
       {
         src: "/assets/projects/coffeetory/inventory-stock-levels.png",
-        description: "Inventory Clerk - Real-Time Stock Levels & Reorder Thresholds",
+        description:
+          "Inventory Clerk - Real-Time Stock Levels & Reorder Thresholds",
       },
       {
         src: "/assets/projects/coffeetory/inventory-movements-tracking.png",
-        description: "Inventory Clerk - Automated Stock Deduction & Movement History",
+        description:
+          "Inventory Clerk - Automated Stock Deduction & Movement History",
       },
       {
         src: "/assets/projects/coffeetory/inventory-expiration-tracking.png",
-        description: "Inventory Clerk - Batch Expiration Alert & Monitoring Matrix",
+        description:
+          "Inventory Clerk - Batch Expiration Alert & Monitoring Matrix",
       },
       {
         src: "/assets/projects/coffeetory/inventory-supplier-management.png",
@@ -225,7 +225,8 @@ const projects: Project[] = [
       },
       {
         src: "/assets/projects/coffeetory/admin-dashboard-overview.png",
-        description: "Admin Panel - Executive Sales, Alerts & Best Sellers Dashboard",
+        description:
+          "Admin Panel - Executive Sales, Alerts & Best Sellers Dashboard",
       },
       {
         src: "/assets/projects/coffeetory/admin-user-accounts.png",
