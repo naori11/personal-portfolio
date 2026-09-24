@@ -178,7 +178,7 @@ export default function AboutPage() {
                   Backend Developer (Apprenticeship)
                 </h3>
                 <span className="font-[family-name:var(--font-jetbrains-mono)] text-[var(--tertiary)] text-sm">
-                  JUNE 2026 — PRESENT
+                  JUNE 2026 — AUGUST 2026
                 </span>
               </div>
               <div className="font-[family-name:var(--font-jetbrains-mono)] text-xs text-[var(--secondary)]/60 mb-4 tracking-wider">
